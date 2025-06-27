@@ -24,8 +24,3 @@ def sync_available_functions(middleware: str, list_function_names: list[str]):
             logger.error(f"Error syncing functions: {response.text}")
 
     logger.info("Function sync completed")
-
-
-if __name__ == "__main__":
-    for f in browse_functions():
-        print(f)
