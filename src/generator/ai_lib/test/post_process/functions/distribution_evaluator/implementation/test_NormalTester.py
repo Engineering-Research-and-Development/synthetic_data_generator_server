@@ -32,7 +32,7 @@ def test_compute(correct_instance):
     assert data.shape == (10000,)
     assert indexes.shape == (10000,)
     assert np.all(compute_data == data)
-    assert np.all(indexes == np.zeros(len(data)))
+    assert np.all(indexes == np.array(range(len(data))))
 
 
 def test_evaluate(correct_instance):

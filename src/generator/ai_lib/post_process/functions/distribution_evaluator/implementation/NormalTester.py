@@ -24,7 +24,7 @@ class NormalTester(UnspecializedFunction):
         :param data:
         :return:
         """
-        return data, np.zeros(len(data))
+        return data, np.array(range(len(data)))
 
     def _evaluate(self, data: np.array) -> bool:
         """

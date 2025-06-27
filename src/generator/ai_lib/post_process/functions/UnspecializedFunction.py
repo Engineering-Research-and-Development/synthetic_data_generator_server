@@ -15,10 +15,20 @@ class UnspecializedFunction(ABC):
 
     @abstractmethod
     def _compute(self, data: np.array) -> tuple[np.array, np.array]:
+        """
+        Applies a data transformation function on a given set of generated data
+        :param data: a numpy array of data from a single feature
+        :return: transformed data and affected indexes
+        """
         raise NotImplementedError
 
     @abstractmethod
     def _evaluate(self, data: np.array) -> bool:
+        """
+        Applies an evaluation function on a given set of generated data
+        :param data: a numpy array of data from a single feature
+        :return: a single boolean value evaluating id data meets evaluation criteria
+        """
         raise NotImplementedError
 
     @classmethod
