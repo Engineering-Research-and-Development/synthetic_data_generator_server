@@ -186,4 +186,4 @@ fabric.properties
 /uv.lock
 
 .run
-src/generator/server/saved_models
+src/server/saved_models
