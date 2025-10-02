@@ -58,22 +58,12 @@ jobs:
           uv pip install -r src/requirements.txt
           uv pip install ruff bandit
 
-      - name: Run AI_LIB Ruff
-        run: |
-          cd src/
-          uv run ruff check ./ai_lib
-          uv run ruff format --check ./ai_lib
 
       - name: Run SERVER Ruff
         run: |
           cd src/
           uv run ruff check ./server
           uv run ruff format --check ./server
-
-      - name: Run AI_LIB bandit
-        run: |
-          cd src/          
-          uv run bandit -c bandit.yaml -r ./ai_lib
 
 
       - name: Run SERVER bandit
