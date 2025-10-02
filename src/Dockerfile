@@ -3,7 +3,7 @@ LABEL authors="emiliocimino"
 
 WORKDIR /home
 
-COPY generator .
+COPY . .
 
 RUN uv init
 RUN uv add -r ./requirements.txt
