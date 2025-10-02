@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t test-container src/generator
+        docker build -t test-container src/
 
     - name: Run the Docker container
       run: |
@@ -73,14 +73,12 @@ jobs:
     - name: Install dependencies
       run: |
         uv venv
-        uv pip install -r src/generator/requirements.txt
+        uv pip install -r src/requirements.txt
         uv pip install pytest
 
-    - name: Run AI-LIB tests
-      run: uv run pytest src/generator/ai_lib/test/
 
     - name: Run SERVER tests
-      run: uv run pytest src/generator/server/test/
+      run: uv run pytest src/server/test/
 
     - name: Stop and remove container
       run: |
@@ -122,7 +120,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./src/generator
+          context: ./src
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
