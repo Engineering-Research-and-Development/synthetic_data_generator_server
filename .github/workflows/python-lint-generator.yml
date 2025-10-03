@@ -2,7 +2,7 @@ name: Python Lint and Security generator
 
 on:
   push:
-    branches: [ "generator" ]
+    branches: [ "*" ]
 
 jobs:
   check_with_black:
