@@ -3,8 +3,8 @@ import json
 import requests
 from loguru import logger
 
-from ai_lib.NumericDataset import NumericDataset
-from ai_lib.data_generator.models.UnspecializedModel import UnspecializedModel
+from sdg_core_lib.NumericDataset import NumericDataset
+from sdg_core_lib.data_generator.models.UnspecializedModel import UnspecializedModel
 from server.file_utils import (
     list_trained_models,
     retrieve_model_payload,

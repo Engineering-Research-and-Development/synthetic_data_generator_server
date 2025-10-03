@@ -1,6 +1,6 @@
 from loguru import logger
 
-from ai_lib.job import job
+from sdg_core_lib.job import job
 from server.couch_handlers import add_couch_data
 from server.file_utils import (
     check_latest_version,

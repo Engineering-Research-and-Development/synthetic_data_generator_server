@@ -1,7 +1,7 @@
 import requests
 from loguru import logger
 
-from ai_lib.browser import browse_functions
+from sdg_core_lib.browser import browse_functions
 
 
 def sync_available_functions(middleware: str, list_function_names: list[str]):

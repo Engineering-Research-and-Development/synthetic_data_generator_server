@@ -1,13 +1,5 @@
-numpy==2.0.2
-pandas==2.2.3
-seaborn==0.13.2
-matplotlib==3.9.2
-scikit-learn==1.5.2
+sdg_core_lib
 requests
-keras==3.6.0
-tensorflow==2.18.0
 pyaml
 fastapi[standard]
 loguru
-skops
-statsmodels

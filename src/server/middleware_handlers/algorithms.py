@@ -1,7 +1,7 @@
 import requests
 from loguru import logger
 
-from ai_lib.browser import browse_algorithms
+from sdg_core_lib.browser import browse_algorithms
 
 
 def sync_available_algorithms(
