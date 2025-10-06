@@ -511,7 +511,7 @@
       "version": "5.0"
     },
     {
-      "bom-ref": "certifi==2025.8.3",
+      "bom-ref": "certifi==2025.10.5",
       "description": "Python package for providing Mozilla's CA Bundle.",
       "externalReferences": [
         {
@@ -540,9 +540,9 @@
         }
       ],
       "name": "certifi",
-      "purl": "pkg:pypi/certifi@2025.8.3",
+      "purl": "pkg:pypi/certifi@2025.10.5",
       "type": "library",
-      "version": "2025.8.3"
+      "version": "2025.10.5"
     },
     {
       "bom-ref": "chardet==5.2.0",
@@ -2404,7 +2404,7 @@
       "version": "25.7.0"
     },
     {
-      "bom-ref": "pydantic==2.11.9",
+      "bom-ref": "pydantic==2.11.10",
       "description": "Data validation using Python type hints",
       "externalReferences": [
         {
@@ -2448,9 +2448,9 @@
           "value": "email"
         }
       ],
-      "purl": "pkg:pypi/pydantic@2.11.9",
+      "purl": "pkg:pypi/pydantic@2.11.10",
       "type": "library",
-      "version": "2.11.9"
+      "version": "2.11.10"
     },
     {
       "bom-ref": "pydantic_core==2.33.2",
@@ -4164,7 +4164,7 @@
       "ref": "boolean.py==5.0"
     },
     {
-      "ref": "certifi==2025.8.3"
+      "ref": "certifi==2025.10.5"
     },
     {
       "ref": "chardet==5.2.0"
@@ -4243,7 +4243,7 @@
     {
       "dependsOn": [
         "httpx==0.28.1",
-        "pydantic==2.11.9",
+        "pydantic==2.11.10",
         "rich-toolkit==0.15.1",
         "rignore==0.7.0",
         "sentry-sdk==2.39.0",
@@ -4259,7 +4259,7 @@
         "email-validator==2.3.0",
         "fastapi-cli==0.0.13",
         "httpx==0.28.1",
-        "pydantic==2.11.9",
+        "pydantic==2.11.10",
         "python-multipart==0.0.20",
         "starlette==0.48.0",
         "typing_extensions==4.15.0",
@@ -4308,7 +4308,7 @@
     {
       "dependsOn": [
         "anyio==4.11.0",
-        "certifi==2025.8.3",
+        "certifi==2025.10.5",
         "h11==0.16.0"
       ],
       "ref": "httpcore==1.0.9"
@@ -4320,7 +4320,7 @@
       "dependsOn": [
         "Pygments==2.19.2",
         "anyio==4.11.0",
-        "certifi==2025.8.3",
+        "certifi==2025.10.5",
         "click==8.3.0",
         "httpcore==1.0.9",
         "idna==3.10",
@@ -4527,7 +4527,7 @@
         "typing_extensions==4.15.0",
         "tzdata==2025.2"
       ],
-      "ref": "pydantic==2.11.9"
+      "ref": "pydantic==2.11.10"
     },
     {
       "dependsOn": [
@@ -4569,7 +4569,7 @@
     },
     {
       "dependsOn": [
-        "certifi==2025.8.3",
+        "certifi==2025.10.5",
         "chardet==5.2.0",
         "charset-normalizer==3.4.3",
         "idna==3.10",
@@ -4663,7 +4663,7 @@
     {
       "dependsOn": [
         "MarkupSafe==3.0.3",
-        "certifi==2025.8.3",
+        "certifi==2025.10.5",
         "fastapi==0.118.0",
         "grpcio==1.75.1",
         "httpcore==1.0.9",
@@ -4855,7 +4855,7 @@
     }
   ],
   "metadata": {
-    "timestamp": "2025-10-03T14:48:09.462612+00:00",
+    "timestamp": "2025-10-06T08:27:00.140171+00:00",
     "tools": {
       "components": [
         {
@@ -4959,7 +4959,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:55e9ca24-485d-49b0-9ca4-7e56bb03da6a",
+  "serialNumber": "urn:uuid:9274d7e8-ca7b-49b0-883a-33b8271460d0",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
