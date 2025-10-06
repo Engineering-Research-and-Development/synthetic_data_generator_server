@@ -2,7 +2,7 @@ name: Generate SBOM
 
 on:
   push:
-    branches: [ "*" ]
+    branches: [ "generator" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
 
