@@ -2,7 +2,6 @@ import json
 
 import requests
 from loguru import logger
-import os
 
 from sdg_core_lib.NumericDataset import NumericDataset
 from sdg_core_lib.data_generator.models.UnspecializedModel import UnspecializedModel

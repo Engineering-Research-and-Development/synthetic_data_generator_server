@@ -1,6 +1,5 @@
 import requests
 from loguru import logger
-import os
 
 from sdg_core_lib.browser import browse_functions
 from server.middleware_handlers import middleware
