@@ -445,7 +445,7 @@
       "version": "1.6.3"
     },
     {
-      "bom-ref": "attrs==25.3.0",
+      "bom-ref": "attrs==25.4.0",
       "description": "Classes Without Boilerplate",
       "externalReferences": [
         {
@@ -483,9 +483,9 @@
         }
       ],
       "name": "attrs",
-      "purl": "pkg:pypi/attrs@25.3.0",
+      "purl": "pkg:pypi/attrs@25.4.0",
       "type": "library",
-      "version": "25.3.0"
+      "version": "25.4.0"
     },
     {
       "bom-ref": "boolean.py==5.0",
@@ -3064,7 +3064,7 @@
       "version": "0.13.2"
     },
     {
-      "bom-ref": "sentry-sdk==2.39.0",
+      "bom-ref": "sentry-sdk==2.40.0",
       "description": "Python client for Sentry (https://sentry.io)",
       "externalReferences": [
         {
@@ -3098,9 +3098,9 @@
         }
       ],
       "name": "sentry-sdk",
-      "purl": "pkg:pypi/sentry-sdk@2.39.0",
+      "purl": "pkg:pypi/sentry-sdk@2.40.0",
       "type": "library",
-      "version": "2.39.0"
+      "version": "2.40.0"
     },
     {
       "bom-ref": "setuptools==80.9.0",
@@ -4158,7 +4158,7 @@
       "ref": "astunparse==1.6.3"
     },
     {
-      "ref": "attrs==25.3.0"
+      "ref": "attrs==25.4.0"
     },
     {
       "ref": "boolean.py==5.0"
@@ -4246,7 +4246,7 @@
         "pydantic==2.11.10",
         "rich-toolkit==0.15.1",
         "rignore==0.7.0",
-        "sentry-sdk==2.39.0",
+        "sentry-sdk==2.40.0",
         "typer==0.19.2",
         "uvicorn==0.37.0"
       ],
@@ -4351,7 +4351,7 @@
     },
     {
       "dependsOn": [
-        "attrs==25.3.0",
+        "attrs==25.4.0",
         "fqdn==1.5.1",
         "idna==3.10",
         "isoduration==20.11.0",
@@ -4561,7 +4561,7 @@
     },
     {
       "dependsOn": [
-        "attrs==25.3.0",
+        "attrs==25.4.0",
         "rpds-py==0.27.1",
         "typing_extensions==4.15.0"
       ],
@@ -4673,7 +4673,7 @@
         "starlette==0.48.0",
         "urllib3==2.5.0"
       ],
-      "ref": "sentry-sdk==2.39.0"
+      "ref": "sentry-sdk==2.40.0"
     },
     {
       "dependsOn": [
@@ -4855,7 +4855,7 @@
     }
   ],
   "metadata": {
-    "timestamp": "2025-10-06T08:27:00.140171+00:00",
+    "timestamp": "2025-10-07T15:36:14.541989+00:00",
     "tools": {
       "components": [
         {
@@ -4959,7 +4959,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:9274d7e8-ca7b-49b0-883a-33b8271460d0",
+  "serialNumber": "urn:uuid:e951389d-2ea1-4852-8def-62d830d67a8d",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
