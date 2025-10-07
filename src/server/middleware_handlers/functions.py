@@ -2,9 +2,10 @@ import requests
 from loguru import logger
 
 from sdg_core_lib.browser import browse_functions
+from server.middleware_handlers import middleware
 
 
-def sync_available_functions(middleware: str, list_function_names: list[str]):
+def sync_available_functions(list_function_names: list[str]):
     """
     Syncs the available functions from the middleware to the local server.
     """

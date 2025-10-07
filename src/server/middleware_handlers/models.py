@@ -12,6 +12,7 @@ from server.file_utils import (
     get_folder_full_path,
     delete_folder,
 )
+from server.middleware_handlers import middleware
 
 
 def model_to_middleware(
@@ -20,8 +21,6 @@ def model_to_middleware(
     dataset_name: str,
     save_path: str,
     version_name: str,
-    middleware: str,
-    middleware_on: bool,
     algorithm_long_name_to_id: dict,
 ) -> str:
     """
@@ -34,8 +33,6 @@ def model_to_middleware(
     The function ultimately posts the model to the middleware for storage and returns
     the response body of the POST request.
 
-    :param middleware:
-    :param middleware_on:
     :param algorithm_long_name_to_id:
     :param model: The trained model to be pushed
     :param data: The dataset used for training the model
@@ -69,41 +66,32 @@ def model_to_middleware(
         "version": version_info,
         "datatypes": feature_list,
     }
-    return post_model_to_middleware(
-        model_to_save, middleware=middleware, middleware_on=middleware_on
-    )
+    return post_model_to_middleware(model_to_save)
 
 
-def post_model_to_middleware(model_to_save: dict, middleware: str, middleware_on: bool):
+def post_model_to_middleware(model_to_save: dict):
     """
     Posts a trained model to the middleware
 
-    :param middleware:
-    :param middleware_on:
     :param model_to_save: The model to be saved
     :return: The body of the POST request
     """
 
     headers = {"Content-Type": "application/json"}
     body = json.dumps(model_to_save)
-    if middleware_on:
-        logger.info(f"Pushing {model_to_save.get('model').get('name')} middleware")
-        response = requests.post(
-            f"{middleware}trained_models/", headers=headers, data=body
+    logger.info(f"Pushing {model_to_save.get('model').get('name')} middleware")
+    response = requests.post(f"{middleware}trained_models/", headers=headers, data=body)
+    if response.status_code != 201:
+        logger.error(
+            f"Something went wrong in saving the model, rollback to latest version\n {response.content}"
         )
-        if response.status_code != 201:
-            logger.error(
-                f"Something went wrong in saving the model, rollback to latest version\n {response.content}"
-            )
-        else:
-            logger.info("Model pushed successfully")
+    else:
+        logger.info("Model pushed successfully")
 
     return body
 
 
-def sync_trained_models(
-    middleware: str, algorithm_long_name_to_id: dict, middleware_on: bool
-):
+def sync_trained_models(algorithm_long_name_to_id: dict):
     """
     Syncs the trained models from the middleware to the local server.
     First check remote trained model with their versions. If models and versions are not available,
@@ -146,9 +134,7 @@ def sync_trained_models(
                     save_model_payload(
                         get_folder_full_path(local_trained_model), model_payload
                     )
-                post_model_to_middleware(
-                    model_payload, middleware=middleware, middleware_on=middleware_on
-                )
+                post_model_to_middleware(model_payload)
         except FileNotFoundError:
             logger.error("Local Payload not found, deleting folder")
             delete_folder(get_folder_full_path(local_trained_model))
