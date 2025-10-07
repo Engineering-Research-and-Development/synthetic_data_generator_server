@@ -2,10 +2,10 @@ import requests
 from loguru import logger
 
 from sdg_core_lib.browser import browse_algorithms
+from server.middleware_handlers import middleware
 
 
 def sync_available_algorithms(
-    middleware: str,
     algorithm_short_to_long: dict,
     algorithm_long_to_short: dict,
     algorithm_long_name_to_id: dict,

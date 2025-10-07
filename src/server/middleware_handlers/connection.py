@@ -10,10 +10,10 @@ from server.file_utils import (
 from server.middleware_handlers.algorithms import sync_available_algorithms
 from server.middleware_handlers.functions import sync_available_functions
 from server.middleware_handlers.models import sync_trained_models
+from server.middleware_handlers import middleware
 
 MIDDLEWARE_ON = False
 MAX_RETRIES = 10
-middleware = os.environ.get("MIDDLEWARE_URL")
 GENERATOR_ALGORITHM_NAMES = []
 ALGORITHM_LONG_NAME_TO_ID = {}
 ALGORITHM_LONG_TO_SHORT = {}
@@ -63,18 +63,14 @@ def middleware_connect(tries: int = 1) -> None:
     try:
         logger.info(f"Connection attempt n.{tries}")
         sync_available_algorithms(
-            middleware=middleware,
             algorithm_short_to_long=ALGORITHM_SHORT_TO_LONG,
             algorithm_long_to_short=ALGORITHM_LONG_TO_SHORT,
             algorithm_long_name_to_id=ALGORITHM_LONG_NAME_TO_ID,
         )
         sync_trained_models(
-            middleware=middleware,
             algorithm_long_name_to_id=ALGORITHM_LONG_NAME_TO_ID,
-            middleware_on=True,
         )
         sync_available_functions(
-            middleware=middleware,
             list_function_names=GENERATOR_FUNCTION_NAMES,
         )
     except ConnectionError:
@@ -84,3 +80,7 @@ def middleware_connect(tries: int = 1) -> None:
     MIDDLEWARE_ON = True
     logger.info("Middleware connection successful")
     return None
+
+
+def is_middleware_on():
+    return MIDDLEWARE_ON
