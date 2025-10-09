@@ -2,7 +2,7 @@ name: Docker Build and Push
 
 on:
   push:
-    branches: [ "*" ]
+    branches: [ "generator" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
 
@@ -88,7 +88,6 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/generator'
     permissions:
       contents: read
       packages: write
