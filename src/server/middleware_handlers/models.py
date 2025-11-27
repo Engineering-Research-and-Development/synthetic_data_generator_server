@@ -3,7 +3,6 @@ import json
 import requests
 from loguru import logger
 
-from sdg_core_lib.NumericDataset import NumericDataset
 from sdg_core_lib.data_generator.models.UnspecializedModel import UnspecializedModel
 from server.file_utils import (
     list_trained_models,
@@ -17,7 +16,7 @@ from server.middleware_handlers import middleware
 
 def model_to_middleware(
     model: UnspecializedModel,
-    data: NumericDataset,
+    data_skeleton: list[dict],
     dataset_name: str,
     save_path: str,
     version_name: str,
@@ -35,14 +34,13 @@ def model_to_middleware(
 
     :param algorithm_long_name_to_id:
     :param model: The trained model to be pushed
-    :param data: The dataset used for training the model
+    :param data_skeleton: The dataset used for training the model
     :param dataset_name: The name of the dataset
     :param save_path: The path where the model is saved
     :param version_name: The version name of the model
     :return: The response body of the POST request
     """
 
-    feature_list = data.parse_data_to_registry()
     training_info = model.training_info.to_dict()
     version_info = {
         "version_name": version_name,
@@ -64,7 +62,7 @@ def model_to_middleware(
     model_to_save = {
         "model": trained_model_misc,
         "version": version_info,
-        "datatypes": feature_list,
+        "datatypes": data_skeleton,
     }
     return post_model_to_middleware(model_to_save)
 
