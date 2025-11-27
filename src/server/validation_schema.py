@@ -2,21 +2,43 @@ from typing import List, Literal, Optional
 
 from pydantic import BaseModel, PositiveInt, Field
 
+################################### INPUTS - DATA MODEL #################################
 
-class TrainingDataInfo(BaseModel):
+class BaseColumn(BaseModel):
     column_name: str
-    column_datatype: Literal["float32", "float64", "int32", "int64"]
-    column_type: Literal["continuous", "categorical", "time_series"]
+    column_datatype: Literal["float32", "float64", "int32", "int64", "str"]
+    column_type: Literal["continuous", "categorical", "primary_key", "group_index"]
 
 
-class DatasetIn(TrainingDataInfo):
-    column_data: List[float | int] | List
+class Data(BaseColumn):
+    column_data: List[float | int | str] | List
 
 
-class TrainModelInfo(BaseModel):
+class DatasetIn(BaseModel):
+    data: List[Data]
+    dataset_type: Literal["table", "time_series"]
+
+
+class DataSkeleton(BaseColumn):
+    column_position: PositiveInt
+    column_size: PositiveInt
+
+
+################################## INPUTS - MODEL #####################################
+
+class BaseModelInfo(BaseModel):
     algorithm_name: str
     model_name: str
 
+class InferModelInfoData(BaseModelInfo):
+    image: str
+    input_shape: str = Field(pattern=r"\([0-9]+,(([0-9]+,?)+)?\)")
+
+class InferModelInfoNodata(InferModelInfoData):
+    training_data_info: List[DataSkeleton] = []
+
+
+################################### INPUTS - TRAINING #################################
 
 class Parameter(BaseModel):
     name: str
@@ -35,23 +57,14 @@ class Function(BaseModel):
     parameters: List[Parameter]
 
 
-class InferModelInfoData(BaseModel):
-    algorithm_name: str
-    model_name: str
-    image: str
-    input_shape: str = Field(pattern=r"\([0-9]+,(([0-9]+,?)+)?\)")
-
-
-class InferModelInfoNodata(InferModelInfoData):
-    training_data_info: List[TrainingDataInfo] = []
-
-
 class TrainRequest(BaseModel):
-    model: TrainModelInfo
-    dataset: List[DatasetIn]
+    model: BaseModelInfo
+    dataset: DatasetIn
     functions: Optional[List[Function]] = []
     n_rows: PositiveInt
 
+
+################################### INPUTS - INFER #################################
 
 class InferRequestNoData(BaseModel):
     model: InferModelInfoNodata
@@ -60,10 +73,12 @@ class InferRequestNoData(BaseModel):
 
 
 class InferRequest(InferRequestNoData):
-    dataset: List[DatasetIn]
+    dataset: Optional[List[DatasetIn]] = []
 
 
-##################################
+################################## OUTPUTS #################################
+
+
 class GeneratedData(BaseModel):
     column_data: List[float | int]
     column_name: str

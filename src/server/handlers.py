@@ -1,6 +1,6 @@
 from loguru import logger
 
-from sdg_core_lib.job import job
+from sdg_core_lib.job import train, infer
 from server.couch_handlers import add_couch_data
 from server.file_utils import (
     check_latest_version,
@@ -42,12 +42,11 @@ def execute_train(request: TrainRequest, couch_doc: str):
 
     folder_path = create_folder(folder_id)
     try:
-        results, metrics, model, data = job(
+        results, metrics, model, data = train(
             model_info=request["model"],
             dataset=request["dataset"],
             n_rows=request["n_rows"],
             save_filepath=folder_path,
-            train=True,
         )
     except (ValueError, TypeError) as e:
         delete_folder(folder_path)
@@ -104,12 +103,11 @@ def execute_infer(request: InferRequest, couch_doc: str):
         return
 
     try:
-        results, metrics, model, data = job(
+        results, metrics = infer(
             model_info=request["model"],
             dataset=request["dataset"],
             n_rows=request["n_rows"],
             save_filepath="",
-            train=False,
         )
     except (ValueError, TypeError) as e:
         logger.error(f"Error while making inference: {e}")

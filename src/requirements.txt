@@ -1,4 +1,4 @@
-sdg_core_lib
+sdg_core_lib==0.1.2
 requests
 pyaml
 fastapi[standard]
