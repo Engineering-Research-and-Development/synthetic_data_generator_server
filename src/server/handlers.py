@@ -20,6 +20,19 @@ from server.utilities import trim_name
 from server.validation_schema import TrainRequest, InferRequest
 
 
+# TODO: Implement this in middleware and delete from here
+def _detect_dataset_type(dataset: list[dict]) -> str:
+    col_types = [col["column_type"] for col in dataset]
+    if "group_index" in col_types:
+        return "time_series"
+    return "table"
+
+
+# TODO: Implement this in middleware and delete from here
+def get_full_dataset(dataset: list[dict]) -> dict:
+    return {"data": dataset, "dataset_type": _detect_dataset_type(dataset)}
+
+
 def execute_train(request: TrainRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Train Request")
@@ -44,7 +57,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
     try:
         results, metrics, model, data = train(
             model_info=request["model"],
-            dataset=request["dataset"],
+            dataset=get_full_dataset(request["dataset"]),
             n_rows=request["n_rows"],
             save_filepath=folder_path,
         )
@@ -105,7 +118,7 @@ def execute_infer(request: InferRequest, couch_doc: str):
     try:
         results, metrics = infer(
             model_info=request["model"],
-            dataset=request["dataset"],
+            dataset=get_full_dataset(request["dataset"]),
             n_rows=request["n_rows"],
             save_filepath="",
         )

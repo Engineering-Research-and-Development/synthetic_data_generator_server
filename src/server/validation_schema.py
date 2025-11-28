@@ -17,6 +17,16 @@ class Data(BaseColumn):
 
 
 class DatasetInTrain(BaseModel):
+    dataset: List[Data]
+
+
+class DatasetInInfer(BaseModel):
+    dataset: Optional[List[Data]]
+
+
+"""
+TODO: Implement this
+class DatasetInTrain(BaseModel):
     data: List[Data]
     dataset_type: Literal["table", "time_series"]
 
@@ -24,6 +34,7 @@ class DatasetInTrain(BaseModel):
 class DatasetInInfer(BaseModel):
     data: Optional[List[Data]] = []
     dataset_type: Literal["table", "time_series"]
+"""
 
 
 class DataSkeleton(BaseColumn):
