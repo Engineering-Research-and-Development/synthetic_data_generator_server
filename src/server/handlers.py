@@ -21,7 +21,9 @@ from server.validation_schema import TrainRequest, InferRequest
 
 
 # TODO: Implement this in middleware and delete from here
-def _detect_dataset_type(dataset: list[dict]) -> str:
+def _detect_dataset_type(dataset: list[dict], model: dict) -> str:
+    if len(dataset) == 0:
+        dataset = model.get("training_data_info")
     col_types = [col["column_type"] for col in dataset]
     if "group_index" in col_types:
         return "time_series"
@@ -29,8 +31,8 @@ def _detect_dataset_type(dataset: list[dict]) -> str:
 
 
 # TODO: Implement this in middleware and delete from here
-def get_full_dataset(dataset: list[dict]) -> dict:
-    return {"data": dataset, "dataset_type": _detect_dataset_type(dataset)}
+def get_full_dataset(dataset: list[dict], model: dict) -> dict:
+    return {"data": dataset, "dataset_type": _detect_dataset_type(dataset, model)}
 
 
 def execute_train(request: TrainRequest, couch_doc: str):
@@ -57,7 +59,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
     try:
         results, metrics, model, data = train(
             model_info=request["model"],
-            dataset=get_full_dataset(request["dataset"]),
+            dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
             save_filepath=folder_path,
         )
@@ -118,7 +120,7 @@ def execute_infer(request: InferRequest, couch_doc: str):
     try:
         results, metrics = infer(
             model_info=request["model"],
-            dataset=get_full_dataset(request["dataset"]),
+            dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
             save_filepath="",
         )

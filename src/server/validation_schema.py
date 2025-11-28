@@ -16,14 +16,6 @@ class Data(BaseColumn):
     column_data: List[float | int | str] | List
 
 
-class DatasetInTrain(BaseModel):
-    dataset: List[Data]
-
-
-class DatasetInInfer(BaseModel):
-    dataset: Optional[List[Data]]
-
-
 """
 TODO: Implement this
 class DatasetInTrain(BaseModel):
@@ -84,7 +76,7 @@ class Function(BaseModel):
 
 class TrainRequest(BaseModel):
     model: BaseModelInfo
-    dataset: DatasetInTrain
+    dataset: List[Data]
     functions: Optional[List[Function]] = []
     n_rows: PositiveInt
 
@@ -96,7 +88,7 @@ class InferRequest(BaseModel):
     model: InferModelInfoNodata
     functions: Optional[List[Function]] = []
     n_rows: PositiveInt
-    dataset: DatasetInInfer
+    dataset: Optional[List[Data]] = []
 
 
 ########################################## OUTPUTS ##########################################
