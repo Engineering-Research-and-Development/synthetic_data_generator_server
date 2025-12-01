@@ -1,15 +1,29 @@
 from typing import List, Literal, Optional
-
+from enum import Enum
 from pydantic import BaseModel, PositiveInt, Field
 
+
+################### ALLOWED TYPES ####################
+
+class SupportedDataTypes(str, Enum):
+    float = "float32"
+    int = "int32"
+    str = "str"
+
+
+class SupportedFeatureTypes(str, Enum):
+    continuous = "continuous"
+    categorical = "categorical"
+    primary_key = "primary_key"
+    group_index = "group_index"
 
 #################### INPUTS - DATA ####################
 
 
 class BaseColumn(BaseModel):
     column_name: str
-    column_datatype: Literal["float32", "float64", "int32", "int64", "str"]
-    column_type: Literal["continuous", "categorical", "primary_key", "group_index"]
+    column_datatype: SupportedDataTypes
+    column_type: SupportedFeatureTypes
 
 
 class Data(BaseColumn):
@@ -97,8 +111,8 @@ class InferRequest(BaseModel):
 class GeneratedData(BaseModel):
     column_data: List[float | int]
     column_name: str
-    column_datatype: Literal["float32", "float64", "int32", "int64"]
-    column_type: Literal["continuous", "categorical"]
+    column_datatype: SupportedDataTypes
+    column_type: SupportedFeatureTypes
 
 
 class Metric(BaseModel):
