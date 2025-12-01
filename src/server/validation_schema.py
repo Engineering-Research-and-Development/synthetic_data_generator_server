@@ -46,7 +46,7 @@ class DatasetInInfer(BaseModel):
 
 
 class DataSkeleton(BaseColumn):
-    column_position: PositiveInt
+    column_position: int
     column_size: PositiveInt
 
 
