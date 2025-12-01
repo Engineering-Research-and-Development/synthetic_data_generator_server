@@ -117,12 +117,13 @@ def execute_infer(request: InferRequest, couch_doc: str):
         )
         return
 
+    save_path = request["model"]["image"]
     try:
         results, metrics = infer(
             model_info=request["model"],
             dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
-            save_filepath="",
+            save_filepath=save_path,
         )
     except (ValueError, TypeError) as e:
         logger.error(f"Error while making inference: {e}")
