@@ -1,9 +1,10 @@
-from typing import List, Literal, Optional
+from typing import List, Optional
 from enum import Enum
 from pydantic import BaseModel, PositiveInt, Field
 
 
 ################### ALLOWED TYPES ####################
+
 
 class SupportedDataTypes(str, Enum):
     float = "float32"
@@ -16,6 +17,7 @@ class SupportedFeatureTypes(str, Enum):
     categorical = "categorical"
     primary_key = "primary_key"
     group_index = "group_index"
+
 
 #################### INPUTS - DATA ####################
 
