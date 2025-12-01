@@ -1,6 +1,6 @@
 from loguru import logger
 
-from sdg_core_lib.job import job
+from sdg_core_lib.job import train, infer
 from server.couch_handlers import add_couch_data
 from server.file_utils import (
     check_latest_version,
@@ -18,6 +18,21 @@ from server.middleware_handlers.connection import (
 from server.middleware_handlers.models import model_to_middleware
 from server.utilities import trim_name
 from server.validation_schema import TrainRequest, InferRequest
+
+
+# TODO: Implement this in middleware and delete from here
+def _detect_dataset_type(dataset: list[dict], model: dict) -> str:
+    if len(dataset) == 0:
+        dataset = model.get("training_data_info")
+    col_types = [col["column_type"] for col in dataset]
+    if "group_index" in col_types:
+        return "time_series"
+    return "table"
+
+
+# TODO: Implement this in middleware and delete from here
+def get_full_dataset(dataset: list[dict], model: dict) -> dict:
+    return {"data": dataset, "dataset_type": _detect_dataset_type(dataset, model)}
 
 
 def execute_train(request: TrainRequest, couch_doc: str):
@@ -42,12 +57,11 @@ def execute_train(request: TrainRequest, couch_doc: str):
 
     folder_path = create_folder(folder_id)
     try:
-        results, metrics, model, data = job(
+        results, metrics, model, data = train(
             model_info=request["model"],
-            dataset=request["dataset"],
+            dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
             save_filepath=folder_path,
-            train=True,
         )
     except (ValueError, TypeError) as e:
         delete_folder(folder_path)
@@ -103,13 +117,13 @@ def execute_infer(request: InferRequest, couch_doc: str):
         )
         return
 
+    save_path = request["model"]["image"]
     try:
-        results, metrics, model, data = job(
+        results, metrics = infer(
             model_info=request["model"],
-            dataset=request["dataset"],
+            dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
-            save_filepath="",
-            train=False,
+            save_filepath=save_path,
         )
     except (ValueError, TypeError) as e:
         logger.error(f"Error while making inference: {e}")

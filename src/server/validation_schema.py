@@ -1,21 +1,73 @@
-from typing import List, Literal, Optional
-
+from typing import List, Optional
+from enum import Enum
 from pydantic import BaseModel, PositiveInt, Field
 
 
-class TrainingDataInfo(BaseModel):
+################### ALLOWED TYPES ####################
+
+
+class SupportedDataTypes(str, Enum):
+    float = "float32"
+    int = "int32"
+    str = "str"
+
+
+class SupportedFeatureTypes(str, Enum):
+    continuous = "continuous"
+    categorical = "categorical"
+    primary_key = "primary_key"
+    group_index = "group_index"
+
+
+#################### INPUTS - DATA ####################
+
+
+class BaseColumn(BaseModel):
     column_name: str
-    column_datatype: Literal["float32", "float64", "int32", "int64"]
-    column_type: Literal["continuous", "categorical", "time_series"]
+    column_datatype: SupportedDataTypes
+    column_type: SupportedFeatureTypes
 
 
-class DatasetIn(TrainingDataInfo):
-    column_data: List[float | int] | List
+class Data(BaseColumn):
+    column_data: List[float | int | str] | List
 
 
-class TrainModelInfo(BaseModel):
+"""
+TODO: Implement this
+class DatasetInTrain(BaseModel):
+    data: List[Data]
+    dataset_type: Literal["table", "time_series"]
+
+
+class DatasetInInfer(BaseModel):
+    data: Optional[List[Data]] = []
+    dataset_type: Literal["table", "time_series"]
+"""
+
+
+class DataSkeleton(BaseColumn):
+    column_position: int
+    column_size: PositiveInt
+
+
+#################### INPUTS - MODEL ####################
+
+
+class BaseModelInfo(BaseModel):
     algorithm_name: str
     model_name: str
+
+
+class InferModelInfoData(BaseModelInfo):
+    image: str
+    input_shape: str = Field(pattern=r"\([0-9]+,(([0-9]+,?)+)?\)", examples=["(3,4)"])
+
+
+class InferModelInfoNodata(InferModelInfoData):
+    training_data_info: List[DataSkeleton] = []
+
+
+#################### INPUTS - FUNCTIONS ####################
 
 
 class Parameter(BaseModel):
@@ -35,40 +87,34 @@ class Function(BaseModel):
     parameters: List[Parameter]
 
 
-class InferModelInfoData(BaseModel):
-    algorithm_name: str
-    model_name: str
-    image: str
-    input_shape: str = Field(pattern=r"\([0-9]+,(([0-9]+,?)+)?\)")
-
-
-class InferModelInfoNodata(InferModelInfoData):
-    training_data_info: List[TrainingDataInfo] = []
+#################### INPUTS - TRAINING ####################
 
 
 class TrainRequest(BaseModel):
-    model: TrainModelInfo
-    dataset: List[DatasetIn]
+    model: BaseModelInfo
+    dataset: List[Data]
     functions: Optional[List[Function]] = []
     n_rows: PositiveInt
 
 
-class InferRequestNoData(BaseModel):
+#################### INPUTS - INFER ####################
+
+
+class InferRequest(BaseModel):
     model: InferModelInfoNodata
     functions: Optional[List[Function]] = []
     n_rows: PositiveInt
+    dataset: Optional[List[Data]] = []
 
 
-class InferRequest(InferRequestNoData):
-    dataset: List[DatasetIn]
+########################################## OUTPUTS ##########################################
 
 
-##################################
 class GeneratedData(BaseModel):
     column_data: List[float | int]
     column_name: str
-    column_datatype: Literal["float32", "float64", "int32", "int64"]
-    column_type: Literal["continuous", "categorical"]
+    column_datatype: SupportedDataTypes
+    column_type: SupportedFeatureTypes
 
 
 class Metric(BaseModel):
