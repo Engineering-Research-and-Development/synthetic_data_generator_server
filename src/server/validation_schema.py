@@ -107,6 +107,14 @@ class InferRequest(BaseModel):
     dataset: Optional[List[Data]] = []
 
 
+################### INPUTS - GENERATION ################
+
+
+class GenerationRequest(BaseModel):
+    functions: List[Function]
+    n_rows: PositiveInt
+
+
 ########################################## OUTPUTS ##########################################
 
 
