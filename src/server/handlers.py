@@ -1,6 +1,6 @@
 from loguru import logger
 
-from sdg_core_lib.job import train, infer
+from sdg_core_lib.job import train, infer, generate_from_functions
 from server.couch_handlers import add_couch_data
 from server.file_utils import (
     check_latest_version,
@@ -17,7 +17,7 @@ from server.middleware_handlers.connection import (
 )
 from server.middleware_handlers.models import model_to_middleware
 from server.utilities import trim_name
-from server.validation_schema import TrainRequest, InferRequest
+from server.validation_schema import TrainRequest, InferRequest, GenerationRequest
 
 
 # TODO: Implement this in middleware and delete from here
@@ -132,3 +132,21 @@ def execute_infer(request: InferRequest, couch_doc: str):
 
     add_couch_data(doc_id=couch_doc, new_data={"results": results, "metrics": metrics})
     logger.info("Infer Job completed successfully")
+
+
+def execute_scratch_generation(request: GenerationRequest, couch_doc: str):
+    request = request.model_dump()
+    logger.info("Starting Generation from Scratch")
+
+    try:
+        results = generate_from_functions(
+            functions=request["functions"],
+            n_rows=request["n_rows"],
+        )
+    except (ValueError, TypeError) as e:
+        logger.error(f"Error while making generation from scratch: {e}")
+        add_couch_data(couch_doc, new_data={"error": e.args[0]})
+        return
+
+    add_couch_data(doc_id=couch_doc, new_data={"results": results, "metrics": {"Not Available"}})
+    logger.info("Generation Job completed successfully")

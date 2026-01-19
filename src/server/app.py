@@ -8,7 +8,12 @@ from server.handlers import execute_train, execute_infer
 from server.middleware_handlers.connection import (
     server_startup,
 )
-from server.validation_schema import InferRequest, TrainRequest, CouchEntry
+from server.validation_schema import (
+    InferRequest,
+    TrainRequest,
+    CouchEntry,
+    GenerationRequest,
+)
 
 
 @asynccontextmanager
@@ -65,6 +70,28 @@ async def train(request: TrainRequest, background_tasks: BackgroundTasks):
     """,
 )
 async def infer_data(request: InferRequest, background_tasks: BackgroundTasks):
+    """
+    :param background_tasks: task to execute in background
+    :param request: a request for train and infer
+    :return:
+    """
+    couch_doc = create_couch_entry()
+    background_tasks.add_task(execute_infer, request, couch_doc)
+    return CouchEntry(doc_id=couch_doc)
+
+
+@generator.post(
+    "/generate",
+    responses={400: {"model": str}, 500: {"model": str}},
+    response_model=CouchEntry,
+    description="""
+    This endpoint is used to start function-based generation process. \
+    Function-based generation accepts a list of features alongside a set of generative functions \
+    The inference process is executed in the background, updating the document \
+    in CouchDB as soon as new results are available
+    """,
+)
+async def generate_with_function(request: GenerationRequest, background_tasks: BackgroundTasks):
     """
     :param background_tasks: task to execute in background
     :param request: a request for train and infer
