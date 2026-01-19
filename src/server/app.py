@@ -91,7 +91,9 @@ async def infer_data(request: InferRequest, background_tasks: BackgroundTasks):
     in CouchDB as soon as new results are available
     """,
 )
-async def generate_with_function(request: GenerationRequest, background_tasks: BackgroundTasks):
+async def generate_with_function(
+    request: GenerationRequest, background_tasks: BackgroundTasks
+):
     """
     :param background_tasks: task to execute in background
     :param request: a request for train and infer
