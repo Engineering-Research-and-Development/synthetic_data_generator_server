@@ -34,8 +34,8 @@ jobs:
     - name: Install dependencies
       run: |
         uv venv
-        uv pip install -r src/requirements.txt
-        uv pip install cyclonedx-bom
+        uv sync
+        uv add cyclonedx-bom
 
     - name: Run Cyclonedx
       run: |
