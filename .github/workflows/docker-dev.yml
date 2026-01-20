@@ -1,0 +1,87 @@
+name: Docker Build and Push (DEV)
+
+on:
+  push:
+    branches:
+      - dev
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  test-dev:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          working-directory: '${{ github.workspace }}/src'
+          activate-environment: "true"
+
+      - name: Install the project
+        run: uv sync --all-extras --dev --project src/pyproject.toml
+
+      - name: Run tests via uv
+        run: uv run pytest -c src/pyproject.toml
+
+
+  push-dev:
+    needs: test-dev
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Read version from pyproject.toml
+        id: version
+        run: |
+          VERSION=$(uv version --short --project src/pyproject.toml)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Compute dev tag from short SHA
+        id: dev
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          DEV_TAG="${{ steps.version.outputs.version }}-dev-${SHORT_SHA}"
+          IMAGE=$(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
+          echo "tag=$DEV_TAG" >> "$GITHUB_OUTPUT"
+          echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
+
+      - name: Log into registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ env.REGISTRY }}/${{ steps.dev.outputs.image }}
+          tags: |
+            type=raw,value=${{ steps.dev.outputs.tag }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: src
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

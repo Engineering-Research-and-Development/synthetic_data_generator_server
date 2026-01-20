@@ -1,5 +1,0 @@
-sdg_core_lib==0.1.6.dev1
-requests
-pyaml
-fastapi[standard]
-loguru
