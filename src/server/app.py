@@ -4,7 +4,7 @@ from fastapi import FastAPI, BackgroundTasks
 from starlette.responses import RedirectResponse
 
 from server.couch_handlers import create_couch_entry
-from server.handlers import execute_train, execute_infer
+from server.handlers import execute_train, execute_infer, execute_scratch_generation
 from server.middleware_handlers.connection import (
     server_startup,
 )
@@ -100,7 +100,7 @@ async def generate_with_function(
     :return:
     """
     couch_doc = create_couch_entry()
-    background_tasks.add_task(execute_infer, request, couch_doc)
+    background_tasks.add_task(execute_scratch_generation, request, couch_doc)
     return CouchEntry(doc_id=couch_doc)
 
 
