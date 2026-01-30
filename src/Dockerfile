@@ -5,8 +5,8 @@ WORKDIR /home
 
 COPY . .
 
-RUN uv init
-RUN uv add -r ./requirements.txt
+RUN uv sync --project pyproject.toml
+
 
 
 CMD [".venv/bin/fastapi", "run", "server/app.py", "--port", "8010"]

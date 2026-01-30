@@ -1,0 +1,20 @@
+[project]
+name = "synthetic-data-generator-server"
+version = "0.1.2"
+description = "A tool to automatically generate data"
+requires-python = ">=3.12"
+dependencies = [
+    "sdg_core_lib>=0.1.6",
+    "pyaml",
+    "requests",
+    "fastapi[standard]",
+    "loguru>=0.7.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest",
+    "pytest-env",
+    "httpx",
+    "uvicorn"]
+
+

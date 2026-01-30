@@ -3,6 +3,8 @@ name: Generate SBOM
 on:
   pull_request:
     branches: [ "generator" ]
+  push:
+    branches: [ "generator" ]
 
 
 env:
@@ -33,13 +35,15 @@ jobs:
 
     - name: Install dependencies
       run: |
+        cd src
         uv venv
-        uv pip install -r src/requirements.txt
+        uv sync
         uv pip install cyclonedx-bom
 
     - name: Run Cyclonedx
       run: |
-        uv run cyclonedx-py environment > sbom.json
+        cd src
+        uv run cyclonedx-py environment > ../sbom.json
         
     - name: Validate SBOM
       run: |
@@ -49,6 +53,7 @@ jobs:
         fi
         
     - name: Commit and push SBOM
+      if: github.event_name == 'push'
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
