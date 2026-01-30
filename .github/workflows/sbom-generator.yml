@@ -36,7 +36,7 @@ jobs:
         cd src
         uv venv
         uv sync
-        uv add cyclonedx-bom
+        uv pip install cyclonedx-bom
 
     - name: Run Cyclonedx
       run: |
