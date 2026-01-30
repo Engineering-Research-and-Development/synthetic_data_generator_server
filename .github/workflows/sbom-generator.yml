@@ -33,6 +33,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        cd src
         uv venv
         uv sync
         uv add cyclonedx-bom
