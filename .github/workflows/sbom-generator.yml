@@ -40,7 +40,8 @@ jobs:
 
     - name: Run Cyclonedx
       run: |
-        uv run cyclonedx-py environment > sbom.json
+        cd src
+        uv run cyclonedx-py environment > ../sbom.json
         
     - name: Validate SBOM
       run: |
