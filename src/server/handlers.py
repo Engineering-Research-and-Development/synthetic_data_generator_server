@@ -1,6 +1,6 @@
 from loguru import logger
 
-from sdg_core_lib.job import train, infer, generate_from_functions
+from sdg_core_lib.job import Job
 from server.couch_handlers import add_couch_data
 from server.file_utils import (
     check_latest_version,
@@ -57,12 +57,12 @@ def execute_train(request: TrainRequest, couch_doc: str):
 
     folder_path = create_folder(folder_id)
     try:
-        results, metrics, model, data = train(
+        results, metrics, model, data = Job(
             model_info=request["model"],
             dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
             save_filepath=folder_path,
-        )
+        ).train()
     except (ValueError, TypeError) as e:
         delete_folder(folder_path)
         logger.error(f"Error training model: {e}")
@@ -119,12 +119,12 @@ def execute_infer(request: InferRequest, couch_doc: str):
 
     save_path = request["model"]["image"]
     try:
-        results, metrics = infer(
+        results, metrics = Job(
             model_info=request["model"],
             dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
             save_filepath=save_path,
-        )
+        ).infer()
     except (ValueError, TypeError) as e:
         logger.error(f"Error while making inference: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
@@ -139,10 +139,10 @@ def execute_scratch_generation(request: GenerationRequest, couch_doc: str):
     logger.info("Starting Generation from Scratch")
 
     try:
-        results = generate_from_functions(
+        results = Job(
             functions=request["functions"],
             n_rows=request["n_rows"],
-        )
+        ).generate_from_functions()
     except (ValueError, TypeError) as e:
         logger.error(f"Error while making generation from scratch: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
