@@ -38,6 +38,7 @@ def get_full_dataset(dataset: list[dict], model: dict) -> dict:
 def execute_train(request: TrainRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Train Request")
+    logger.info(request)
     request["model"]["algorithm_name"] = ALGORITHM_SHORT_TO_LONG[
         request["model"]["algorithm_name"]
     ]
@@ -63,7 +64,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
             n_rows=request["n_rows"],
             save_filepath=folder_path,
         ).train()
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError, AttributeError, KeyError) as e:
         delete_folder(folder_path)
         logger.error(f"Error training model: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
@@ -106,6 +107,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
 def execute_infer(request: InferRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Infer Request")
+    logger.info(request)
     request["model"]["algorithm_name"] = ALGORITHM_SHORT_TO_LONG[
         request["model"]["algorithm_name"]
     ]
@@ -125,7 +127,7 @@ def execute_infer(request: InferRequest, couch_doc: str):
             n_rows=request["n_rows"],
             save_filepath=save_path,
         ).infer()
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError, AttributeError, KeyError) as e:
         logger.error(f"Error while making inference: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
@@ -137,13 +139,14 @@ def execute_infer(request: InferRequest, couch_doc: str):
 def execute_scratch_generation(request: GenerationRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Generation from Scratch")
+    logger.info(request)
 
     try:
         results = Job(
             functions=request["functions"],
             n_rows=request["n_rows"],
         ).generate_from_functions()
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError, AttributeError, KeyError) as e:
         logger.error(f"Error while making generation from scratch: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
