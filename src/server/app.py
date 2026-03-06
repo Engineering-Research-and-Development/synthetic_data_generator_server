@@ -3,11 +3,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, BackgroundTasks
 from starlette.responses import RedirectResponse
 
-from server.couch_handlers import create_couch_entry
+from server.storage_handlers.couch_handlers import create_couch_entry
 from server.handlers import execute_train, execute_infer, execute_scratch_generation
-from server.middleware_handlers.connection import (
-    server_startup,
-)
+from server.startup import server_startup
 from server.validation_schema import (
     InferRequest,
     TrainRequest,

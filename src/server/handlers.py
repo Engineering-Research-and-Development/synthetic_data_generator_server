@@ -1,7 +1,7 @@
 from loguru import logger
 
 from sdg_core_lib.job import Job
-from server.couch_handlers import add_couch_data
+from server.storage_handlers.couch_handlers import add_couch_data
 from server.file_utils import (
     check_latest_version,
     create_folder,

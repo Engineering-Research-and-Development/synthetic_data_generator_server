@@ -9,6 +9,7 @@ dependencies = [
     "requests",
     "fastapi[standard]",
     "loguru>=0.7.3",
+    "minio"
 ]
 
 [project.optional-dependencies]
