@@ -1,7 +1,10 @@
 from loguru import logger
 
 from sdg_core_lib.job import Job
-from server.storage_handlers.couch_handlers import add_couch_data
+from tensorflow.python.keras.saving.saved_model.save_impl import default_save_signature
+
+import server
+from server.storage_handlers.couch import add_couch_data
 from server.file_utils import (
     check_latest_version,
     create_folder,
@@ -10,12 +13,11 @@ from server.file_utils import (
     check_folder,
 )
 from server.middleware_handlers.connection import (
-    GENERATOR_ALGORITHM_NAMES,
-    ALGORITHM_SHORT_TO_LONG,
-    ALGORITHM_LONG_NAME_TO_ID,
     is_middleware_on,
 )
+from server import GENERATOR_ALGORITHM_NAMES, ALGORITHM_LONG_NAME_TO_ID, ALGORITHM_SHORT_TO_LONG, StorageType
 from server.middleware_handlers.models import model_to_middleware
+from server.storage_handlers.garage import copy_model_to_garage
 from server.utilities import trim_name
 from server.validation_schema import TrainRequest, InferRequest, GenerationRequest
 
@@ -34,6 +36,9 @@ def _detect_dataset_type(dataset: list[dict], model: dict) -> str:
 def get_full_dataset(dataset: list[dict], model: dict) -> dict:
     return {"data": dataset, "dataset_type": _detect_dataset_type(dataset, model)}
 
+def save_external_storage(model_path: str):
+    if server.STORAGE_TYPE == StorageType.GARAGE:
+        copy_model_to_garage(model_path)
 
 def execute_train(request: TrainRequest, couch_doc: str):
     request = request.model_dump()
@@ -82,6 +87,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
                 algorithm_long_name_to_id=ALGORITHM_LONG_NAME_TO_ID,
             )
             save_model_payload(folder_path, model_payload)
+            save_external_storage(folder_path)
         else:
             error_message = "Middleware connection failed while saving trained model"
             logger.error(error_message)

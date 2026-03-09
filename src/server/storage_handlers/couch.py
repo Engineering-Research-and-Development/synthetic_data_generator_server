@@ -22,8 +22,9 @@ def create_couch_entry() -> str | None:
     response = requests.post(url, headers=headers, json={})
     if response.status_code == 201:
         return response.json().get("id")
-    else:
-        logger.error(f"Error creating document: {response.text}")
+
+    logger.error(f"Error creating document: {response.text}")
+    return None
 
 
 def add_couch_data(doc_id: str, new_data: dict) -> None:

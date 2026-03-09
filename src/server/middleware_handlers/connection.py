@@ -1,18 +1,16 @@
 from loguru import logger
 import time
 from requests.exceptions import ConnectionError
+
+import server
+from server import ALGORITHM_LONG_NAME_TO_ID, ALGORITHM_LONG_TO_SHORT, ALGORITHM_SHORT_TO_LONG, \
+    GENERATOR_FUNCTION_NAMES, MIDDLEWARE_ON
 from server.middleware_handlers.algorithms import sync_available_algorithms
 from server.middleware_handlers.functions import sync_available_functions
 from server.middleware_handlers.models import sync_trained_models
 from server.middleware_handlers import middleware
 
-MIDDLEWARE_ON = False
 MAX_RETRIES = 10
-GENERATOR_ALGORITHM_NAMES = []
-ALGORITHM_LONG_NAME_TO_ID = {}
-ALGORITHM_LONG_TO_SHORT = {}
-ALGORITHM_SHORT_TO_LONG = {}
-GENERATOR_FUNCTION_NAMES = []
 
 
 def middleware_connect(tries: int = 1) -> None:
@@ -40,8 +38,7 @@ def middleware_connect(tries: int = 1) -> None:
     except ConnectionError:
         time.sleep(2**tries)
         return middleware_connect(tries + 1)
-    global MIDDLEWARE_ON
-    MIDDLEWARE_ON = True
+    server.MIDDLEWARE_ON = True
     logger.info("Middleware connection successful")
     return None
 
