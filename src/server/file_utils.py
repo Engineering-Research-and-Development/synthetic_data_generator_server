@@ -31,7 +31,8 @@ def create_folder(folder_id: str):
 def delete_folder(folder_path: Path | str):
     if type(folder_path) is str:
         folder_path = Path(folder_path)
-    shutil.rmtree(folder_path)
+    if os.path.isdir(folder_path):
+        shutil.rmtree(folder_path)
 
 
 def check_folder(folder_path: Path | str):

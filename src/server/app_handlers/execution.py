@@ -1,7 +1,9 @@
+import shutil
+
 from loguru import logger
+from minio.error import MinioException
 
 from sdg_core_lib.job import Job
-from tensorflow.python.keras.saving.saved_model.save_impl import default_save_signature
 
 import server
 from server.storage_handlers.couch import add_couch_data
@@ -17,9 +19,19 @@ from server.middleware_handlers.connection import (
 )
 from server import GENERATOR_ALGORITHM_NAMES, ALGORITHM_LONG_NAME_TO_ID, ALGORITHM_SHORT_TO_LONG, StorageType
 from server.middleware_handlers.models import model_to_middleware
-from server.storage_handlers.garage import copy_model_to_garage
+from server.storage_handlers.garage import copy_model_to_garage, get_model_from_garage_if_exists
 from server.utilities import trim_name
 from server.validation_schema import TrainRequest, InferRequest, GenerationRequest
+
+
+def save_external_storage(model_path: str):
+    if server.STORAGE_TYPE == StorageType.GARAGE:
+        copy_model_to_garage(model_path)
+
+
+def load_from_external_storage(model_path: str):
+    if server.STORAGE_TYPE == StorageType.GARAGE:
+        get_model_from_garage_if_exists(model_path)
 
 
 # TODO: Implement this in middleware and delete from here
@@ -36,9 +48,6 @@ def _detect_dataset_type(dataset: list[dict], model: dict) -> str:
 def get_full_dataset(dataset: list[dict], model: dict) -> dict:
     return {"data": dataset, "dataset_type": _detect_dataset_type(dataset, model)}
 
-def save_external_storage(model_path: str):
-    if server.STORAGE_TYPE == StorageType.GARAGE:
-        copy_model_to_garage(model_path)
 
 def execute_train(request: TrainRequest, couch_doc: str):
     request = request.model_dump()
@@ -94,7 +103,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
             delete_folder(folder_path)
             add_couch_data(couch_doc, new_data={"error": error_message})
             return
-    except KeyError as e:
+    except (MinioException, ValueError, KeyError) as e:
         logger.error(f"Error training model: {e}")
         delete_folder(folder_path)
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
@@ -117,7 +126,9 @@ def execute_infer(request: InferRequest, couch_doc: str):
     request["model"]["algorithm_name"] = ALGORITHM_SHORT_TO_LONG[
         request["model"]["algorithm_name"]
     ]
-    if not check_folder(request["model"]["image"]):
+    model_path = request["model"]["image"]
+    load_from_external_storage(model_path)
+    if not check_folder(model_path):
         logger.error("Error finding trained model model")
         add_couch_data(
             couch_doc,
@@ -125,19 +136,20 @@ def execute_infer(request: InferRequest, couch_doc: str):
         )
         return
 
-    save_path = request["model"]["image"]
     try:
         results, metrics = Job(
             model_info=request["model"],
             dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
-            save_filepath=save_path,
+            save_filepath=model_path,
         ).infer()
     except (ValueError, TypeError, AttributeError, KeyError) as e:
         logger.error(f"Error while making inference: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
 
+    if server.STORAGE_TYPE != StorageType.LOCAL:
+        shutil.rmtree(model_path)
     add_couch_data(doc_id=couch_doc, new_data={"results": results, "metrics": metrics})
     logger.info("Infer Job completed successfully")
 
