@@ -3,22 +3,17 @@ import threading
 from loguru import logger
 from sdg_core_lib.browser import browse_algorithms, browse_functions
 
-import server
 from server.file_utils import create_server_repo_folder_structure
 from server.middleware_handlers.connection import middleware_connect
-from server import (
-    GENERATOR_ALGORITHM_NAMES,
-    ALGORITHM_LONG_TO_SHORT,
-    ALGORITHM_SHORT_TO_LONG,
-    GENERATOR_FUNCTION_NAMES,
-    StorageType,
-)
+from server.state import AppState, StorageType
 from server.storage_handlers.garage import check_garage_connection
+
+appstate = AppState()
 
 
 def try_sync_external():
     if check_garage_connection():
-        server.STORAGE_TYPE = StorageType.GARAGE
+        appstate.set_storage_type(StorageType.GARAGE)
 
 
 def server_startup():
@@ -31,15 +26,12 @@ def server_startup():
     logger.info("Server startup")
     create_server_repo_folder_structure()
     [
-        GENERATOR_ALGORITHM_NAMES.append(algorithm["algorithm"]["name"])
+        appstate.add_algorithm_name(algorithm["algorithm"]["name"])
         for algorithm in browse_algorithms()
     ]
-    for algorithm in GENERATOR_ALGORITHM_NAMES:
-        ALGORITHM_LONG_TO_SHORT[algorithm] = algorithm.split(".")[-1]
-        ALGORITHM_SHORT_TO_LONG[ALGORITHM_LONG_TO_SHORT[algorithm]] = algorithm
 
     [
-        GENERATOR_FUNCTION_NAMES.append(function["function"]["function_reference"])
+        appstate.add_function_name(function["function"]["function_reference"])
         for function in browse_functions()
     ]
 

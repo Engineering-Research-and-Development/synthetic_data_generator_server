@@ -12,6 +12,7 @@ from server.file_utils import (
     delete_folder,
 )
 from server.middleware_handlers import middleware
+from server.state import AppState
 
 
 def model_to_middleware(
@@ -20,7 +21,7 @@ def model_to_middleware(
     dataset_name: str,
     save_path: str,
     version_name: str,
-    algorithm_long_name_to_id: dict,
+    appstate: AppState,
 ) -> str:
     """
     Pushes a trained model to the middleware.
@@ -32,7 +33,7 @@ def model_to_middleware(
     The function ultimately posts the model to the middleware for storage and returns
     the response body of the POST request.
 
-    :param algorithm_long_name_to_id:
+    :param appstate:
     :param model: The trained model to be pushed
     :param data_skeleton: The dataset used for training the model
     :param dataset_name: The name of the dataset
@@ -47,7 +48,7 @@ def model_to_middleware(
         "image_path": save_path,
     }
     # Getting the algorithm id
-    algorithm_id = algorithm_long_name_to_id.get(
+    algorithm_id = appstate.ALGORITHM_LONG_NAME_TO_ID.get(
         model.self_describe().get("algorithm").get("name")
     )
     trained_model_misc = {
@@ -89,7 +90,7 @@ def post_model_to_middleware(model_to_save: dict):
     return body
 
 
-def sync_trained_models(algorithm_long_name_to_id: dict):
+def sync_trained_models(appstate: AppState):
     """
     Syncs the trained models from the middleware to the local server.
     First check remote trained model with their versions. If models and versions are not available,
@@ -126,8 +127,8 @@ def sync_trained_models(algorithm_long_name_to_id: dict):
                     algo_long_name = model_payload.get("model").get(
                         "algorithm_long_name"
                     )
-                    model_payload["model"]["algorithm"] = algorithm_long_name_to_id.get(
-                        algo_long_name
+                    model_payload["model"]["algorithm"] = (
+                        appstate.ALGORITHM_LONG_NAME_TO_ID.get(algo_long_name)
                     )
                     save_model_payload(
                         get_folder_full_path(local_trained_model), model_payload

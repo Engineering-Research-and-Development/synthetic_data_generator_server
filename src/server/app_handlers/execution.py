@@ -6,6 +6,7 @@ from minio.error import MinioException
 from sdg_core_lib.job import Job
 
 import server
+from server.state import AppState, StorageType
 from server.storage_handlers.couch import add_couch_data
 from server.file_utils import (
     check_latest_version,
@@ -13,15 +14,6 @@ from server.file_utils import (
     delete_folder,
     save_model_payload,
     check_folder,
-)
-from server.middleware_handlers.connection import (
-    is_middleware_on,
-)
-from server import (
-    GENERATOR_ALGORITHM_NAMES,
-    ALGORITHM_LONG_NAME_TO_ID,
-    ALGORITHM_SHORT_TO_LONG,
-    StorageType,
 )
 from server.middleware_handlers.models import model_to_middleware
 from server.storage_handlers.garage import (
@@ -31,14 +23,16 @@ from server.storage_handlers.garage import (
 from server.utilities import trim_name
 from server.validation_schema import TrainRequest, InferRequest, GenerationRequest
 
+appstate = AppState()
+
 
 def save_external_storage(model_path: str):
-    if server.STORAGE_TYPE == StorageType.GARAGE:
+    if appstate.storage_type == StorageType.GARAGE:
         copy_model_to_garage(model_path)
 
 
 def load_from_external_storage(model_path: str):
-    if server.STORAGE_TYPE == StorageType.GARAGE:
+    if appstate.storage_type == StorageType.GARAGE:
         get_model_from_garage_if_exists(model_path)
 
 
@@ -61,11 +55,11 @@ def execute_train(request: TrainRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Train Request")
     logger.info(request)
-    request["model"]["algorithm_name"] = ALGORITHM_SHORT_TO_LONG[
+    request["model"]["algorithm_name"] = appstate.ALGORITHM_SHORT_TO_LONG[
         request["model"]["algorithm_name"]
     ]
     # Check if the algorithm is implemented by the generator
-    if request["model"]["algorithm_name"] not in GENERATOR_ALGORITHM_NAMES:
+    if request["model"]["algorithm_name"] not in appstate.GENERATOR_ALGORITHM_NAMES:
         logger.error("Error finding algorithm locally")
         add_couch_data(
             couch_doc,
@@ -94,14 +88,14 @@ def execute_train(request: TrainRequest, couch_doc: str):
 
     # We invoke the model registry saving the model, if failing delete trained model
     try:
-        if is_middleware_on():
+        if appstate.middleware_on:
             model_payload = model_to_middleware(
                 model,
                 data,
                 "dataset_name",
                 str(folder_path),
                 new_version_name,
-                algorithm_long_name_to_id=ALGORITHM_LONG_NAME_TO_ID,
+                appstate=appstate,
             )
             save_model_payload(folder_path, model_payload)
             save_external_storage(folder_path)
@@ -131,7 +125,7 @@ def execute_infer(request: InferRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Infer Request")
     logger.info(request)
-    request["model"]["algorithm_name"] = ALGORITHM_SHORT_TO_LONG[
+    request["model"]["algorithm_name"] = appstate.ALGORITHM_SHORT_TO_LONG[
         request["model"]["algorithm_name"]
     ]
     model_path = request["model"]["image"]
