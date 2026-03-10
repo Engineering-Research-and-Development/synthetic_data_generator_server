@@ -60,7 +60,7 @@ def sync_available_models():
             continue
 
         model_name = obj.object_name.lstrip("/")
-        local_path = local_root / model_name / MODEL_PAYLOAD_NAME
+        local_path = local_root / model_name
         local_path.parent.mkdir(parents=True, exist_ok=True)
 
         try:
@@ -74,13 +74,13 @@ def sync_available_models():
         written.append(str(local_path))
         logger.info(f"Downloaded: {obj.object_name}  →  {local_path}")
 
-    logger.info(f"\n✓ {len(written)} model(s) found'")
+    logger.info(f"✓ {len(written)} model(s) found'")
 
 
 def get_model_from_garage_if_exists(model_full_path: str):
     model_full_path = Path(model_full_path)
     client = get_client()
-    prefix = str(model_full_path).rstrip("/") + "/"
+    prefix = str(model_full_path).rstrip("/").split("/")[-1] + "/"
     local_root = TRAINED_MODELS
 
     found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
@@ -102,6 +102,7 @@ def get_model_from_garage_if_exists(model_full_path: str):
     for obj in objects:
         # Strip the prefix to get a relative path, then join with dest_root
         relative_path = obj.object_name[len(prefix) :]
+        logger.info(f"local_root: {local_root}, prefix: {prefix}, relative_path:{relative_path}")
         local_path = local_root / prefix / relative_path
 
         # Create parent directories as needed
@@ -129,7 +130,7 @@ def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
         raise ValueError(f"'{model_full_path}' is not a directory.")
 
     client = get_client()
-    prefix = str(model_full_path).rstrip("/") + "/"
+    prefix = str(model_full_path).rstrip("/").split("/")[-1] + "/"
 
     # Ensure the bucket exists
     if not client.bucket_exists(GARAGE_MODEL_BUCKET):
@@ -143,6 +144,7 @@ def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
             continue
 
         relative_path = local_path.relative_to(model_full_path)
+        logger.info(f"prefix: {prefix}, relative_path:{relative_path}")
         object_name = prefix + relative_path.as_posix()  # MinIO uses forward slashes
 
         try:
