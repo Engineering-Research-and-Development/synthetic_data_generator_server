@@ -5,7 +5,6 @@ from minio.error import MinioException
 
 from sdg_core_lib.job import Job
 
-import server
 from server.state import AppState, StorageType
 from server.storage_handlers.couch import add_couch_data
 from server.file_utils import (
@@ -150,7 +149,7 @@ def execute_infer(request: InferRequest, couch_doc: str):
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
 
-    if server.STORAGE_TYPE != StorageType.LOCAL:
+    if appstate.storage_type != StorageType.LOCAL:
         shutil.rmtree(model_path)
     add_couch_data(doc_id=couch_doc, new_data={"results": results, "metrics": metrics})
     logger.info("Infer Job completed successfully")
