@@ -4,7 +4,11 @@ from fastapi import FastAPI, BackgroundTasks
 from starlette.responses import RedirectResponse
 
 from server.storage_handlers.couch import create_couch_entry
-from server.app_handlers.execution import execute_train, execute_infer, execute_scratch_generation
+from server.app_handlers.execution import (
+    execute_train,
+    execute_infer,
+    execute_scratch_generation,
+)
 from server.startup import server_startup
 from server.validation_schema import (
     InferRequest,

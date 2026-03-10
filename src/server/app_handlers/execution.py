@@ -17,9 +17,17 @@ from server.file_utils import (
 from server.middleware_handlers.connection import (
     is_middleware_on,
 )
-from server import GENERATOR_ALGORITHM_NAMES, ALGORITHM_LONG_NAME_TO_ID, ALGORITHM_SHORT_TO_LONG, StorageType
+from server import (
+    GENERATOR_ALGORITHM_NAMES,
+    ALGORITHM_LONG_NAME_TO_ID,
+    ALGORITHM_SHORT_TO_LONG,
+    StorageType,
+)
 from server.middleware_handlers.models import model_to_middleware
-from server.storage_handlers.garage import copy_model_to_garage, get_model_from_garage_if_exists
+from server.storage_handlers.garage import (
+    copy_model_to_garage,
+    get_model_from_garage_if_exists,
+)
 from server.utilities import trim_name
 from server.validation_schema import TrainRequest, InferRequest, GenerationRequest
 

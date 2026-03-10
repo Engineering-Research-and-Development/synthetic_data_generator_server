@@ -5,7 +5,12 @@ from loguru import logger
 from minio.error import MinioException
 
 from server.file_utils import TRAINED_MODELS, MODEL_PAYLOAD_NAME
-from server.storage_handlers import GARAGE_URL, GARAGE_USERNAME, GARAGE_PASSWORD, GARAGE_MODEL_BUCKET
+from server.storage_handlers import (
+    GARAGE_URL,
+    GARAGE_USERNAME,
+    GARAGE_PASSWORD,
+    GARAGE_MODEL_BUCKET,
+)
 
 
 def get_client():
@@ -13,15 +18,18 @@ def get_client():
         endpoint=GARAGE_URL,
         access_key=GARAGE_USERNAME,
         secret_key=GARAGE_PASSWORD,
-        region="garage"
+        region="garage",
     )
+
 
 def check_garage_connection() -> bool:
     client = get_client()
     try:
         found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
         if not found:
-            logger.info(f"Connection established but bucket not found. Trying creation of a new bucket: {GARAGE_MODEL_BUCKET}")
+            logger.info(
+                f"Connection established but bucket not found. Trying creation of a new bucket: {GARAGE_MODEL_BUCKET}"
+            )
             client.make_bucket(GARAGE_MODEL_BUCKET, location="garage")
         logger.info("Garage instance found, Syncing models")
         sync_available_models()
@@ -37,7 +45,9 @@ def sync_available_models():
 
     found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
     if not found:
-        logger.error(f"Model Bucket: {GARAGE_MODEL_BUCKET} not found. Model info cannot be downloaded")
+        logger.error(
+            f"Model Bucket: {GARAGE_MODEL_BUCKET} not found. Model info cannot be downloaded"
+        )
         return
     objects = list(client.list_objects(GARAGE_MODEL_BUCKET, recursive=True))
     if not objects:
@@ -53,10 +63,12 @@ def sync_available_models():
         local_path = local_root / model_name / MODEL_PAYLOAD_NAME
         local_path.parent.mkdir(parents=True, exist_ok=True)
 
-        try :
+        try:
             client.fget_object(GARAGE_MODEL_BUCKET, obj.object_name, str(local_path))
         except MinioException:
-            logger.error(f"An error occurred while downloading the model payload of: {model_name}, rollback")
+            logger.error(
+                f"An error occurred while downloading the model payload of: {model_name}, rollback"
+            )
             shutil.rmtree(local_path / model_name)
 
         written.append(str(local_path))
@@ -73,10 +85,14 @@ def get_model_from_garage_if_exists(model_full_path: str):
 
     found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
     if not found:
-        logger.error(f"Model Bucket: {GARAGE_MODEL_BUCKET} not found. Models cannot be downloaded")
+        logger.error(
+            f"Model Bucket: {GARAGE_MODEL_BUCKET} not found. Models cannot be downloaded"
+        )
         return
 
-    objects = list(client.list_objects(GARAGE_MODEL_BUCKET, prefix=prefix, recursive=True))
+    objects = list(
+        client.list_objects(GARAGE_MODEL_BUCKET, prefix=prefix, recursive=True)
+    )
     if not objects:
         raise ValueError(
             f"No objects found in bucket '{GARAGE_MODEL_BUCKET}' under prefix '{prefix}'"
@@ -85,16 +101,18 @@ def get_model_from_garage_if_exists(model_full_path: str):
     written: list[str] = []
     for obj in objects:
         # Strip the prefix to get a relative path, then join with dest_root
-        relative_path = obj.object_name[len(prefix):]
-        local_path = local_root/ prefix / relative_path
+        relative_path = obj.object_name[len(prefix) :]
+        local_path = local_root / prefix / relative_path
 
         # Create parent directories as needed
         local_path.parent.mkdir(parents=True, exist_ok=True)
 
-        try :
+        try:
             client.fget_object(GARAGE_MODEL_BUCKET, obj.object_name, str(local_path))
         except MinioException:
-            logger.error(f"An error occurred while downloading the model in: {model_full_path}, rollback")
+            logger.error(
+                f"An error occurred while downloading the model in: {model_full_path}, rollback"
+            )
             shutil.rmtree(model_full_path)
 
         written.append(str(local_path))

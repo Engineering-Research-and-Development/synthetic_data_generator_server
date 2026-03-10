@@ -3,8 +3,13 @@ import time
 from requests.exceptions import ConnectionError
 
 import server
-from server import ALGORITHM_LONG_NAME_TO_ID, ALGORITHM_LONG_TO_SHORT, ALGORITHM_SHORT_TO_LONG, \
-    GENERATOR_FUNCTION_NAMES, MIDDLEWARE_ON
+from server import (
+    ALGORITHM_LONG_NAME_TO_ID,
+    ALGORITHM_LONG_TO_SHORT,
+    ALGORITHM_SHORT_TO_LONG,
+    GENERATOR_FUNCTION_NAMES,
+    MIDDLEWARE_ON,
+)
 from server.middleware_handlers.algorithms import sync_available_algorithms
 from server.middleware_handlers.functions import sync_available_functions
 from server.middleware_handlers.models import sync_trained_models

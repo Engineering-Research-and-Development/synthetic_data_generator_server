@@ -6,9 +6,15 @@ from sdg_core_lib.browser import browse_algorithms, browse_functions
 import server
 from server.file_utils import create_server_repo_folder_structure
 from server.middleware_handlers.connection import middleware_connect
-from server import GENERATOR_ALGORITHM_NAMES, ALGORITHM_LONG_TO_SHORT, ALGORITHM_SHORT_TO_LONG, \
-    GENERATOR_FUNCTION_NAMES, StorageType
+from server import (
+    GENERATOR_ALGORITHM_NAMES,
+    ALGORITHM_LONG_TO_SHORT,
+    ALGORITHM_SHORT_TO_LONG,
+    GENERATOR_FUNCTION_NAMES,
+    StorageType,
+)
 from server.storage_handlers.garage import check_garage_connection
+
 
 def try_sync_external():
     if check_garage_connection():
