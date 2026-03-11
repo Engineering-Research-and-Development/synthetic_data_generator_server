@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 import minio
 from loguru import logger
@@ -143,6 +144,7 @@ def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
         except MinioException:
             logger.error(f"An error Occurred while uploading {prefix} model. Rollback")
             delete_local_folder(model_full_path)
+            remove_remote_model(str(model_full_path))
             return
         uploaded.append(object_name)
 
@@ -151,4 +153,40 @@ def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
     )
     if remove_after_upload:
         delete_local_folder(model_full_path)
+    return
+
+MAX_REMOVE_TRIES = 3
+def remove_remote_model(model_full_path: str, max_tries=MAX_REMOVE_TRIES):
+    model_full_path = Path(model_full_path)
+    client = get_client()
+    prefix = str(model_full_path).rstrip("/").split("/")[-1] + "/"
+    if max_tries == 0:
+        raise MinioException(f"After {MAX_REMOVE_TRIES} times the remote model under {prefix} was not removed")
+
+    found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
+    if not found:
+        logger.error(
+            f"Model Bucket: {GARAGE_MODEL_BUCKET} not found. Models cannot be downloaded"
+        )
+        return
+
+    objects = list(
+        client.list_objects(GARAGE_MODEL_BUCKET, prefix=prefix, recursive=True)
+    )
+    if not objects:
+        logger.info(f"No objects found under {prefix}")
+        return
+
+    deleted: list[str] = []
+    for obj in objects:
+        try:
+            client.remove_object(GARAGE_MODEL_BUCKET, obj.object_name)
+        except MinioException:
+            logger.error(
+                f"An error occurred while downloading the model in: {model_full_path}, retrying"
+            )
+            time.sleep(3)
+            remove_remote_model(str(model_full_path), max_tries-1)
+        deleted.append(obj.object_name)
+    logger.info(f"All objects in {prefix} are successfully removed")
     return
