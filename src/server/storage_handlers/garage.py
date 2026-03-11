@@ -12,25 +12,19 @@ from server.storage_handlers import (
     GARAGE_MODEL_BUCKET,
 )
 
-
-def get_client():
-    return minio.Minio(
-        endpoint=GARAGE_URL,
-        access_key=GARAGE_USERNAME,
-        secret_key=GARAGE_PASSWORD,
-        region="garage",
-    )
+MAX_REMOVE_TRIES = 3
+client = minio.Minio(
+    endpoint=GARAGE_URL,
+    access_key=GARAGE_USERNAME,
+    secret_key=GARAGE_PASSWORD,
+    region="garage",
+)
 
 
 def check_garage_connection() -> bool:
-    client = get_client()
     try:
-        found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
-        if not found:
-            logger.info(
-                f"Connection established but bucket not found. Trying creation of a new bucket: {GARAGE_MODEL_BUCKET}"
-            )
-            client.make_bucket(GARAGE_MODEL_BUCKET, location="garage")
+        if not bucket_exists():
+            return False
         logger.info("Garage instance found, Syncing models")
         sync_available_models()
         return True
@@ -39,15 +33,20 @@ def check_garage_connection() -> bool:
         return False
 
 
-def sync_available_models():
-    client = get_client()
-    local_root = TRAINED_MODELS
-
+def bucket_exists() -> bool:
     found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
     if not found:
         logger.error(
-            f"Model Bucket: {GARAGE_MODEL_BUCKET} not found. Model info cannot be downloaded"
+            f"Model Bucket: {GARAGE_MODEL_BUCKET} not found, cannot perform read/write operation on Garage"
         )
+        return False
+    return True
+
+
+def sync_available_models():
+    local_root = TRAINED_MODELS
+
+    if not bucket_exists():
         return
     objects = list(client.list_objects(GARAGE_MODEL_BUCKET, recursive=True))
     if not objects:
@@ -79,15 +78,10 @@ def sync_available_models():
 
 def get_model_from_garage_if_exists(model_full_path: str):
     model_full_path = Path(model_full_path)
-    client = get_client()
     prefix = str(model_full_path).rstrip("/").split("/")[-1] + "/"
     local_root = TRAINED_MODELS
 
-    found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
-    if not found:
-        logger.error(
-            f"Model Bucket: {GARAGE_MODEL_BUCKET} not found. Models cannot be downloaded"
-        )
+    if not bucket_exists():
         return
 
     objects = list(
@@ -122,13 +116,11 @@ def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
     if not model_full_path.is_dir():
         raise ValueError(f"'{model_full_path}' is not a directory.")
 
-    client = get_client()
     prefix = str(model_full_path).rstrip("/").split("/")[-1] + "/"
 
     # Ensure the bucket exists
-    if not client.bucket_exists(GARAGE_MODEL_BUCKET):
-        client.make_bucket(GARAGE_MODEL_BUCKET)
-        logger.info(f"Created bucket '{GARAGE_MODEL_BUCKET}'")
+    if not bucket_exists():
+        return
 
     uploaded: list[str] = []
 
@@ -156,12 +148,8 @@ def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
     return
 
 
-MAX_REMOVE_TRIES = 3
-
-
 def remove_remote_model(model_full_path: str, max_tries=MAX_REMOVE_TRIES):
     model_full_path = Path(model_full_path)
-    client = get_client()
     prefix = str(model_full_path).rstrip("/").split("/")[-1] + "/"
     if max_tries == 0:
         raise MinioException(

@@ -48,11 +48,8 @@ class AppState:
     def add_function_name(self, function_full_name: str):
         self.GENERATOR_FUNCTION_NAMES.append(function_full_name)
 
-    def toggle_middleware_on(self):
-        self.middleware_on = True
-
-    def toggle_middleware_off(self):
-        self.middleware_on = False
+    def toggle_middleware_on(self, on: bool):
+        self.middleware_on = on
 
     def set_storage_type(self, storage_type: StorageType):
         self.storage_type = storage_type

@@ -28,6 +28,6 @@ def middleware_connect(tries: int = 1) -> None:
     except ConnectionError:
         time.sleep(2**tries)
         return middleware_connect(tries + 1)
-    appstate.toggle_middleware_on()
+    appstate.toggle_middleware_on(True)
     logger.info("Middleware connection successful")
     return None

@@ -10,19 +10,15 @@ from server.storage_handlers.garage import check_garage_connection
 
 appstate = AppState()
 
-
-def try_sync_external():
-    if check_garage_connection():
-        appstate.set_storage_type(StorageType.GARAGE)
-
-
 def server_startup():
     """
     Called at server startup to initialize the server.
     It creates a folder structure for saving models on the server and
     syncs the available algorithms from the middleware to the local server.
     """
-    try_sync_external()
+    if check_garage_connection():
+        appstate.set_storage_type(StorageType.GARAGE)
+
     logger.info("Server startup")
     create_server_repo_folder_structure()
     [
