@@ -3,9 +3,10 @@ from loguru import logger
 
 from sdg_core_lib.browser import browse_functions
 from server.middleware_handlers import middleware
+from server.state import AppState
 
 
-def sync_available_functions(list_function_names: list[str]):
+def sync_available_functions(appstate: AppState):
     """
     Syncs the available functions from the middleware to the local server.
     """
@@ -14,7 +15,7 @@ def sync_available_functions(list_function_names: list[str]):
     for remote_function in response.json():
         if (
             remote_function.get("function").get("function_reference")
-            not in list_function_names
+            not in appstate.GENERATOR_FUNCTION_NAMES
         ):
             requests.delete(url=f"{middleware}functions/{remote_function.get('id')}")
 

@@ -10,6 +10,7 @@ class SupportedDataTypes(str, Enum):
     float = "float32"
     int = "int32"
     str = "str"
+    bool = "bool"
 
 
 class SupportedFeatureTypes(str, Enum):

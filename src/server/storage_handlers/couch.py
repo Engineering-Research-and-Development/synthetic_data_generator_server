@@ -1,12 +1,7 @@
-import os
 from loguru import logger
 import requests
 
-COUCHDB_USER = os.environ.get("COUCHDB_USER", "admin")
-COUCHDB_PASSWORD = os.environ.get("COUCHDB_PASSWORD", "password")
-COUCHDB_HOST = os.environ.get("COUCHDB_HOST", "127.0.0.1")
-DATABASE_NAME = os.environ.get("COUCHDB_DB", "model_results")
-COUCHDB_URL = f"http://{COUCHDB_USER}:{COUCHDB_PASSWORD}@{COUCHDB_HOST}:5984"
+from server.storage_handlers import DATABASE_NAME, COUCHDB_URL
 
 
 def init_db():
@@ -27,8 +22,9 @@ def create_couch_entry() -> str | None:
     response = requests.post(url, headers=headers, json={})
     if response.status_code == 201:
         return response.json().get("id")
-    else:
-        logger.error(f"Error creating document: {response.text}")
+
+    logger.error(f"Error creating document: {response.text}")
+    return None
 
 
 def add_couch_data(doc_id: str, new_data: dict) -> None:

@@ -1,23 +1,52 @@
 from loguru import logger
+from minio.error import MinioException
 
 from sdg_core_lib.job import Job
-from server.couch_handlers import add_couch_data
+
+from server.state import AppState, StorageType
+from server.storage_handlers.couch import add_couch_data
 from server.file_utils import (
     check_latest_version,
     create_folder,
-    delete_folder,
+    delete_local_folder,
     save_model_payload,
-    check_folder,
-)
-from server.middleware_handlers.connection import (
-    GENERATOR_ALGORITHM_NAMES,
-    ALGORITHM_SHORT_TO_LONG,
-    ALGORITHM_LONG_NAME_TO_ID,
-    is_middleware_on,
+    folder_exists,
+    get_folder_full_path,
 )
 from server.middleware_handlers.models import model_to_middleware
+from server.storage_handlers.garage import (
+    copy_model_to_remote,
+    get_model_from_remote,
+    remove_remote_model,
+)
 from server.utilities import trim_name
 from server.validation_schema import TrainRequest, InferRequest, GenerationRequest
+
+appstate = AppState()
+
+
+def save_external_storage(model_path: str):
+    if appstate.storage_type == StorageType.GARAGE:
+        try:
+            copy_model_to_remote(model_path)
+        except MinioException:
+            logger.error(
+                f"An error Occurred while uploading {model_path} model. Rollback"
+            )
+            remove_remote_model(model_path)
+            delete_local_folder(model_path)
+            return
+
+
+def load_from_external_storage(model_path: str):
+    if appstate.storage_type == StorageType.GARAGE:
+        try:
+            get_model_from_remote(model_path)
+        except MinioException:
+            logger.error(
+                f"An error occurred while downloading the model in: {model_path}, rollback"
+            )
+            delete_local_folder(model_path)
 
 
 # TODO: Implement this in middleware and delete from here
@@ -38,11 +67,12 @@ def get_full_dataset(dataset: list[dict], model: dict) -> dict:
 def execute_train(request: TrainRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Train Request")
-    request["model"]["algorithm_name"] = ALGORITHM_SHORT_TO_LONG[
+    logger.info(request)
+    request["model"]["algorithm_name"] = appstate.ALGORITHM_SHORT_TO_LONG[
         request["model"]["algorithm_name"]
     ]
     # Check if the algorithm is implemented by the generator
-    if request["model"]["algorithm_name"] not in GENERATOR_ALGORITHM_NAMES:
+    if request["model"]["algorithm_name"] not in appstate.GENERATOR_ALGORITHM_NAMES:
         logger.error("Error finding algorithm locally")
         add_couch_data(
             couch_doc,
@@ -63,33 +93,34 @@ def execute_train(request: TrainRequest, couch_doc: str):
             n_rows=request["n_rows"],
             save_filepath=folder_path,
         ).train()
-    except (ValueError, TypeError) as e:
-        delete_folder(folder_path)
+    except (ValueError, TypeError, AttributeError, KeyError) as e:
+        delete_local_folder(folder_path)
         logger.error(f"Error training model: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
 
     # We invoke the model registry saving the model, if failing delete trained model
     try:
-        if is_middleware_on():
+        if appstate.middleware_on:
             model_payload = model_to_middleware(
                 model,
                 data,
                 "dataset_name",
                 str(folder_path),
                 new_version_name,
-                algorithm_long_name_to_id=ALGORITHM_LONG_NAME_TO_ID,
+                appstate=appstate,
             )
             save_model_payload(folder_path, model_payload)
+            save_external_storage(folder_path)
         else:
             error_message = "Middleware connection failed while saving trained model"
             logger.error(error_message)
-            delete_folder(folder_path)
+            delete_local_folder(folder_path)
             add_couch_data(couch_doc, new_data={"error": error_message})
             return
-    except KeyError as e:
+    except (ValueError, KeyError) as e:
         logger.error(f"Error training model: {e}")
-        delete_folder(folder_path)
+        delete_local_folder(folder_path)
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
 
@@ -106,10 +137,13 @@ def execute_train(request: TrainRequest, couch_doc: str):
 def execute_infer(request: InferRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Infer Request")
-    request["model"]["algorithm_name"] = ALGORITHM_SHORT_TO_LONG[
+    logger.info(request)
+    request["model"]["algorithm_name"] = appstate.ALGORITHM_SHORT_TO_LONG[
         request["model"]["algorithm_name"]
     ]
-    if not check_folder(request["model"]["image"]):
+    model_path = get_folder_full_path(request["model"]["image"])
+    load_from_external_storage(model_path)
+    if not folder_exists(model_path):
         logger.error("Error finding trained model model")
         add_couch_data(
             couch_doc,
@@ -117,19 +151,20 @@ def execute_infer(request: InferRequest, couch_doc: str):
         )
         return
 
-    save_path = request["model"]["image"]
     try:
         results, metrics = Job(
             model_info=request["model"],
             dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
-            save_filepath=save_path,
+            save_filepath=model_path,
         ).infer()
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError, AttributeError, KeyError) as e:
         logger.error(f"Error while making inference: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
 
+    if appstate.storage_type != StorageType.LOCAL:
+        delete_local_folder(model_path)
     add_couch_data(doc_id=couch_doc, new_data={"results": results, "metrics": metrics})
     logger.info("Infer Job completed successfully")
 
@@ -137,13 +172,14 @@ def execute_infer(request: InferRequest, couch_doc: str):
 def execute_scratch_generation(request: GenerationRequest, couch_doc: str):
     request = request.model_dump()
     logger.info("Starting Generation from Scratch")
+    logger.info(request)
 
     try:
         results = Job(
             functions=request["functions"],
             n_rows=request["n_rows"],
         ).generate_from_functions()
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError, AttributeError, KeyError) as e:
         logger.error(f"Error while making generation from scratch: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
