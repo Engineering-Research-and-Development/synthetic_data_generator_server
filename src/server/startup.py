@@ -10,6 +10,7 @@ from server.storage_handlers.garage import check_garage_connection
 
 appstate = AppState()
 
+
 def server_startup():
     """
     Called at server startup to initialize the server.
