@@ -30,10 +30,13 @@ def save_external_storage(model_path: str):
         try:
             copy_model_to_remote(model_path)
         except MinioException:
-            logger.error(f"An error Occurred while uploading {model_path} model. Rollback")
+            logger.error(
+                f"An error Occurred while uploading {model_path} model. Rollback"
+            )
             remove_remote_model(model_path)
             delete_local_folder(model_path)
             return
+
 
 def load_from_external_storage(model_path: str):
     if appstate.storage_type == StorageType.GARAGE:

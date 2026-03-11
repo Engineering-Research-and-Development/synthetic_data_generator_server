@@ -4,7 +4,12 @@ import minio
 from loguru import logger
 from minio.error import MinioException
 
-from server.file_utils import TRAINED_MODELS, MODEL_PAYLOAD_NAME, delete_local_folder, list_trained_models
+from server.file_utils import (
+    TRAINED_MODELS,
+    MODEL_PAYLOAD_NAME,
+    delete_local_folder,
+    list_trained_models,
+)
 from server.storage_handlers import (
     GARAGE_URL,
     GARAGE_USERNAME,
@@ -32,6 +37,7 @@ def remote_storage_connect_and_sync() -> bool:
                 delete_local_folder(TRAINED_MODELS / local_residue)
             return False
     return False
+
 
 def bucket_exists() -> bool:
     found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
