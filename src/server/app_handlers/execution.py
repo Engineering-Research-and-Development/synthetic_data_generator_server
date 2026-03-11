@@ -15,8 +15,9 @@ from server.file_utils import (
 )
 from server.middleware_handlers.models import model_to_middleware
 from server.storage_handlers.garage import (
-    copy_model_to_garage,
-    get_model_from_garage_if_exists,
+    copy_model_to_remote,
+    get_model_from_remote,
+    remove_remote_model,
 )
 from server.utilities import trim_name
 from server.validation_schema import TrainRequest, InferRequest, GenerationRequest
@@ -26,12 +27,23 @@ appstate = AppState()
 
 def save_external_storage(model_path: str):
     if appstate.storage_type == StorageType.GARAGE:
-        copy_model_to_garage(model_path)
-
+        try:
+            copy_model_to_remote(model_path)
+        except MinioException:
+            logger.error(f"An error Occurred while uploading {model_path} model. Rollback")
+            remove_remote_model(model_path)
+            delete_local_folder(model_path)
+            return
 
 def load_from_external_storage(model_path: str):
     if appstate.storage_type == StorageType.GARAGE:
-        get_model_from_garage_if_exists(model_path)
+        try:
+            get_model_from_remote(model_path)
+        except MinioException:
+            logger.error(
+                f"An error occurred while downloading the model in: {model_path}, rollback"
+            )
+            delete_local_folder(model_path)
 
 
 # TODO: Implement this in middleware and delete from here
@@ -103,7 +115,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
             delete_local_folder(folder_path)
             add_couch_data(couch_doc, new_data={"error": error_message})
             return
-    except (MinioException, ValueError, KeyError) as e:
+    except (ValueError, KeyError) as e:
         logger.error(f"Error training model: {e}")
         delete_local_folder(folder_path)
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
