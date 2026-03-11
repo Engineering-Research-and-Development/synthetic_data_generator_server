@@ -232,7 +232,7 @@
       "version": "2.19.2"
     },
     {
-      "bom-ref": "Werkzeug==3.1.5",
+      "bom-ref": "Werkzeug==3.1.6",
       "description": "The comprehensive WSGI web application library.",
       "externalReferences": [
         {
@@ -270,9 +270,9 @@
         }
       ],
       "name": "Werkzeug",
-      "purl": "pkg:pypi/werkzeug@3.1.5",
+      "purl": "pkg:pypi/werkzeug@3.1.6",
       "type": "library",
-      "version": "3.1.5"
+      "version": "3.1.6"
     },
     {
       "bom-ref": "absl-py==2.4.0",
@@ -427,6 +427,87 @@
       "version": "4.12.1"
     },
     {
+      "bom-ref": "argon2-cffi==25.1.0",
+      "description": "Argon2 for Python",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://argon2-cffi.readthedocs.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Funding",
+          "type": "other",
+          "url": "https://github.com/sponsors/hynek"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Tidelift",
+          "type": "other",
+          "url": "https://tidelift.com/?utm_source=lifter&utm_medium=referral&utm_campaign=hynek"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/hynek/argon2-cffi/blob/main/CHANGELOG.md"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: GitHub",
+          "type": "vcs",
+          "url": "https://github.com/hynek/argon2-cffi"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "argon2-cffi",
+      "purl": "pkg:pypi/argon2-cffi@25.1.0",
+      "type": "library",
+      "version": "25.1.0"
+    },
+    {
+      "bom-ref": "argon2-cffi-bindings==25.1.0",
+      "description": "Low-level CFFI bindings for Argon2",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Funding",
+          "type": "other",
+          "url": "https://github.com/sponsors/hynek"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Tidelift",
+          "type": "other",
+          "url": "https://tidelift.com/?utm_source=lifter&utm_medium=referral&utm_campaign=hynek"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/hynek/argon2-cffi-bindings/blob/main/CHANGELOG.md"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: GitHub",
+          "type": "vcs",
+          "url": "https://github.com/hynek/argon2-cffi-bindings"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "argon2-cffi-bindings",
+      "purl": "pkg:pypi/argon2-cffi-bindings@25.1.0",
+      "type": "library",
+      "version": "25.1.0"
+    },
+    {
       "bom-ref": "arrow==1.4.0",
       "description": "Better dates & times for Python",
       "externalReferences": [
@@ -549,7 +630,7 @@
       "version": "5.0"
     },
     {
-      "bom-ref": "certifi==2026.1.4",
+      "bom-ref": "certifi==2026.2.25",
       "description": "Python package for providing Mozilla's CA Bundle.",
       "externalReferences": [
         {
@@ -578,9 +659,57 @@
         }
       ],
       "name": "certifi",
-      "purl": "pkg:pypi/certifi@2026.1.4",
+      "purl": "pkg:pypi/certifi@2026.2.25",
       "type": "library",
-      "version": "2026.1.4"
+      "version": "2026.2.25"
+    },
+    {
+      "bom-ref": "cffi==2.0.0",
+      "description": "Foreign Function Interface for Python calling C code.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://cffi.readthedocs.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issue Tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/python-cffi/cffi/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source Code",
+          "type": "other",
+          "url": "https://github.com/python-cffi/cffi"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Downloads",
+          "type": "other",
+          "url": "https://github.com/python-cffi/cffi/releases"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Contact",
+          "type": "other",
+          "url": "https://groups.google.com/forum/#!forum/python-cffi"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://cffi.readthedocs.io/en/latest/whatsnew.html"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "cffi",
+      "purl": "pkg:pypi/cffi@2.0.0",
+      "type": "library",
+      "version": "2.0.0"
     },
     {
       "bom-ref": "chardet==5.2.0",
@@ -621,7 +750,7 @@
       "version": "5.2.0"
     },
     {
-      "bom-ref": "charset-normalizer==3.4.4",
+      "bom-ref": "charset-normalizer==3.4.5",
       "description": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
       "externalReferences": [
         {
@@ -654,9 +783,9 @@
         }
       ],
       "name": "charset-normalizer",
-      "purl": "pkg:pypi/charset-normalizer@3.4.4",
+      "purl": "pkg:pypi/charset-normalizer@3.4.5",
       "type": "library",
-      "version": "3.4.4"
+      "version": "3.4.5"
     },
     {
       "bom-ref": "click==8.3.1",
@@ -768,7 +897,7 @@
       "version": "0.12.1"
     },
     {
-      "bom-ref": "cyclonedx-bom==7.2.1",
+      "bom-ref": "cyclonedx-bom==7.2.2",
       "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
       "externalReferences": [
         {
@@ -817,9 +946,9 @@
         }
       ],
       "name": "cyclonedx-bom",
-      "purl": "pkg:pypi/cyclonedx-bom@7.2.1",
+      "purl": "pkg:pypi/cyclonedx-bom@7.2.2",
       "type": "library",
-      "version": "7.2.1"
+      "version": "7.2.2"
     },
     {
       "bom-ref": "cyclonedx-python-lib==11.6.0",
@@ -971,7 +1100,7 @@
       "version": "2.3.0"
     },
     {
-      "bom-ref": "fastapi==0.129.0",
+      "bom-ref": "fastapi==0.135.1",
       "description": "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
       "externalReferences": [
         {
@@ -1009,12 +1138,12 @@
         }
       ],
       "name": "fastapi",
-      "purl": "pkg:pypi/fastapi@0.129.0",
+      "purl": "pkg:pypi/fastapi@0.135.1",
       "type": "library",
-      "version": "0.129.0"
+      "version": "0.135.1"
     },
     {
-      "bom-ref": "fastapi-cli==0.0.21",
+      "bom-ref": "fastapi-cli==0.0.24",
       "description": "Run and manage FastAPI apps from the command line with FastAPI CLI. \ud83d\ude80",
       "externalReferences": [
         {
@@ -1062,12 +1191,12 @@
           "value": "standard-no-fastapi-cloud-cli"
         }
       ],
-      "purl": "pkg:pypi/fastapi-cli@0.0.21",
+      "purl": "pkg:pypi/fastapi-cli@0.0.24",
       "type": "library",
-      "version": "0.0.21"
+      "version": "0.0.24"
     },
     {
-      "bom-ref": "fastapi-cloud-cli==0.11.0",
+      "bom-ref": "fastapi-cloud-cli==0.14.1",
       "description": "Deploy and manage FastAPI Cloud apps from the command line \ud83d\ude80",
       "externalReferences": [
         {
@@ -1105,9 +1234,9 @@
         }
       ],
       "name": "fastapi-cloud-cli",
-      "purl": "pkg:pypi/fastapi-cloud-cli@0.11.0",
+      "purl": "pkg:pypi/fastapi-cloud-cli@0.14.1",
       "type": "library",
-      "version": "0.11.0"
+      "version": "0.14.1"
     },
     {
       "bom-ref": "fastar==0.8.0",
@@ -1176,7 +1305,7 @@
       "version": "25.12.19"
     },
     {
-      "bom-ref": "fonttools==4.61.1",
+      "bom-ref": "fonttools==4.62.0",
       "description": "Tools to manipulate font files",
       "externalReferences": [
         {
@@ -1194,9 +1323,9 @@
         }
       ],
       "name": "fonttools",
-      "purl": "pkg:pypi/fonttools@4.61.1",
+      "purl": "pkg:pypi/fonttools@4.62.0",
       "type": "library",
-      "version": "4.61.1"
+      "version": "4.62.0"
     },
     {
       "bom-ref": "fqdn==1.5.1",
@@ -1329,7 +1458,7 @@
       "version": "0.16.0"
     },
     {
-      "bom-ref": "h5py==3.15.1",
+      "bom-ref": "h5py==3.16.0",
       "description": "Read and write HDF5 files from Python",
       "externalReferences": [
         {
@@ -1367,9 +1496,9 @@
         }
       ],
       "name": "h5py",
-      "purl": "pkg:pypi/h5py@3.15.1",
+      "purl": "pkg:pypi/h5py@3.16.0",
       "type": "library",
-      "version": "3.15.1"
+      "version": "3.16.0"
     },
     {
       "bom-ref": "httpcore==1.0.9",
@@ -1737,7 +1866,7 @@
       "version": "1.4.8"
     },
     {
-      "bom-ref": "kiwisolver==1.4.9",
+      "bom-ref": "kiwisolver==1.5.0",
       "description": "A fast implementation of the Cassowary constraint solver",
       "externalReferences": [
         {
@@ -1770,9 +1899,9 @@
         }
       ],
       "name": "kiwisolver",
-      "purl": "pkg:pypi/kiwisolver@1.4.9",
+      "purl": "pkg:pypi/kiwisolver@1.5.0",
       "type": "library",
-      "version": "1.4.9"
+      "version": "1.5.0"
     },
     {
       "bom-ref": "kt-legacy==1.0.5",
@@ -2075,6 +2204,40 @@
       "version": "0.1.2"
     },
     {
+      "bom-ref": "minio==7.2.20",
+      "description": "MinIO Python SDK for Amazon S3 Compatible Cloud Storage",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Download-URL",
+          "type": "distribution",
+          "url": "https://github.com/minio/minio-py/releases"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/minio/minio-py"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "Apache-2.0"
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
+      "name": "minio",
+      "purl": "pkg:pypi/minio@7.2.20",
+      "type": "library",
+      "version": "7.2.20"
+    },
+    {
       "bom-ref": "ml-dtypes==0.4.1",
       "externalReferences": [
         {
@@ -2110,7 +2273,7 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "numba==0.63.1",
+      "bom-ref": "numba==0.64.0",
       "description": "compiling Python code using LLVM",
       "externalReferences": [
         {
@@ -2128,9 +2291,9 @@
         }
       ],
       "name": "numba",
-      "purl": "pkg:pypi/numba@0.63.1",
+      "purl": "pkg:pypi/numba@0.64.0",
       "type": "library",
-      "version": "0.63.1"
+      "version": "0.64.0"
     },
     {
       "bom-ref": "numpy==2.0.2",
@@ -2186,39 +2349,6 @@
       "version": "2.0.2"
     },
     {
-      "bom-ref": "numpy-typing-compat==20251206.2.0",
-      "description": "Static typing compatibility layer for older versions of NumPy",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata Project-URL: Issues",
-          "type": "issue-tracker",
-          "url": "https://github.com/jorenham/numpy-typing-compat/issues"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Changelog",
-          "type": "release-notes",
-          "url": "https://github.com/jorenham/numpy-typing-compat/releases"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Repository",
-          "type": "vcs",
-          "url": "https://github.com/jorenham/numpy-typing-compat"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "id": "BSD-3-Clause"
-          }
-        }
-      ],
-      "name": "numpy-typing-compat",
-      "purl": "pkg:pypi/numpy-typing-compat@20251206.2.0",
-      "type": "library",
-      "version": "20251206.2.0"
-    },
-    {
       "bom-ref": "opt_einsum==3.4.0",
       "description": "Path optimization of einsum functions.",
       "licenses": [
@@ -2235,7 +2365,7 @@
       "version": "3.4.0"
     },
     {
-      "bom-ref": "optree==0.18.0",
+      "bom-ref": "optree==0.19.0",
       "description": "Optimized PyTree Utilities.",
       "externalReferences": [
         {
@@ -2268,58 +2398,9 @@
         }
       ],
       "name": "optree",
-      "purl": "pkg:pypi/optree@0.18.0",
+      "purl": "pkg:pypi/optree@0.19.0",
       "type": "library",
-      "version": "0.18.0"
-    },
-    {
-      "bom-ref": "optype==0.15.0",
-      "description": "Building Blocks for Precise & Flexible Type Hints",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata Project-URL: Documentation",
-          "type": "documentation",
-          "url": "https://github.com/jorenham/optype/blob/master/README.md"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Issues",
-          "type": "issue-tracker",
-          "url": "https://github.com/jorenham/optype/issues"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Funding",
-          "type": "other",
-          "url": "https://github.com/sponsors/jorenham"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Changelog",
-          "type": "release-notes",
-          "url": "https://github.com/jorenham/optype/releases"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Repository",
-          "type": "vcs",
-          "url": "https://github.com/jorenham/optype/"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "id": "BSD-3-Clause"
-          }
-        }
-      ],
-      "name": "optype",
-      "properties": [
-        {
-          "name": "cdx:python:package:required-extra",
-          "value": "numpy"
-        }
-      ],
-      "purl": "pkg:pypi/optype@0.15.0",
-      "type": "library",
-      "version": "0.15.0"
+      "version": "0.19.0"
     },
     {
       "bom-ref": "packageurl-python==0.17.6",
@@ -2407,50 +2488,6 @@
       "purl": "pkg:pypi/pandas@2.2.3",
       "type": "library",
       "version": "2.2.3"
-    },
-    {
-      "bom-ref": "pandas-stubs==2.2.3.250527",
-      "description": "Type annotations for pandas",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata Project-URL: Documentation",
-          "type": "documentation",
-          "url": "https://pandas.pydata.org/pandas-docs/stable"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Bug Tracker",
-          "type": "issue-tracker",
-          "url": "https://github.com/pandas-dev/pandas-stubs/issues"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Repository",
-          "type": "vcs",
-          "url": "https://github.com/pandas-dev/pandas-stubs"
-        },
-        {
-          "comment": "from packaging metadata: Home-page",
-          "type": "website",
-          "url": "https://pandas.pydata.org"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "id": "BSD-3-Clause"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "License :: OSI Approved :: BSD License"
-          }
-        }
-      ],
-      "name": "pandas-stubs",
-      "purl": "pkg:pypi/pandas-stubs@2.2.3.250527",
-      "type": "library",
-      "version": "2.2.3.250527"
     },
     {
       "bom-ref": "patsy==1.0.2",
@@ -2682,6 +2719,68 @@
       "version": "26.2.1"
     },
     {
+      "bom-ref": "pycparser==3.0",
+      "description": "C parser in Python",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/eliben/pycparser"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "name": "pycparser",
+      "purl": "pkg:pypi/pycparser@3.0",
+      "type": "library",
+      "version": "3.0"
+    },
+    {
+      "bom-ref": "pycryptodome==3.23.0",
+      "description": "Cryptographic library for Python",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/Legrandin/pycryptodome/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://www.pycryptodome.org/src/changelog"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://www.pycryptodome.org"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: Public Domain"
+          }
+        }
+      ],
+      "name": "pycryptodome",
+      "purl": "pkg:pypi/pycryptodome@3.23.0",
+      "type": "library",
+      "version": "3.23.0"
+    },
+    {
       "bom-ref": "pydantic==2.12.5",
       "description": "Data validation using Python type hints",
       "externalReferences": [
@@ -2769,7 +2868,7 @@
       "version": "2.11.0"
     },
     {
-      "bom-ref": "pydantic-settings==2.12.0",
+      "bom-ref": "pydantic-settings==2.13.1",
       "description": "Settings management using Pydantic",
       "externalReferences": [
         {
@@ -2807,9 +2906,9 @@
         }
       ],
       "name": "pydantic-settings",
-      "purl": "pkg:pypi/pydantic-settings@2.12.0",
+      "purl": "pkg:pypi/pydantic-settings@2.13.1",
       "type": "library",
-      "version": "2.12.0"
+      "version": "2.13.1"
     },
     {
       "bom-ref": "pydantic_core==2.41.5",
@@ -2922,7 +3021,7 @@
       "version": "2.9.0.post0"
     },
     {
-      "bom-ref": "python-dotenv==1.2.1",
+      "bom-ref": "python-dotenv==1.2.2",
       "description": "Read key-value pairs from a .env file and set them as environment variables",
       "externalReferences": [
         {
@@ -2940,9 +3039,9 @@
         }
       ],
       "name": "python-dotenv",
-      "purl": "pkg:pypi/python-dotenv@1.2.1",
+      "purl": "pkg:pypi/python-dotenv@1.2.2",
       "type": "library",
-      "version": "1.2.1"
+      "version": "1.2.2"
     },
     {
       "bom-ref": "python-multipart==0.0.22",
@@ -2983,7 +3082,7 @@
       "version": "0.0.22"
     },
     {
-      "bom-ref": "pytz==2025.2",
+      "bom-ref": "pytz==2026.1.post1",
       "description": "World timezone definitions, modern and historical",
       "externalReferences": [
         {
@@ -3006,9 +3105,9 @@
         }
       ],
       "name": "pytz",
-      "purl": "pkg:pypi/pytz@2025.2",
+      "purl": "pkg:pypi/pytz@2026.1.post1",
       "type": "library",
-      "version": "2025.2"
+      "version": "2026.1.post1"
     },
     {
       "bom-ref": "referencing==0.37.0",
@@ -3187,7 +3286,7 @@
       "version": "1.1.0"
     },
     {
-      "bom-ref": "rich==14.3.2",
+      "bom-ref": "rich==14.3.3",
       "description": "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal",
       "externalReferences": [
         {
@@ -3210,12 +3309,12 @@
         }
       ],
       "name": "rich",
-      "purl": "pkg:pypi/rich@14.3.2",
+      "purl": "pkg:pypi/rich@14.3.3",
       "type": "library",
-      "version": "14.3.2"
+      "version": "14.3.3"
     },
     {
-      "bom-ref": "rich-toolkit==0.19.4",
+      "bom-ref": "rich-toolkit==0.19.7",
       "description": "Rich toolkit for building command-line applications",
       "licenses": [
         {
@@ -3226,9 +3325,9 @@
         }
       ],
       "name": "rich-toolkit",
-      "purl": "pkg:pypi/rich-toolkit@0.19.4",
+      "purl": "pkg:pypi/rich-toolkit@0.19.7",
       "type": "library",
-      "version": "0.19.4"
+      "version": "0.19.7"
     },
     {
       "bom-ref": "rignore==0.7.6",
@@ -3300,6 +3399,44 @@
       "version": "0.30.0"
     },
     {
+      "bom-ref": "ruff==0.15.5",
+      "description": "An extremely fast Python linter and code formatter, written in Rust.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://docs.astral.sh/ruff/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "release-notes",
+          "url": "https://github.com/astral-sh/ruff/blob/main/CHANGELOG.md"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Repository",
+          "type": "vcs",
+          "url": "https://github.com/astral-sh/ruff"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://docs.astral.sh/ruff"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "ruff",
+      "purl": "pkg:pypi/ruff@0.15.5",
+      "type": "library",
+      "version": "0.15.5"
+    },
+    {
       "bom-ref": "scikit-learn==1.5.2",
       "description": "A set of python modules for machine learning and data mining",
       "externalReferences": [
@@ -3348,7 +3485,7 @@
       "version": "1.5.2"
     },
     {
-      "bom-ref": "scipy==1.17.0",
+      "bom-ref": "scipy==1.17.1",
       "description": "Fundamental algorithms for scientific computing in Python",
       "externalReferences": [
         {
@@ -3386,55 +3523,25 @@
         }
       ],
       "name": "scipy",
-      "purl": "pkg:pypi/scipy@1.17.0",
+      "purl": "pkg:pypi/scipy@1.17.1",
       "type": "library",
-      "version": "1.17.0"
+      "version": "1.17.1"
     },
     {
-      "bom-ref": "scipy-stubs==1.16.3.3",
-      "description": "Type annotations for SciPy",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata Project-URL: Issues",
-          "type": "issue-tracker",
-          "url": "https://github.com/scipy/scipy-stubs/issues"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Changelog",
-          "type": "release-notes",
-          "url": "https://github.com/scipy/scipy-stubs/releases"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Repository",
-          "type": "vcs",
-          "url": "https://github.com/scipy/scipy-stubs"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Homepage",
-          "type": "website",
-          "url": "https://scipy.org/"
-        }
-      ],
+      "bom-ref": "sdg-core-lib==0.1.8",
+      "description": "Add your description here",
       "licenses": [
         {
           "license": {
             "acknowledgement": "declared",
-            "id": "BSD-3-Clause"
+            "id": "AGPL-3.0"
           }
         }
       ],
-      "name": "scipy-stubs",
-      "purl": "pkg:pypi/scipy-stubs@1.16.3.3",
-      "type": "library",
-      "version": "1.16.3.3"
-    },
-    {
-      "bom-ref": "sdg-core-lib==0.1.7",
-      "description": "Add your description here",
       "name": "sdg-core-lib",
-      "purl": "pkg:pypi/sdg-core-lib@0.1.7",
+      "purl": "pkg:pypi/sdg-core-lib@0.1.8",
       "type": "library",
-      "version": "0.1.7"
+      "version": "0.1.8"
     },
     {
       "bom-ref": "seaborn==0.13.2",
@@ -3465,7 +3572,7 @@
       "version": "0.13.2"
     },
     {
-      "bom-ref": "sentry-sdk==2.52.0",
+      "bom-ref": "sentry-sdk==2.54.0",
       "description": "Python client for Sentry (https://sentry.io)",
       "externalReferences": [
         {
@@ -3499,13 +3606,13 @@
         }
       ],
       "name": "sentry-sdk",
-      "purl": "pkg:pypi/sentry-sdk@2.52.0",
+      "purl": "pkg:pypi/sentry-sdk@2.54.0",
       "type": "library",
-      "version": "2.52.0"
+      "version": "2.54.0"
     },
     {
-      "bom-ref": "setuptools==82.0.0",
-      "description": "Easily download, build, install, upgrade, and uninstall Python packages",
+      "bom-ref": "setuptools==82.0.1",
+      "description": "Most extensible Python build backend with support for C/C++ extension modules",
       "externalReferences": [
         {
           "comment": "from packaging metadata Project-URL: Documentation",
@@ -3532,9 +3639,9 @@
         }
       ],
       "name": "setuptools",
-      "purl": "pkg:pypi/setuptools@82.0.0",
+      "purl": "pkg:pypi/setuptools@82.0.1",
       "type": "library",
-      "version": "82.0.0"
+      "version": "82.0.1"
     },
     {
       "bom-ref": "shellingham==1.5.4",
@@ -3909,7 +4016,7 @@
       "version": "0.7.0"
     },
     {
-      "bom-ref": "typer==0.23.1",
+      "bom-ref": "typer==0.24.1",
       "description": "Typer, build great CLIs. Easy to code. Based on Python type hints.",
       "externalReferences": [
         {
@@ -3947,52 +4054,9 @@
         }
       ],
       "name": "typer",
-      "purl": "pkg:pypi/typer@0.23.1",
+      "purl": "pkg:pypi/typer@0.24.1",
       "type": "library",
-      "version": "0.23.1"
-    },
-    {
-      "bom-ref": "types-pytz==2025.2.0.20251108",
-      "description": "Typing stubs for pytz",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata Project-URL: Chat",
-          "type": "chat",
-          "url": "https://gitter.im/python/typing"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Issue tracker",
-          "type": "issue-tracker",
-          "url": "https://github.com/python/typeshed/issues"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Changes",
-          "type": "release-notes",
-          "url": "https://github.com/typeshed-internal/stub_uploader/blob/main/data/changelogs/pytz.md"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: GitHub",
-          "type": "vcs",
-          "url": "https://github.com/python/typeshed"
-        },
-        {
-          "comment": "from packaging metadata Project-URL: Homepage",
-          "type": "website",
-          "url": "https://github.com/python/typeshed"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "id": "Apache-2.0"
-          }
-        }
-      ],
-      "name": "types-pytz",
-      "purl": "pkg:pypi/types-pytz@2025.2.0.20251108",
-      "type": "library",
-      "version": "2025.2.0.20251108"
+      "version": "0.24.1"
     },
     {
       "bom-ref": "typing-inspection==0.4.2",
@@ -4180,7 +4244,7 @@
       "version": "2.6.3"
     },
     {
-      "bom-ref": "uvicorn==0.40.0",
+      "bom-ref": "uvicorn==0.41.0",
       "description": "The lightning-fast ASGI server.",
       "externalReferences": [
         {
@@ -4219,9 +4283,9 @@
           "value": "standard"
         }
       ],
-      "purl": "pkg:pypi/uvicorn@0.40.0",
+      "purl": "pkg:pypi/uvicorn@0.41.0",
       "type": "library",
-      "version": "0.40.0"
+      "version": "0.41.0"
     },
     {
       "bom-ref": "uvloop==0.22.1",
@@ -4439,7 +4503,7 @@
       "version": "0.46.3"
     },
     {
-      "bom-ref": "wrapt==2.1.1",
+      "bom-ref": "wrapt==2.1.2",
       "description": "Module for decorators, wrappers and monkey patching.",
       "externalReferences": [
         {
@@ -4472,9 +4536,9 @@
         }
       ],
       "name": "wrapt",
-      "purl": "pkg:pypi/wrapt@2.1.1",
+      "purl": "pkg:pypi/wrapt@2.1.2",
       "type": "library",
-      "version": "2.1.1"
+      "version": "2.1.2"
     }
   ],
   "dependencies": [
@@ -4503,7 +4567,7 @@
       "dependsOn": [
         "MarkupSafe==3.0.3"
       ],
-      "ref": "Werkzeug==3.1.5"
+      "ref": "Werkzeug==3.1.6"
     },
     {
       "ref": "absl-py==2.4.0"
@@ -4526,8 +4590,20 @@
     },
     {
       "dependsOn": [
+        "cffi==2.0.0"
+      ],
+      "ref": "argon2-cffi-bindings==25.1.0"
+    },
+    {
+      "dependsOn": [
+        "argon2-cffi-bindings==25.1.0"
+      ],
+      "ref": "argon2-cffi==25.1.0"
+    },
+    {
+      "dependsOn": [
         "python-dateutil==2.9.0.post0",
-        "pytz==2025.2",
+        "pytz==2026.1.post1",
         "tzdata==2025.3"
       ],
       "ref": "arrow==1.4.0"
@@ -4546,13 +4622,19 @@
       "ref": "boolean.py==5.0"
     },
     {
-      "ref": "certifi==2026.1.4"
+      "ref": "certifi==2026.2.25"
+    },
+    {
+      "dependsOn": [
+        "pycparser==3.0"
+      ],
+      "ref": "cffi==2.0.0"
     },
     {
       "ref": "chardet==5.2.0"
     },
     {
-      "ref": "charset-normalizer==3.4.4"
+      "ref": "charset-normalizer==3.4.5"
     },
     {
       "ref": "click==8.3.1"
@@ -4579,7 +4661,7 @@
         "packaging==26.0",
         "pip-requirements-parser==32.0.1"
       ],
-      "ref": "cyclonedx-bom==7.2.1"
+      "ref": "cyclonedx-bom==7.2.2"
     },
     {
       "dependsOn": [
@@ -4615,25 +4697,25 @@
     },
     {
       "dependsOn": [
-        "fastapi-cloud-cli==0.11.0",
-        "rich-toolkit==0.19.4",
-        "typer==0.23.1",
-        "uvicorn==0.40.0"
+        "fastapi-cloud-cli==0.14.1",
+        "rich-toolkit==0.19.7",
+        "typer==0.24.1",
+        "uvicorn==0.41.0"
       ],
-      "ref": "fastapi-cli==0.0.21"
+      "ref": "fastapi-cli==0.0.24"
     },
     {
       "dependsOn": [
         "fastar==0.8.0",
         "httpx==0.28.1",
         "pydantic==2.12.5",
-        "rich-toolkit==0.19.4",
+        "rich-toolkit==0.19.7",
         "rignore==0.7.6",
-        "sentry-sdk==2.52.0",
-        "typer==0.23.1",
-        "uvicorn==0.40.0"
+        "sentry-sdk==2.54.0",
+        "typer==0.24.1",
+        "uvicorn==0.41.0"
       ],
-      "ref": "fastapi-cloud-cli==0.11.0"
+      "ref": "fastapi-cloud-cli==0.14.1"
     },
     {
       "dependsOn": [
@@ -4641,18 +4723,18 @@
         "PyYAML==6.0.3",
         "annotated-doc==0.0.4",
         "email-validator==2.3.0",
-        "fastapi-cli==0.0.21",
+        "fastapi-cli==0.0.24",
         "httpx==0.28.1",
         "pydantic-extra-types==2.11.0",
-        "pydantic-settings==2.12.0",
+        "pydantic-settings==2.13.1",
         "pydantic==2.12.5",
         "python-multipart==0.0.22",
         "starlette==0.52.1",
         "typing-inspection==0.4.2",
         "typing_extensions==4.15.0",
-        "uvicorn==0.40.0"
+        "uvicorn==0.41.0"
       ],
-      "ref": "fastapi==0.129.0"
+      "ref": "fastapi==0.135.1"
     },
     {
       "ref": "fastar==0.8.0"
@@ -4664,9 +4746,9 @@
       "dependsOn": [
         "lxml==6.0.2",
         "matplotlib==3.10.8",
-        "scipy==1.17.0"
+        "scipy==1.17.1"
       ],
-      "ref": "fonttools==4.61.1"
+      "ref": "fonttools==4.62.0"
     },
     {
       "ref": "fqdn==1.5.1"
@@ -4693,12 +4775,12 @@
       "dependsOn": [
         "numpy==2.0.2"
       ],
-      "ref": "h5py==3.15.1"
+      "ref": "h5py==3.16.0"
     },
     {
       "dependsOn": [
         "anyio==4.12.1",
-        "certifi==2026.1.4",
+        "certifi==2026.2.25",
         "h11==0.16.0"
       ],
       "ref": "httpcore==1.0.9"
@@ -4710,15 +4792,18 @@
       "dependsOn": [
         "Pygments==2.19.2",
         "anyio==4.12.1",
-        "certifi==2026.1.4",
+        "certifi==2026.2.25",
         "click==8.3.1",
         "httpcore==1.0.9",
         "idna==3.11",
-        "rich==14.3.2"
+        "rich==14.3.3"
       ],
       "ref": "httpx==0.28.1"
     },
     {
+      "dependsOn": [
+        "ruff==0.15.5"
+      ],
       "ref": "idna==3.11"
     },
     {
@@ -4768,7 +4853,7 @@
         "protobuf==5.29.6",
         "requests==2.32.5",
         "scikit-learn==1.5.2",
-        "scipy==1.17.0",
+        "scipy==1.17.1",
         "tensorflow==2.18.0"
       ],
       "ref": "keras-tuner==1.4.8"
@@ -4776,18 +4861,18 @@
     {
       "dependsOn": [
         "absl-py==2.4.0",
-        "h5py==3.15.1",
+        "h5py==3.16.0",
         "ml-dtypes==0.4.1",
         "namex==0.1.0",
         "numpy==2.0.2",
-        "optree==0.18.0",
+        "optree==0.19.0",
         "packaging==26.0",
-        "rich==14.3.2"
+        "rich==14.3.3"
       ],
       "ref": "keras==3.6.0"
     },
     {
-      "ref": "kiwisolver==1.4.9"
+      "ref": "kiwisolver==1.5.0"
     },
     {
       "ref": "kt-legacy==1.0.5"
@@ -4800,7 +4885,8 @@
     },
     {
       "dependsOn": [
-        "boolean.py==5.0"
+        "boolean.py==5.0",
+        "ruff==0.15.5"
       ],
       "ref": "license-expression==30.4.4"
     },
@@ -4826,19 +4912,29 @@
       "dependsOn": [
         "contourpy==1.3.3",
         "cycler==0.12.1",
-        "fonttools==4.61.1",
-        "kiwisolver==1.4.9",
+        "fonttools==4.62.0",
+        "kiwisolver==1.5.0",
         "numpy==2.0.2",
         "packaging==26.0",
         "pillow==12.1.1",
         "pyparsing==3.3.2",
         "python-dateutil==2.9.0.post0",
-        "setuptools==82.0.0"
+        "setuptools==82.0.1"
       ],
       "ref": "matplotlib==3.10.8"
     },
     {
       "ref": "mdurl==0.1.2"
+    },
+    {
+      "dependsOn": [
+        "argon2-cffi==25.1.0",
+        "certifi==2026.2.25",
+        "pycryptodome==3.23.0",
+        "typing_extensions==4.15.0",
+        "urllib3==2.6.3"
+      ],
+      "ref": "minio==7.2.20"
     },
     {
       "dependsOn": [
@@ -4855,14 +4951,7 @@
         "llvmlite==0.46.0",
         "numpy==2.0.2"
       ],
-      "ref": "numba==0.63.1"
-    },
-    {
-      "dependsOn": [
-        "numpy==2.0.2",
-        "typing_extensions==4.15.0"
-      ],
-      "ref": "numpy-typing-compat==20251206.2.0"
+      "ref": "numba==0.64.0"
     },
     {
       "ref": "numpy==2.0.2"
@@ -4873,22 +4962,15 @@
     {
       "dependsOn": [
         "numpy==2.0.2",
-        "rich==14.3.2",
+        "rich==14.3.3",
+        "ruff==0.15.5",
         "typing_extensions==4.15.0"
       ],
-      "ref": "optree==0.18.0"
+      "ref": "optree==0.19.0"
     },
     {
       "dependsOn": [
-        "numpy-typing-compat==20251206.2.0",
-        "numpy==2.0.2",
-        "typing_extensions==4.15.0"
-      ],
-      "ref": "optype==0.15.0"
-    },
-    {
-      "dependsOn": [
-        "setuptools==82.0.0",
+        "setuptools==82.0.1",
         "wheel==0.46.3"
       ],
       "ref": "packageurl-python==0.17.6"
@@ -4898,21 +4980,14 @@
     },
     {
       "dependsOn": [
-        "numpy==2.0.2",
-        "types-pytz==2025.2.0.20251108"
-      ],
-      "ref": "pandas-stubs==2.2.3.250527"
-    },
-    {
-      "dependsOn": [
         "Jinja2==3.1.6",
         "lxml==6.0.2",
         "matplotlib==3.10.8",
-        "numba==0.63.1",
+        "numba==0.64.0",
         "numpy==2.0.2",
         "python-dateutil==2.9.0.post0",
-        "pytz==2025.2",
-        "scipy==1.17.0",
+        "pytz==2026.1.post1",
+        "scipy==1.17.1",
         "tzdata==2025.3"
       ],
       "ref": "pandas==2.2.3"
@@ -4920,7 +4995,7 @@
     {
       "dependsOn": [
         "numpy==2.0.2",
-        "scipy==1.17.0"
+        "scipy==1.17.1"
       ],
       "ref": "patsy==1.0.2"
     },
@@ -4960,9 +5035,15 @@
       "ref": "pyaml==26.2.1"
     },
     {
+      "ref": "pycparser==3.0"
+    },
+    {
+      "ref": "pycryptodome==3.23.0"
+    },
+    {
       "dependsOn": [
         "pydantic==2.12.5",
-        "pytz==2025.2",
+        "pytz==2026.1.post1",
         "typing_extensions==4.15.0",
         "tzdata==2025.3"
       ],
@@ -4972,10 +5053,10 @@
       "dependsOn": [
         "PyYAML==6.0.3",
         "pydantic==2.12.5",
-        "python-dotenv==1.2.1",
+        "python-dotenv==1.2.2",
         "typing-inspection==0.4.2"
       ],
-      "ref": "pydantic-settings==2.12.0"
+      "ref": "pydantic-settings==2.13.1"
     },
     {
       "dependsOn": [
@@ -5010,13 +5091,13 @@
       "dependsOn": [
         "click==8.3.1"
       ],
-      "ref": "python-dotenv==1.2.1"
+      "ref": "python-dotenv==1.2.2"
     },
     {
       "ref": "python-multipart==0.0.22"
     },
     {
-      "ref": "pytz==2025.2"
+      "ref": "pytz==2026.1.post1"
     },
     {
       "dependsOn": [
@@ -5028,9 +5109,9 @@
     },
     {
       "dependsOn": [
-        "certifi==2026.1.4",
+        "certifi==2026.2.25",
         "chardet==5.2.0",
-        "charset-normalizer==3.4.4",
+        "charset-normalizer==3.4.5",
         "idna==3.11",
         "urllib3==2.6.3"
       ],
@@ -5054,17 +5135,17 @@
     {
       "dependsOn": [
         "click==8.3.1",
-        "rich==14.3.2",
+        "rich==14.3.3",
         "typing_extensions==4.15.0"
       ],
-      "ref": "rich-toolkit==0.19.4"
+      "ref": "rich-toolkit==0.19.7"
     },
     {
       "dependsOn": [
         "Pygments==2.19.2",
         "markdown-it-py==4.0.0"
       ],
-      "ref": "rich==14.3.2"
+      "ref": "rich==14.3.3"
     },
     {
       "ref": "rignore==0.7.6"
@@ -5073,13 +5154,17 @@
       "ref": "rpds-py==0.30.0"
     },
     {
+      "ref": "ruff==0.15.5"
+    },
+    {
       "dependsOn": [
         "joblib==1.5.3",
         "matplotlib==3.10.8",
         "numpy==2.0.2",
         "pandas==2.2.3",
         "pillow==12.1.1",
-        "scipy==1.17.0",
+        "ruff==0.15.5",
+        "scipy==1.17.1",
         "seaborn==0.13.2",
         "threadpoolctl==3.6.0"
       ],
@@ -5087,20 +5172,14 @@
     },
     {
       "dependsOn": [
-        "optype==0.15.0",
-        "scipy==1.17.0"
-      ],
-      "ref": "scipy-stubs==1.16.3.3"
-    },
-    {
-      "dependsOn": [
         "click==8.3.1",
         "matplotlib==3.10.8",
         "numpy==2.0.2",
+        "ruff==0.15.5",
         "threadpoolctl==3.6.0",
         "typing_extensions==4.15.0"
       ],
-      "ref": "scipy==1.17.0"
+      "ref": "scipy==1.17.1"
     },
     {
       "dependsOn": [
@@ -5108,26 +5187,24 @@
         "keras==3.6.0",
         "loguru==0.7.3",
         "numpy==2.0.2",
-        "pandas-stubs==2.2.3.250527",
         "pandas==2.2.3",
+        "pydantic==2.12.5",
         "scikit-learn==1.5.2",
-        "scipy-stubs==1.16.3.3",
         "seaborn==0.13.2",
         "skops==0.13.0",
         "statsmodels==0.14.5",
         "tensorflow==2.18.0",
         "tslearn==0.7.0"
       ],
-      "ref": "sdg-core-lib==0.1.7"
+      "ref": "sdg-core-lib==0.1.8"
     },
     {
       "dependsOn": [
         "PyYAML==6.0.3",
         "matplotlib==3.10.8",
         "numpy==2.0.2",
-        "pandas-stubs==2.2.3.250527",
         "pandas==2.2.3",
-        "scipy==1.17.0",
+        "scipy==1.17.1",
         "statsmodels==0.14.5"
       ],
       "ref": "seaborn==0.13.2"
@@ -5135,8 +5212,8 @@
     {
       "dependsOn": [
         "MarkupSafe==3.0.3",
-        "certifi==2026.1.4",
-        "fastapi==0.129.0",
+        "certifi==2026.2.25",
+        "fastapi==0.135.1",
         "grpcio==1.78.0",
         "httpcore==1.0.9",
         "httpx==0.28.1",
@@ -5145,14 +5222,15 @@
         "starlette==0.52.1",
         "urllib3==2.6.3"
       ],
-      "ref": "sentry-sdk==2.52.0"
+      "ref": "sentry-sdk==2.54.0"
     },
     {
       "dependsOn": [
         "packaging==26.0",
+        "ruff==0.15.5",
         "wheel==0.46.3"
       ],
-      "ref": "setuptools==82.0.0"
+      "ref": "setuptools==82.0.1"
     },
     {
       "ref": "shellingham==1.5.4"
@@ -5165,9 +5243,9 @@
         "numpy==2.0.2",
         "packaging==26.0",
         "prettytable==3.17.0",
-        "rich==14.3.2",
+        "rich==14.3.3",
         "scikit-learn==1.5.2",
-        "scipy==1.17.0"
+        "scipy==1.17.1"
       ],
       "ref": "skops==0.13.0"
     },
@@ -5194,7 +5272,7 @@
         "packaging==26.0",
         "pandas==2.2.3",
         "patsy==1.0.2",
-        "scipy==1.17.0"
+        "scipy==1.17.1"
       ],
       "ref": "statsmodels==0.14.5"
     },
@@ -5204,13 +5282,13 @@
     {
       "dependsOn": [
         "Markdown==3.10.2",
-        "Werkzeug==3.1.5",
+        "Werkzeug==3.1.6",
         "absl-py==2.4.0",
         "grpcio==1.78.0",
         "numpy==2.0.2",
         "packaging==26.0",
         "protobuf==5.29.6",
-        "setuptools==82.0.0",
+        "setuptools==82.0.1",
         "six==1.17.0",
         "tensorboard-data-server==0.7.2"
       ],
@@ -5224,7 +5302,7 @@
         "gast==0.7.0",
         "google-pasta==0.2.0",
         "grpcio==1.78.0",
-        "h5py==3.15.1",
+        "h5py==3.16.0",
         "keras==3.6.0",
         "libclang==18.1.1",
         "ml-dtypes==0.4.1",
@@ -5233,12 +5311,12 @@
         "packaging==26.0",
         "protobuf==5.29.6",
         "requests==2.32.5",
-        "setuptools==82.0.0",
+        "setuptools==82.0.1",
         "six==1.17.0",
         "tensorboard==2.18.0",
         "termcolor==3.3.0",
         "typing_extensions==4.15.0",
-        "wrapt==2.1.1"
+        "wrapt==2.1.2"
       ],
       "ref": "tensorflow==2.18.0"
     },
@@ -5250,15 +5328,15 @@
     },
     {
       "dependsOn": [
-        "h5py==3.15.1",
+        "h5py==3.16.0",
         "joblib==1.5.3",
         "keras==3.6.0",
         "matplotlib==3.10.8",
-        "numba==0.63.1",
+        "numba==0.64.0",
         "numpy==2.0.2",
         "pandas==2.2.3",
         "scikit-learn==1.5.2",
-        "scipy==1.17.0"
+        "scipy==1.17.1"
       ],
       "ref": "tslearn==0.7.0"
     },
@@ -5266,13 +5344,10 @@
       "dependsOn": [
         "annotated-doc==0.0.4",
         "click==8.3.1",
-        "rich==14.3.2",
+        "rich==14.3.3",
         "shellingham==1.5.4"
       ],
-      "ref": "typer==0.23.1"
-    },
-    {
-      "ref": "types-pytz==2025.2.0.20251108"
+      "ref": "typer==0.24.1"
     },
     {
       "dependsOn": [
@@ -5298,17 +5373,17 @@
         "click==8.3.1",
         "h11==0.16.0",
         "httptools==0.7.1",
-        "python-dotenv==1.2.1",
+        "python-dotenv==1.2.2",
         "typing_extensions==4.15.0",
         "uvloop==0.22.1",
         "watchfiles==1.1.1",
         "websockets==16.0"
       ],
-      "ref": "uvicorn==0.40.0"
+      "ref": "uvicorn==0.41.0"
     },
     {
       "dependsOn": [
-        "setuptools==82.0.0"
+        "setuptools==82.0.1"
       ],
       "ref": "uvloop==0.22.1"
     },
@@ -5330,19 +5405,19 @@
     {
       "dependsOn": [
         "packaging==26.0",
-        "setuptools==82.0.0"
+        "setuptools==82.0.1"
       ],
       "ref": "wheel==0.46.3"
     },
     {
       "dependsOn": [
-        "setuptools==82.0.0"
+        "setuptools==82.0.1"
       ],
-      "ref": "wrapt==2.1.1"
+      "ref": "wrapt==2.1.2"
     }
   ],
   "metadata": {
-    "timestamp": "2026-02-13T11:35:26.239700+00:00",
+    "timestamp": "2026-03-11T15:34:53.615224+00:00",
     "tools": {
       "components": [
         {
@@ -5392,7 +5467,7 @@
           ],
           "name": "cyclonedx-py",
           "type": "application",
-          "version": "7.2.1"
+          "version": "7.2.2"
         },
         {
           "description": "Python library for CycloneDX",
@@ -5446,7 +5521,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:f1ab6c28-ff8c-4834-849a-93f30b5feca9",
+  "serialNumber": "urn:uuid:304a0f21-ac03-40ae-8249-c5e796daca58",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
