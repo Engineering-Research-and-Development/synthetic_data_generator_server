@@ -9,7 +9,8 @@ from server.file_utils import (
     retrieve_model_payload,
     save_model_payload,
     get_folder_full_path,
-    delete_folder,
+    delete_local_folder,
+    full_to_short_path,
 )
 from server.middleware_handlers import middleware
 from server.state import AppState
@@ -45,7 +46,7 @@ def model_to_middleware(
     training_info = model.training_info.to_dict()
     version_info = {
         "version_name": version_name,
-        "image_path": save_path,
+        "image_path": full_to_short_path(save_path),
     }
     # Getting the algorithm id
     algorithm_id = appstate.ALGORITHM_LONG_NAME_TO_ID.get(
@@ -136,6 +137,6 @@ def sync_trained_models(appstate: AppState):
                 post_model_to_middleware(model_payload)
         except FileNotFoundError:
             logger.error("Local Payload not found, deleting folder")
-            delete_folder(get_folder_full_path(local_trained_model))
+            delete_local_folder(get_folder_full_path(local_trained_model))
 
     logger.info("Sync completed")

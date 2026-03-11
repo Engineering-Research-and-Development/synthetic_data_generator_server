@@ -1,7 +1,7 @@
 from server.file_utils import (
     create_folder,
-    delete_folder,
-    check_folder,
+    delete_local_folder,
+    folder_exists,
     save_model_payload,
     retrieve_model_payload,
     list_trained_models,
@@ -33,9 +33,9 @@ def test_create_folder():
 def test_check_folder():
     folder_path = TRAINED_MODELS / "test_folder"
     folder_path.mkdir(exist_ok=True)
-    assert check_folder(folder_path)
-    delete_folder(folder_path)
-    assert not check_folder(folder_path)
+    assert folder_exists(folder_path)
+    delete_local_folder(folder_path)
+    assert not folder_exists(folder_path)
 
 
 def test_save_model_payload():
@@ -70,7 +70,7 @@ def test_list_trained_models():
 def test_delete_folder():
     folder_path = TRAINED_MODELS / "test_folder"
     folder_path.mkdir(exist_ok=True)
-    delete_folder(folder_path)
+    delete_local_folder(folder_path)
     assert not folder_path.exists()
 
 

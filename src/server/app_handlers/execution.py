@@ -1,5 +1,3 @@
-import shutil
-
 from loguru import logger
 from minio.error import MinioException
 
@@ -10,9 +8,10 @@ from server.storage_handlers.couch import add_couch_data
 from server.file_utils import (
     check_latest_version,
     create_folder,
-    delete_folder,
+    delete_local_folder,
     save_model_payload,
-    check_folder,
+    folder_exists,
+    get_folder_full_path,
 )
 from server.middleware_handlers.models import model_to_middleware
 from server.storage_handlers.garage import (
@@ -80,7 +79,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
             save_filepath=folder_path,
         ).train()
     except (ValueError, TypeError, AttributeError, KeyError) as e:
-        delete_folder(folder_path)
+        delete_local_folder(folder_path)
         logger.error(f"Error training model: {e}")
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
@@ -101,12 +100,12 @@ def execute_train(request: TrainRequest, couch_doc: str):
         else:
             error_message = "Middleware connection failed while saving trained model"
             logger.error(error_message)
-            delete_folder(folder_path)
+            delete_local_folder(folder_path)
             add_couch_data(couch_doc, new_data={"error": error_message})
             return
     except (MinioException, ValueError, KeyError) as e:
         logger.error(f"Error training model: {e}")
-        delete_folder(folder_path)
+        delete_local_folder(folder_path)
         add_couch_data(couch_doc, new_data={"error": e.args[0]})
         return
 
@@ -127,9 +126,9 @@ def execute_infer(request: InferRequest, couch_doc: str):
     request["model"]["algorithm_name"] = appstate.ALGORITHM_SHORT_TO_LONG[
         request["model"]["algorithm_name"]
     ]
-    model_path = request["model"]["image"]
+    model_path = get_folder_full_path(request["model"]["image"])
     load_from_external_storage(model_path)
-    if not check_folder(model_path):
+    if not folder_exists(model_path):
         logger.error("Error finding trained model model")
         add_couch_data(
             couch_doc,
@@ -150,7 +149,7 @@ def execute_infer(request: InferRequest, couch_doc: str):
         return
 
     if appstate.storage_type != StorageType.LOCAL:
-        shutil.rmtree(model_path)
+        delete_local_folder(model_path)
     add_couch_data(doc_id=couch_doc, new_data={"results": results, "metrics": metrics})
     logger.info("Infer Job completed successfully")
 

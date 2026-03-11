@@ -22,20 +22,24 @@ def get_folder_full_path(folder_name: str):
     return TRAINED_MODELS / folder_name
 
 
+def full_to_short_path(model_full_path: str):
+    return model_full_path.split("/")[-1]
+
+
 def create_folder(folder_id: str):
     folder_path = get_folder_full_path(folder_id)
     folder_path.mkdir(parents=True, exist_ok=True)
     return folder_path
 
 
-def delete_folder(folder_path: Path | str):
+def delete_local_folder(folder_path: Path | str):
     if type(folder_path) is str:
         folder_path = Path(folder_path)
     if os.path.isdir(folder_path):
         shutil.rmtree(folder_path)
 
 
-def check_folder(folder_path: Path | str):
+def folder_exists(folder_path: Path | str):
     if type(folder_path) is str:
         folder_path = Path(folder_path)
     return folder_path.exists()

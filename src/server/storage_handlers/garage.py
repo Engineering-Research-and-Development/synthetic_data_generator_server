@@ -1,10 +1,9 @@
-import shutil
 from pathlib import Path
 import minio
 from loguru import logger
 from minio.error import MinioException
 
-from server.file_utils import TRAINED_MODELS, MODEL_PAYLOAD_NAME
+from server.file_utils import TRAINED_MODELS, MODEL_PAYLOAD_NAME, delete_local_folder
 from server.storage_handlers import (
     GARAGE_URL,
     GARAGE_USERNAME,
@@ -69,7 +68,7 @@ def sync_available_models():
             logger.error(
                 f"An error occurred while downloading the model payload of: {model_name}, rollback"
             )
-            shutil.rmtree(local_path / model_name)
+            delete_local_folder(local_path)
 
         written.append(str(local_path))
         logger.info(f"Downloaded: {obj.object_name}  →  {local_path}")
@@ -100,26 +99,19 @@ def get_model_from_garage_if_exists(model_full_path: str):
 
     written: list[str] = []
     for obj in objects:
-        # Strip the prefix to get a relative path, then join with dest_root
         relative_path = obj.object_name[len(prefix) :]
-        logger.info(f"local_root: {local_root}, prefix: {prefix}, relative_path:{relative_path}")
         local_path = local_root / prefix / relative_path
-
-        # Create parent directories as needed
         local_path.parent.mkdir(parents=True, exist_ok=True)
-
         try:
             client.fget_object(GARAGE_MODEL_BUCKET, obj.object_name, str(local_path))
         except MinioException:
             logger.error(
                 f"An error occurred while downloading the model in: {model_full_path}, rollback"
             )
-            shutil.rmtree(model_full_path)
-
+            delete_local_folder(model_full_path)
         written.append(str(local_path))
-        logger.info(f"Downloaded: {obj.object_name}  →  {local_path}")
 
-    logger.info(f"\n✓ {len(written)} file(s) copied to '{model_full_path}'")
+    logger.info(f"\n✓ {len(written)} file(s) downloaded to '{model_full_path}'")
 
 
 def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
@@ -144,18 +136,19 @@ def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
             continue
 
         relative_path = local_path.relative_to(model_full_path)
-        logger.info(f"prefix: {prefix}, relative_path:{relative_path}")
         object_name = prefix + relative_path.as_posix()  # MinIO uses forward slashes
 
         try:
             client.fput_object(GARAGE_MODEL_BUCKET, object_name, str(local_path))
         except MinioException:
             logger.error(f"An error Occurred while uploading {prefix} model. Rollback")
-            shutil.rmtree(model_full_path)
+            delete_local_folder(model_full_path)
+            return
         uploaded.append(object_name)
-        logger.info(f"Model Uploaded to MinIO: {local_path}  →  {object_name}")
 
-    print(f"\n✓ {len(uploaded)} file(s) uploaded to '{GARAGE_MODEL_BUCKET}/{prefix}'")
+    logger.info(
+        f"{len(uploaded)} file(s) uploaded to MinIO: {model_full_path}  →  {GARAGE_MODEL_BUCKET}/{prefix}"
+    )
     if remove_after_upload:
-        shutil.rmtree(model_full_path)
-    return uploaded
+        delete_local_folder(model_full_path)
+    return
