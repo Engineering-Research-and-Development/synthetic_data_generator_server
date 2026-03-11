@@ -155,13 +155,18 @@ def copy_model_to_garage(model_full_path: str, remove_after_upload=True):
         delete_local_folder(model_full_path)
     return
 
+
 MAX_REMOVE_TRIES = 3
+
+
 def remove_remote_model(model_full_path: str, max_tries=MAX_REMOVE_TRIES):
     model_full_path = Path(model_full_path)
     client = get_client()
     prefix = str(model_full_path).rstrip("/").split("/")[-1] + "/"
     if max_tries == 0:
-        raise MinioException(f"After {MAX_REMOVE_TRIES} times the remote model under {prefix} was not removed")
+        raise MinioException(
+            f"After {MAX_REMOVE_TRIES} times the remote model under {prefix} was not removed"
+        )
 
     found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
     if not found:
@@ -186,7 +191,7 @@ def remove_remote_model(model_full_path: str, max_tries=MAX_REMOVE_TRIES):
                 f"An error occurred while downloading the model in: {model_full_path}, retrying"
             )
             time.sleep(3)
-            remove_remote_model(str(model_full_path), max_tries-1)
+            remove_remote_model(str(model_full_path), max_tries - 1)
         deleted.append(obj.object_name)
     logger.info(f"All objects in {prefix} are successfully removed")
     return
