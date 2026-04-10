@@ -185,6 +185,6 @@ def execute_scratch_generation(request: GenerationRequest, couch_doc: str):
         return
 
     add_couch_data(
-        doc_id=couch_doc, new_data={"results": results, "metrics": {"Not Available"}}
+        doc_id=couch_doc, new_data={"results": results, "metrics": {"available": "False"}}
     )
     logger.info("Generation Job completed successfully")
