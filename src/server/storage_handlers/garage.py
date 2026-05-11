@@ -3,6 +3,7 @@ from pathlib import Path
 import minio
 from loguru import logger
 from minio.error import MinioException
+from urllib3.exceptions import NewConnectionError
 
 from server.file_utils import (
     TRAINED_MODELS,
@@ -40,13 +41,17 @@ def remote_storage_connect_and_sync() -> bool:
 
 
 def bucket_exists() -> bool:
-    found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
-    if not found:
-        logger.error(
-            f"Model Bucket: {GARAGE_MODEL_BUCKET} not found, cannot perform read/write operation on Garage"
-        )
+    try:
+        found = client.bucket_exists(bucket_name=GARAGE_MODEL_BUCKET)
+        if not found:
+            logger.error(
+                f"Model Bucket: {GARAGE_MODEL_BUCKET} not found, cannot perform read/write operation on Garage"
+            )
+            return False
+        return True
+    except NewConnectionError as e:
+        logger.error(f"Cannot connect to Garage Instance: {e}")
         return False
-    return True
 
 
 def get_available_models():

@@ -8,5 +8,4 @@ COPY . .
 RUN uv sync --project pyproject.toml
 
 
-
 CMD [".venv/bin/fastapi", "run", "server/app.py", "--port", "8010"]

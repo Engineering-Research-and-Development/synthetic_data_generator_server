@@ -92,6 +92,7 @@ def execute_train(request: TrainRequest, couch_doc: str):
             dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
             save_filepath=folder_path,
+            functions=request["functions"],
         ).train()
     except (ValueError, TypeError, AttributeError, KeyError) as e:
         delete_local_folder(folder_path)
@@ -157,6 +158,7 @@ def execute_infer(request: InferRequest, couch_doc: str):
             dataset=get_full_dataset(request["dataset"], request["model"]),
             n_rows=request["n_rows"],
             save_filepath=model_path,
+            functions=request["functions"],
         ).infer()
     except (ValueError, TypeError, AttributeError, KeyError) as e:
         logger.error(f"Error while making inference: {e}")
@@ -185,6 +187,7 @@ def execute_scratch_generation(request: GenerationRequest, couch_doc: str):
         return
 
     add_couch_data(
-        doc_id=couch_doc, new_data={"results": results, "metrics": {"Not Available"}}
+        doc_id=couch_doc,
+        new_data={"results": results, "metrics": {"available": "False"}},
     )
     logger.info("Generation Job completed successfully")
