@@ -183,7 +183,7 @@
       "version": "6.0.3"
     },
     {
-      "bom-ref": "Pygments==2.19.2",
+      "bom-ref": "Pygments==2.20.0",
       "description": "Pygments is a syntax highlighting package written in Python.",
       "externalReferences": [
         {
@@ -218,21 +218,15 @@
             "acknowledgement": "declared",
             "id": "BSD-2-Clause"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "License :: OSI Approved :: BSD License"
-          }
         }
       ],
       "name": "Pygments",
-      "purl": "pkg:pypi/pygments@2.19.2",
+      "purl": "pkg:pypi/pygments@2.20.0",
       "type": "library",
-      "version": "2.19.2"
+      "version": "2.20.0"
     },
     {
-      "bom-ref": "Werkzeug==3.1.6",
+      "bom-ref": "Werkzeug==3.1.8",
       "description": "The comprehensive WSGI web application library.",
       "externalReferences": [
         {
@@ -270,9 +264,9 @@
         }
       ],
       "name": "Werkzeug",
-      "purl": "pkg:pypi/werkzeug@3.1.6",
+      "purl": "pkg:pypi/werkzeug@3.1.8",
       "type": "library",
-      "version": "3.1.6"
+      "version": "3.1.8"
     },
     {
       "bom-ref": "absl-py==2.4.0",
@@ -389,7 +383,7 @@
       "version": "0.7.0"
     },
     {
-      "bom-ref": "anyio==4.12.1",
+      "bom-ref": "anyio==4.13.0",
       "description": "High-level concurrency and networking framework on top of asyncio or Trio",
       "externalReferences": [
         {
@@ -422,9 +416,9 @@
         }
       ],
       "name": "anyio",
-      "purl": "pkg:pypi/anyio@4.12.1",
+      "purl": "pkg:pypi/anyio@4.13.0",
       "type": "library",
-      "version": "4.12.1"
+      "version": "4.13.0"
     },
     {
       "bom-ref": "argon2-cffi==25.1.0",
@@ -564,7 +558,7 @@
       "version": "1.6.3"
     },
     {
-      "bom-ref": "attrs==25.4.0",
+      "bom-ref": "attrs==26.1.0",
       "description": "Classes Without Boilerplate",
       "externalReferences": [
         {
@@ -602,9 +596,9 @@
         }
       ],
       "name": "attrs",
-      "purl": "pkg:pypi/attrs@25.4.0",
+      "purl": "pkg:pypi/attrs@26.1.0",
       "type": "library",
-      "version": "25.4.0"
+      "version": "26.1.0"
     },
     {
       "bom-ref": "boolean.py==5.0",
@@ -630,7 +624,7 @@
       "version": "5.0"
     },
     {
-      "bom-ref": "certifi==2026.2.25",
+      "bom-ref": "certifi==2026.4.22",
       "description": "Python package for providing Mozilla's CA Bundle.",
       "externalReferences": [
         {
@@ -659,9 +653,9 @@
         }
       ],
       "name": "certifi",
-      "purl": "pkg:pypi/certifi@2026.2.25",
+      "purl": "pkg:pypi/certifi@2026.4.22",
       "type": "library",
-      "version": "2026.2.25"
+      "version": "2026.4.22"
     },
     {
       "bom-ref": "cffi==2.0.0",
@@ -750,7 +744,7 @@
       "version": "5.2.0"
     },
     {
-      "bom-ref": "charset-normalizer==3.4.5",
+      "bom-ref": "charset-normalizer==3.4.7",
       "description": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
       "externalReferences": [
         {
@@ -783,12 +777,12 @@
         }
       ],
       "name": "charset-normalizer",
-      "purl": "pkg:pypi/charset-normalizer@3.4.5",
+      "purl": "pkg:pypi/charset-normalizer@3.4.7",
       "type": "library",
-      "version": "3.4.5"
+      "version": "3.4.7"
     },
     {
-      "bom-ref": "click==8.3.1",
+      "bom-ref": "click==8.3.3",
       "description": "Composable command line interface toolkit",
       "externalReferences": [
         {
@@ -826,9 +820,9 @@
         }
       ],
       "name": "click",
-      "purl": "pkg:pypi/click@8.3.1",
+      "purl": "pkg:pypi/click@8.3.3",
       "type": "library",
-      "version": "8.3.1"
+      "version": "8.3.3"
     },
     {
       "bom-ref": "contourpy==1.3.3",
@@ -897,7 +891,7 @@
       "version": "0.12.1"
     },
     {
-      "bom-ref": "cyclonedx-bom==7.2.2",
+      "bom-ref": "cyclonedx-bom==7.3.0",
       "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
       "externalReferences": [
         {
@@ -946,12 +940,12 @@
         }
       ],
       "name": "cyclonedx-bom",
-      "purl": "pkg:pypi/cyclonedx-bom@7.2.2",
+      "purl": "pkg:pypi/cyclonedx-bom@7.3.0",
       "type": "library",
-      "version": "7.2.2"
+      "version": "7.3.0"
     },
     {
-      "bom-ref": "cyclonedx-python-lib==11.6.0",
+      "bom-ref": "cyclonedx-python-lib==11.7.0",
       "description": "Python library for CycloneDX",
       "externalReferences": [
         {
@@ -1006,9 +1000,9 @@
           "value": "validation"
         }
       ],
-      "purl": "pkg:pypi/cyclonedx-python-lib@11.6.0",
+      "purl": "pkg:pypi/cyclonedx-python-lib@11.7.0",
       "type": "library",
-      "version": "11.6.0"
+      "version": "11.7.0"
     },
     {
       "bom-ref": "defusedxml==0.7.1",
@@ -1100,7 +1094,7 @@
       "version": "2.3.0"
     },
     {
-      "bom-ref": "fastapi==0.135.1",
+      "bom-ref": "fastapi==0.136.1",
       "description": "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
       "externalReferences": [
         {
@@ -1138,9 +1132,9 @@
         }
       ],
       "name": "fastapi",
-      "purl": "pkg:pypi/fastapi@0.135.1",
+      "purl": "pkg:pypi/fastapi@0.136.1",
       "type": "library",
-      "version": "0.135.1"
+      "version": "0.136.1"
     },
     {
       "bom-ref": "fastapi-cli==0.0.24",
@@ -1196,7 +1190,7 @@
       "version": "0.0.24"
     },
     {
-      "bom-ref": "fastapi-cloud-cli==0.14.1",
+      "bom-ref": "fastapi-cloud-cli==0.17.1",
       "description": "Deploy and manage FastAPI Cloud apps from the command line \ud83d\ude80",
       "externalReferences": [
         {
@@ -1234,12 +1228,12 @@
         }
       ],
       "name": "fastapi-cloud-cli",
-      "purl": "pkg:pypi/fastapi-cloud-cli@0.14.1",
+      "purl": "pkg:pypi/fastapi-cloud-cli@0.17.1",
       "type": "library",
-      "version": "0.14.1"
+      "version": "0.17.1"
     },
     {
-      "bom-ref": "fastar==0.8.0",
+      "bom-ref": "fastar==0.11.0",
       "description": "High-level bindings for the Rust tar crate",
       "externalReferences": [
         {
@@ -1267,9 +1261,9 @@
         }
       ],
       "name": "fastar",
-      "purl": "pkg:pypi/fastar@0.8.0",
+      "purl": "pkg:pypi/fastar@0.11.0",
       "type": "library",
-      "version": "0.8.0"
+      "version": "0.11.0"
     },
     {
       "bom-ref": "flatbuffers==25.12.19",
@@ -1305,7 +1299,7 @@
       "version": "25.12.19"
     },
     {
-      "bom-ref": "fonttools==4.62.0",
+      "bom-ref": "fonttools==4.62.1",
       "description": "Tools to manipulate font files",
       "externalReferences": [
         {
@@ -1323,9 +1317,9 @@
         }
       ],
       "name": "fonttools",
-      "purl": "pkg:pypi/fonttools@4.62.0",
+      "purl": "pkg:pypi/fonttools@4.62.1",
       "type": "library",
-      "version": "4.62.0"
+      "version": "4.62.1"
     },
     {
       "bom-ref": "fqdn==1.5.1",
@@ -1397,7 +1391,7 @@
       "version": "0.2.0"
     },
     {
-      "bom-ref": "grpcio==1.78.0",
+      "bom-ref": "grpcio==1.80.0",
       "description": "HTTP/2-based RPC framework",
       "externalReferences": [
         {
@@ -1430,9 +1424,9 @@
         }
       ],
       "name": "grpcio",
-      "purl": "pkg:pypi/grpcio@1.78.0",
+      "purl": "pkg:pypi/grpcio@1.80.0",
       "type": "library",
-      "version": "1.78.0"
+      "version": "1.80.0"
     },
     {
       "bom-ref": "h11==0.16.0",
@@ -1532,6 +1526,10 @@
       "properties": [
         {
           "name": "cdx:python:package:required-extra",
+          "value": "asyncio"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
           "value": "http2"
         }
       ],
@@ -1607,7 +1605,7 @@
       "version": "0.28.1"
     },
     {
-      "bom-ref": "idna==3.11",
+      "bom-ref": "idna==3.14",
       "description": "Internationalized Domain Names in Applications (IDNA)",
       "externalReferences": [
         {
@@ -1635,9 +1633,9 @@
         }
       ],
       "name": "idna",
-      "purl": "pkg:pypi/idna@3.11",
+      "purl": "pkg:pypi/idna@3.14",
       "type": "library",
-      "version": "3.11"
+      "version": "3.14"
     },
     {
       "bom-ref": "isoduration==20.11.0",
@@ -1706,7 +1704,7 @@
       "version": "1.5.3"
     },
     {
-      "bom-ref": "jsonpointer==3.0.0",
+      "bom-ref": "jsonpointer==3.1.1",
       "description": "Identify specific nodes in a JSON document (RFC 6901) ",
       "externalReferences": [
         {
@@ -1724,9 +1722,9 @@
         }
       ],
       "name": "jsonpointer",
-      "purl": "pkg:pypi/jsonpointer@3.0.0",
+      "purl": "pkg:pypi/jsonpointer@3.1.1",
       "type": "library",
-      "version": "3.0.0"
+      "version": "3.1.1"
     },
     {
       "bom-ref": "jsonschema==4.26.0",
@@ -2008,7 +2006,7 @@
       "version": "30.4.4"
     },
     {
-      "bom-ref": "llvmlite==0.46.0",
+      "bom-ref": "llvmlite==0.47.0",
       "description": "lightweight wrapper around basic LLVM functionality",
       "externalReferences": [
         {
@@ -2029,9 +2027,9 @@
         }
       ],
       "name": "llvmlite",
-      "purl": "pkg:pypi/llvmlite@0.46.0",
+      "purl": "pkg:pypi/llvmlite@0.47.0",
       "type": "library",
-      "version": "0.46.0"
+      "version": "0.47.0"
     },
     {
       "bom-ref": "loguru==0.7.3",
@@ -2067,7 +2065,7 @@
       "version": "0.7.3"
     },
     {
-      "bom-ref": "lxml==6.0.2",
+      "bom-ref": "lxml==6.1.0",
       "description": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
       "externalReferences": [
         {
@@ -2095,12 +2093,12 @@
         }
       ],
       "name": "lxml",
-      "purl": "pkg:pypi/lxml@6.0.2",
+      "purl": "pkg:pypi/lxml@6.1.0",
       "type": "library",
-      "version": "6.0.2"
+      "version": "6.1.0"
     },
     {
-      "bom-ref": "markdown-it-py==4.0.0",
+      "bom-ref": "markdown-it-py==4.2.0",
       "description": "Python port of markdown-it. Markdown parsing, done right!",
       "externalReferences": [
         {
@@ -2123,12 +2121,12 @@
         }
       ],
       "name": "markdown-it-py",
-      "purl": "pkg:pypi/markdown-it-py@4.0.0",
+      "purl": "pkg:pypi/markdown-it-py@4.2.0",
       "type": "library",
-      "version": "4.0.0"
+      "version": "4.2.0"
     },
     {
-      "bom-ref": "matplotlib==3.10.8",
+      "bom-ref": "matplotlib==3.10.9",
       "description": "Python plotting package",
       "externalReferences": [
         {
@@ -2176,9 +2174,9 @@
         }
       ],
       "name": "matplotlib",
-      "purl": "pkg:pypi/matplotlib@3.10.8",
+      "purl": "pkg:pypi/matplotlib@3.10.9",
       "type": "library",
-      "version": "3.10.8"
+      "version": "3.10.9"
     },
     {
       "bom-ref": "mdurl==0.1.2",
@@ -2273,7 +2271,7 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "numba==0.64.0",
+      "bom-ref": "numba==0.65.1",
       "description": "compiling Python code using LLVM",
       "externalReferences": [
         {
@@ -2291,9 +2289,9 @@
         }
       ],
       "name": "numba",
-      "purl": "pkg:pypi/numba@0.64.0",
+      "purl": "pkg:pypi/numba@0.65.1",
       "type": "library",
-      "version": "0.64.0"
+      "version": "0.65.1"
     },
     {
       "bom-ref": "numpy==2.0.2",
@@ -2365,7 +2363,7 @@
       "version": "3.4.0"
     },
     {
-      "bom-ref": "optree==0.19.0",
+      "bom-ref": "optree==0.19.1",
       "description": "Optimized PyTree Utilities.",
       "externalReferences": [
         {
@@ -2398,9 +2396,9 @@
         }
       ],
       "name": "optree",
-      "purl": "pkg:pypi/optree@0.19.0",
+      "purl": "pkg:pypi/optree@0.19.1",
       "type": "library",
-      "version": "0.19.0"
+      "version": "0.19.1"
     },
     {
       "bom-ref": "packageurl-python==0.17.6",
@@ -2426,7 +2424,7 @@
       "version": "0.17.6"
     },
     {
-      "bom-ref": "packaging==26.0",
+      "bom-ref": "packaging==26.2",
       "description": "Core utilities for Python packages",
       "externalReferences": [
         {
@@ -2447,9 +2445,9 @@
         }
       ],
       "name": "packaging",
-      "purl": "pkg:pypi/packaging@26.0",
+      "purl": "pkg:pypi/packaging@26.2",
       "type": "library",
-      "version": "26.0"
+      "version": "26.2"
     },
     {
       "bom-ref": "pandas==2.2.3",
@@ -2513,7 +2511,7 @@
       "version": "1.0.2"
     },
     {
-      "bom-ref": "pillow==12.1.1",
+      "bom-ref": "pillow==12.2.0",
       "description": "Python Imaging Library (fork)",
       "externalReferences": [
         {
@@ -2561,9 +2559,9 @@
         }
       ],
       "name": "pillow",
-      "purl": "pkg:pypi/pillow@12.1.1",
+      "purl": "pkg:pypi/pillow@12.2.0",
       "type": "library",
-      "version": "12.1.1"
+      "version": "12.2.0"
     },
     {
       "bom-ref": "pip-requirements-parser==32.0.1",
@@ -2781,7 +2779,7 @@
       "version": "3.23.0"
     },
     {
-      "bom-ref": "pydantic==2.12.5",
+      "bom-ref": "pydantic==2.13.4",
       "description": "Data validation using Python type hints",
       "externalReferences": [
         {
@@ -2825,12 +2823,12 @@
           "value": "email"
         }
       ],
-      "purl": "pkg:pypi/pydantic@2.12.5",
+      "purl": "pkg:pypi/pydantic@2.13.4",
       "type": "library",
-      "version": "2.12.5"
+      "version": "2.13.4"
     },
     {
-      "bom-ref": "pydantic-extra-types==2.11.0",
+      "bom-ref": "pydantic-extra-types==2.11.1",
       "description": "Extra Pydantic types.",
       "externalReferences": [
         {
@@ -2863,12 +2861,12 @@
         }
       ],
       "name": "pydantic-extra-types",
-      "purl": "pkg:pypi/pydantic-extra-types@2.11.0",
+      "purl": "pkg:pypi/pydantic-extra-types@2.11.1",
       "type": "library",
-      "version": "2.11.0"
+      "version": "2.11.1"
     },
     {
-      "bom-ref": "pydantic-settings==2.13.1",
+      "bom-ref": "pydantic-settings==2.14.1",
       "description": "Settings management using Pydantic",
       "externalReferences": [
         {
@@ -2906,18 +2904,18 @@
         }
       ],
       "name": "pydantic-settings",
-      "purl": "pkg:pypi/pydantic-settings@2.13.1",
+      "purl": "pkg:pypi/pydantic-settings@2.14.1",
       "type": "library",
-      "version": "2.13.1"
+      "version": "2.14.1"
     },
     {
-      "bom-ref": "pydantic_core==2.41.5",
+      "bom-ref": "pydantic_core==2.46.4",
       "description": "Core functionality for Pydantic validation and serialization",
       "externalReferences": [
         {
           "comment": "from packaging metadata Project-URL: Source",
           "type": "other",
-          "url": "https://github.com/pydantic/pydantic-core"
+          "url": "https://github.com/pydantic/pydantic/tree/main/pydantic-core"
         },
         {
           "comment": "from packaging metadata Project-URL: Funding",
@@ -2927,12 +2925,12 @@
         {
           "comment": "from packaging metadata Project-URL: Homepage",
           "type": "website",
-          "url": "https://github.com/pydantic/pydantic-core"
+          "url": "https://github.com/pydantic"
         },
         {
           "comment": "from packaging metadata: Home-page",
           "type": "website",
-          "url": "https://github.com/pydantic/pydantic-core"
+          "url": "https://github.com/pydantic/pydantic"
         }
       ],
       "licenses": [
@@ -2944,9 +2942,9 @@
         }
       ],
       "name": "pydantic_core",
-      "purl": "pkg:pypi/pydantic-core@2.41.5",
+      "purl": "pkg:pypi/pydantic-core@2.46.4",
       "type": "library",
-      "version": "2.41.5"
+      "version": "2.46.4"
     },
     {
       "bom-ref": "pyparsing==3.3.2",
@@ -3044,7 +3042,7 @@
       "version": "1.2.2"
     },
     {
-      "bom-ref": "python-multipart==0.0.22",
+      "bom-ref": "python-multipart==0.0.28",
       "description": "A streaming multipart parser for Python",
       "externalReferences": [
         {
@@ -3077,12 +3075,12 @@
         }
       ],
       "name": "python-multipart",
-      "purl": "pkg:pypi/python-multipart@0.0.22",
+      "purl": "pkg:pypi/python-multipart@0.0.28",
       "type": "library",
-      "version": "0.0.22"
+      "version": "0.0.28"
     },
     {
-      "bom-ref": "pytz==2026.1.post1",
+      "bom-ref": "pytz==2026.2",
       "description": "World timezone definitions, modern and historical",
       "externalReferences": [
         {
@@ -3105,9 +3103,9 @@
         }
       ],
       "name": "pytz",
-      "purl": "pkg:pypi/pytz@2026.1.post1",
+      "purl": "pkg:pypi/pytz@2026.2",
       "type": "library",
-      "version": "2026.1.post1"
+      "version": "2026.2"
     },
     {
       "bom-ref": "referencing==0.37.0",
@@ -3163,7 +3161,7 @@
       "version": "0.37.0"
     },
     {
-      "bom-ref": "requests==2.32.5",
+      "bom-ref": "requests==2.33.1",
       "description": "Python HTTP for Humans.",
       "externalReferences": [
         {
@@ -3175,11 +3173,6 @@
           "comment": "from packaging metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/psf/requests"
-        },
-        {
-          "comment": "from packaging metadata: Home-page",
-          "type": "website",
-          "url": "https://requests.readthedocs.io"
         }
       ],
       "licenses": [
@@ -3197,9 +3190,9 @@
         }
       ],
       "name": "requests",
-      "purl": "pkg:pypi/requests@2.32.5",
+      "purl": "pkg:pypi/requests@2.33.1",
       "type": "library",
-      "version": "2.32.5"
+      "version": "2.33.1"
     },
     {
       "bom-ref": "rfc3339-validator==0.1.4",
@@ -3286,7 +3279,7 @@
       "version": "1.1.0"
     },
     {
-      "bom-ref": "rich==14.3.3",
+      "bom-ref": "rich==15.0.0",
       "description": "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal",
       "externalReferences": [
         {
@@ -3309,9 +3302,9 @@
         }
       ],
       "name": "rich",
-      "purl": "pkg:pypi/rich@14.3.3",
+      "purl": "pkg:pypi/rich@15.0.0",
       "type": "library",
-      "version": "14.3.3"
+      "version": "15.0.0"
     },
     {
       "bom-ref": "rich-toolkit==0.19.7",
@@ -3399,7 +3392,7 @@
       "version": "0.30.0"
     },
     {
-      "bom-ref": "ruff==0.15.5",
+      "bom-ref": "ruff==0.15.12",
       "description": "An extremely fast Python linter and code formatter, written in Rust.",
       "externalReferences": [
         {
@@ -3432,9 +3425,9 @@
         }
       ],
       "name": "ruff",
-      "purl": "pkg:pypi/ruff@0.15.5",
+      "purl": "pkg:pypi/ruff@0.15.12",
       "type": "library",
-      "version": "0.15.5"
+      "version": "0.15.12"
     },
     {
       "bom-ref": "scikit-learn==1.5.2",
@@ -3528,8 +3521,8 @@
       "version": "1.17.1"
     },
     {
-      "bom-ref": "sdg-core-lib==0.1.8",
-      "description": "Add your description here",
+      "bom-ref": "sdg-core-lib==0.1.9",
+      "description": "Advanced synthetic data generation library",
       "licenses": [
         {
           "license": {
@@ -3539,9 +3532,9 @@
         }
       ],
       "name": "sdg-core-lib",
-      "purl": "pkg:pypi/sdg-core-lib@0.1.8",
+      "purl": "pkg:pypi/sdg-core-lib@0.1.9",
       "type": "library",
-      "version": "0.1.8"
+      "version": "0.1.9"
     },
     {
       "bom-ref": "seaborn==0.13.2",
@@ -3572,7 +3565,7 @@
       "version": "0.13.2"
     },
     {
-      "bom-ref": "sentry-sdk==2.54.0",
+      "bom-ref": "sentry-sdk==2.59.0",
       "description": "Python client for Sentry (https://sentry.io)",
       "externalReferences": [
         {
@@ -3597,18 +3590,12 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "License :: OSI Approved :: BSD License"
-          }
         }
       ],
       "name": "sentry-sdk",
-      "purl": "pkg:pypi/sentry-sdk@2.54.0",
+      "purl": "pkg:pypi/sentry-sdk@2.59.0",
       "type": "library",
-      "version": "2.54.0"
+      "version": "2.59.0"
     },
     {
       "bom-ref": "setuptools==82.0.1",
@@ -3756,7 +3743,7 @@
       "version": "2.4.0"
     },
     {
-      "bom-ref": "starlette==0.52.1",
+      "bom-ref": "starlette==1.0.0",
       "description": "The little ASGI library that shines.",
       "externalReferences": [
         {
@@ -3794,9 +3781,9 @@
         }
       ],
       "name": "starlette",
-      "purl": "pkg:pypi/starlette@0.52.1",
+      "purl": "pkg:pypi/starlette@1.0.0",
       "type": "library",
-      "version": "0.52.1"
+      "version": "1.0.0"
     },
     {
       "bom-ref": "statsmodels==0.14.5",
@@ -4016,7 +4003,7 @@
       "version": "0.7.0"
     },
     {
-      "bom-ref": "typer==0.24.1",
+      "bom-ref": "typer==0.25.1",
       "description": "Typer, build great CLIs. Easy to code. Based on Python type hints.",
       "externalReferences": [
         {
@@ -4054,9 +4041,9 @@
         }
       ],
       "name": "typer",
-      "purl": "pkg:pypi/typer@0.24.1",
+      "purl": "pkg:pypi/typer@0.25.1",
       "type": "library",
-      "version": "0.24.1"
+      "version": "0.25.1"
     },
     {
       "bom-ref": "typing-inspection==0.4.2",
@@ -4145,13 +4132,13 @@
       "version": "4.15.0"
     },
     {
-      "bom-ref": "tzdata==2025.3",
+      "bom-ref": "tzdata==2026.2",
       "description": "Provider of IANA time zone data",
       "externalReferences": [
         {
           "comment": "from packaging metadata Project-URL: Documentation",
           "type": "documentation",
-          "url": "https://tzdata.readthedocs.io"
+          "url": "https://tzdata.python.org"
         },
         {
           "comment": "from packaging metadata Project-URL: Bug Reports",
@@ -4178,9 +4165,9 @@
         }
       ],
       "name": "tzdata",
-      "purl": "pkg:pypi/tzdata@2025.3",
+      "purl": "pkg:pypi/tzdata@2026.2",
       "type": "library",
-      "version": "2025.3"
+      "version": "2026.2"
     },
     {
       "bom-ref": "uri-template==1.3.0",
@@ -4206,7 +4193,7 @@
       "version": "1.3.0"
     },
     {
-      "bom-ref": "urllib3==2.6.3",
+      "bom-ref": "urllib3==2.7.0",
       "description": "HTTP library with thread-safe connection pooling, file post, and more.",
       "externalReferences": [
         {
@@ -4239,12 +4226,12 @@
         }
       ],
       "name": "urllib3",
-      "purl": "pkg:pypi/urllib3@2.6.3",
+      "purl": "pkg:pypi/urllib3@2.7.0",
       "type": "library",
-      "version": "2.6.3"
+      "version": "2.7.0"
     },
     {
-      "bom-ref": "uvicorn==0.41.0",
+      "bom-ref": "uvicorn==0.46.0",
       "description": "The lightning-fast ASGI server.",
       "externalReferences": [
         {
@@ -4283,9 +4270,9 @@
           "value": "standard"
         }
       ],
-      "purl": "pkg:pypi/uvicorn@0.41.0",
+      "purl": "pkg:pypi/uvicorn@0.46.0",
       "type": "library",
-      "version": "0.41.0"
+      "version": "0.46.0"
     },
     {
       "bom-ref": "uvloop==0.22.1",
@@ -4365,7 +4352,7 @@
       "version": "1.1.1"
     },
     {
-      "bom-ref": "wcwidth==0.6.0",
+      "bom-ref": "wcwidth==0.7.0",
       "description": "Measures the displayed width of unicode strings in a terminal",
       "externalReferences": [
         {
@@ -4383,9 +4370,9 @@
         }
       ],
       "name": "wcwidth",
-      "purl": "pkg:pypi/wcwidth@0.6.0",
+      "purl": "pkg:pypi/wcwidth@0.7.0",
       "type": "library",
-      "version": "0.6.0"
+      "version": "0.7.0"
     },
     {
       "bom-ref": "webcolors==25.10.0",
@@ -4465,7 +4452,7 @@
       "version": "16.0"
     },
     {
-      "bom-ref": "wheel==0.46.3",
+      "bom-ref": "wheel==0.47.0",
       "description": "Command line tool for manipulating wheel files",
       "externalReferences": [
         {
@@ -4498,9 +4485,9 @@
         }
       ],
       "name": "wheel",
-      "purl": "pkg:pypi/wheel@0.46.3",
+      "purl": "pkg:pypi/wheel@0.47.0",
       "type": "library",
-      "version": "0.46.3"
+      "version": "0.47.0"
     },
     {
       "bom-ref": "wrapt==2.1.2",
@@ -4561,13 +4548,13 @@
       "ref": "PyYAML==6.0.3"
     },
     {
-      "ref": "Pygments==2.19.2"
+      "ref": "Pygments==2.20.0"
     },
     {
       "dependsOn": [
         "MarkupSafe==3.0.3"
       ],
-      "ref": "Werkzeug==3.1.6"
+      "ref": "Werkzeug==3.1.8"
     },
     {
       "ref": "absl-py==2.4.0"
@@ -4583,10 +4570,10 @@
     },
     {
       "dependsOn": [
-        "idna==3.11",
+        "idna==3.14",
         "typing_extensions==4.15.0"
       ],
-      "ref": "anyio==4.12.1"
+      "ref": "anyio==4.13.0"
     },
     {
       "dependsOn": [
@@ -4603,26 +4590,26 @@
     {
       "dependsOn": [
         "python-dateutil==2.9.0.post0",
-        "pytz==2026.1.post1",
-        "tzdata==2025.3"
+        "pytz==2026.2",
+        "tzdata==2026.2"
       ],
       "ref": "arrow==1.4.0"
     },
     {
       "dependsOn": [
         "six==1.17.0",
-        "wheel==0.46.3"
+        "wheel==0.47.0"
       ],
       "ref": "astunparse==1.6.3"
     },
     {
-      "ref": "attrs==25.4.0"
+      "ref": "attrs==26.1.0"
     },
     {
       "ref": "boolean.py==5.0"
     },
     {
-      "ref": "certifi==2026.2.25"
+      "ref": "certifi==2026.4.22"
     },
     {
       "dependsOn": [
@@ -4634,47 +4621,47 @@
       "ref": "chardet==5.2.0"
     },
     {
-      "ref": "charset-normalizer==3.4.5"
+      "ref": "charset-normalizer==3.4.7"
     },
     {
-      "ref": "click==8.3.1"
+      "ref": "click==8.3.3"
     },
     {
       "dependsOn": [
-        "matplotlib==3.10.8",
+        "matplotlib==3.10.9",
         "numpy==2.0.2",
-        "pillow==12.1.1"
+        "pillow==12.2.0"
       ],
       "ref": "contourpy==1.3.3"
     },
     {
       "dependsOn": [
-        "matplotlib==3.10.8"
+        "matplotlib==3.10.9"
       ],
       "ref": "cycler==0.12.1"
     },
     {
       "dependsOn": [
         "chardet==5.2.0",
-        "cyclonedx-python-lib==11.6.0",
+        "cyclonedx-python-lib==11.7.0",
         "packageurl-python==0.17.6",
-        "packaging==26.0",
+        "packaging==26.2",
         "pip-requirements-parser==32.0.1"
       ],
-      "ref": "cyclonedx-bom==7.2.2"
+      "ref": "cyclonedx-bom==7.3.0"
     },
     {
       "dependsOn": [
         "jsonschema==4.26.0",
         "license-expression==30.4.4",
-        "lxml==6.0.2",
+        "lxml==6.1.0",
         "packageurl-python==0.17.6",
         "py-serializable==2.1.0",
         "referencing==0.37.0",
         "sortedcontainers==2.4.0",
         "typing_extensions==4.15.0"
       ],
-      "ref": "cyclonedx-python-lib==11.6.0"
+      "ref": "cyclonedx-python-lib==11.7.0"
     },
     {
       "ref": "defusedxml==0.7.1"
@@ -4683,39 +4670,39 @@
       "dependsOn": [
         "httpcore==1.0.9",
         "httpx==0.28.1",
-        "idna==3.11",
-        "wheel==0.46.3"
+        "idna==3.14",
+        "wheel==0.47.0"
       ],
       "ref": "dnspython==2.8.0"
     },
     {
       "dependsOn": [
         "dnspython==2.8.0",
-        "idna==3.11"
+        "idna==3.14"
       ],
       "ref": "email-validator==2.3.0"
     },
     {
       "dependsOn": [
-        "fastapi-cloud-cli==0.14.1",
+        "fastapi-cloud-cli==0.17.1",
         "rich-toolkit==0.19.7",
-        "typer==0.24.1",
-        "uvicorn==0.41.0"
+        "typer==0.25.1",
+        "uvicorn==0.46.0"
       ],
       "ref": "fastapi-cli==0.0.24"
     },
     {
       "dependsOn": [
-        "fastar==0.8.0",
+        "fastar==0.11.0",
         "httpx==0.28.1",
-        "pydantic==2.12.5",
+        "pydantic==2.13.4",
         "rich-toolkit==0.19.7",
         "rignore==0.7.6",
-        "sentry-sdk==2.54.0",
-        "typer==0.24.1",
-        "uvicorn==0.41.0"
+        "sentry-sdk==2.59.0",
+        "typer==0.25.1",
+        "uvicorn==0.46.0"
       ],
-      "ref": "fastapi-cloud-cli==0.14.1"
+      "ref": "fastapi-cloud-cli==0.17.1"
     },
     {
       "dependsOn": [
@@ -4724,31 +4711,32 @@
         "annotated-doc==0.0.4",
         "email-validator==2.3.0",
         "fastapi-cli==0.0.24",
+        "fastar==0.11.0",
         "httpx==0.28.1",
-        "pydantic-extra-types==2.11.0",
-        "pydantic-settings==2.13.1",
-        "pydantic==2.12.5",
-        "python-multipart==0.0.22",
-        "starlette==0.52.1",
+        "pydantic-extra-types==2.11.1",
+        "pydantic-settings==2.14.1",
+        "pydantic==2.13.4",
+        "python-multipart==0.0.28",
+        "starlette==1.0.0",
         "typing-inspection==0.4.2",
         "typing_extensions==4.15.0",
-        "uvicorn==0.41.0"
+        "uvicorn==0.46.0"
       ],
-      "ref": "fastapi==0.135.1"
+      "ref": "fastapi==0.136.1"
     },
     {
-      "ref": "fastar==0.8.0"
+      "ref": "fastar==0.11.0"
     },
     {
       "ref": "flatbuffers==25.12.19"
     },
     {
       "dependsOn": [
-        "lxml==6.0.2",
-        "matplotlib==3.10.8",
+        "lxml==6.1.0",
+        "matplotlib==3.10.9",
         "scipy==1.17.1"
       ],
-      "ref": "fonttools==4.62.0"
+      "ref": "fonttools==4.62.1"
     },
     {
       "ref": "fqdn==1.5.1"
@@ -4766,7 +4754,7 @@
       "dependsOn": [
         "typing_extensions==4.15.0"
       ],
-      "ref": "grpcio==1.78.0"
+      "ref": "grpcio==1.80.0"
     },
     {
       "ref": "h11==0.16.0"
@@ -4779,8 +4767,8 @@
     },
     {
       "dependsOn": [
-        "anyio==4.12.1",
-        "certifi==2026.2.25",
+        "anyio==4.13.0",
+        "certifi==2026.4.22",
         "h11==0.16.0"
       ],
       "ref": "httpcore==1.0.9"
@@ -4790,21 +4778,21 @@
     },
     {
       "dependsOn": [
-        "Pygments==2.19.2",
-        "anyio==4.12.1",
-        "certifi==2026.2.25",
-        "click==8.3.1",
+        "Pygments==2.20.0",
+        "anyio==4.13.0",
+        "certifi==2026.4.22",
+        "click==8.3.3",
         "httpcore==1.0.9",
-        "idna==3.11",
-        "rich==14.3.3"
+        "idna==3.14",
+        "rich==15.0.0"
       ],
       "ref": "httpx==0.28.1"
     },
     {
       "dependsOn": [
-        "ruff==0.15.5"
+        "ruff==0.15.12"
       ],
-      "ref": "idna==3.11"
+      "ref": "idna==3.14"
     },
     {
       "dependsOn": [
@@ -4816,7 +4804,7 @@
       "ref": "joblib==1.5.3"
     },
     {
-      "ref": "jsonpointer==3.0.0"
+      "ref": "jsonpointer==3.1.1"
     },
     {
       "dependsOn": [
@@ -4826,11 +4814,11 @@
     },
     {
       "dependsOn": [
-        "attrs==25.4.0",
+        "attrs==26.1.0",
         "fqdn==1.5.1",
-        "idna==3.11",
+        "idna==3.14",
         "isoduration==20.11.0",
-        "jsonpointer==3.0.0",
+        "jsonpointer==3.1.1",
         "jsonschema-specifications==2025.9.1",
         "referencing==0.37.0",
         "rfc3339-validator==0.1.4",
@@ -4844,14 +4832,14 @@
     },
     {
       "dependsOn": [
-        "grpcio==1.78.0",
+        "grpcio==1.80.0",
         "keras==3.6.0",
         "kt-legacy==1.0.5",
         "namex==0.1.0",
-        "packaging==26.0",
+        "packaging==26.2",
         "pandas==2.2.3",
         "protobuf==5.29.6",
-        "requests==2.32.5",
+        "requests==2.33.1",
         "scikit-learn==1.5.2",
         "scipy==1.17.1",
         "tensorflow==2.18.0"
@@ -4865,9 +4853,9 @@
         "ml-dtypes==0.4.1",
         "namex==0.1.0",
         "numpy==2.0.2",
-        "optree==0.19.0",
-        "packaging==26.0",
-        "rich==14.3.3"
+        "optree==0.19.1",
+        "packaging==26.2",
+        "rich==15.0.0"
       ],
       "ref": "keras==3.6.0"
     },
@@ -4886,42 +4874,42 @@
     {
       "dependsOn": [
         "boolean.py==5.0",
-        "ruff==0.15.5"
+        "ruff==0.15.12"
       ],
       "ref": "license-expression==30.4.4"
     },
     {
-      "ref": "llvmlite==0.46.0"
+      "ref": "llvmlite==0.47.0"
     },
     {
       "ref": "loguru==0.7.3"
     },
     {
-      "ref": "lxml==6.0.2"
+      "ref": "lxml==6.1.0"
     },
     {
       "dependsOn": [
         "Markdown==3.10.2",
         "PyYAML==6.0.3",
         "mdurl==0.1.2",
-        "requests==2.32.5"
+        "requests==2.33.1"
       ],
-      "ref": "markdown-it-py==4.0.0"
+      "ref": "markdown-it-py==4.2.0"
     },
     {
       "dependsOn": [
         "contourpy==1.3.3",
         "cycler==0.12.1",
-        "fonttools==4.62.0",
+        "fonttools==4.62.1",
         "kiwisolver==1.5.0",
         "numpy==2.0.2",
-        "packaging==26.0",
-        "pillow==12.1.1",
+        "packaging==26.2",
+        "pillow==12.2.0",
         "pyparsing==3.3.2",
         "python-dateutil==2.9.0.post0",
         "setuptools==82.0.1"
       ],
-      "ref": "matplotlib==3.10.8"
+      "ref": "matplotlib==3.10.9"
     },
     {
       "ref": "mdurl==0.1.2"
@@ -4929,10 +4917,10 @@
     {
       "dependsOn": [
         "argon2-cffi==25.1.0",
-        "certifi==2026.2.25",
+        "certifi==2026.4.22",
         "pycryptodome==3.23.0",
         "typing_extensions==4.15.0",
-        "urllib3==2.6.3"
+        "urllib3==2.7.0"
       ],
       "ref": "minio==7.2.20"
     },
@@ -4948,10 +4936,10 @@
     },
     {
       "dependsOn": [
-        "llvmlite==0.46.0",
+        "llvmlite==0.47.0",
         "numpy==2.0.2"
       ],
-      "ref": "numba==0.64.0"
+      "ref": "numba==0.65.1"
     },
     {
       "ref": "numpy==2.0.2"
@@ -4961,34 +4949,35 @@
     },
     {
       "dependsOn": [
+        "attrs==26.1.0",
         "numpy==2.0.2",
-        "rich==14.3.3",
-        "ruff==0.15.5",
+        "rich==15.0.0",
+        "ruff==0.15.12",
         "typing_extensions==4.15.0"
       ],
-      "ref": "optree==0.19.0"
+      "ref": "optree==0.19.1"
     },
     {
       "dependsOn": [
         "setuptools==82.0.1",
-        "wheel==0.46.3"
+        "wheel==0.47.0"
       ],
       "ref": "packageurl-python==0.17.6"
     },
     {
-      "ref": "packaging==26.0"
+      "ref": "packaging==26.2"
     },
     {
       "dependsOn": [
         "Jinja2==3.1.6",
-        "lxml==6.0.2",
-        "matplotlib==3.10.8",
-        "numba==0.64.0",
+        "lxml==6.1.0",
+        "matplotlib==3.10.9",
+        "numba==0.65.1",
         "numpy==2.0.2",
         "python-dateutil==2.9.0.post0",
-        "pytz==2026.1.post1",
+        "pytz==2026.2",
         "scipy==1.17.1",
-        "tzdata==2025.3"
+        "tzdata==2026.2"
       ],
       "ref": "pandas==2.2.3"
     },
@@ -5002,20 +4991,20 @@
     {
       "dependsOn": [
         "defusedxml==0.7.1",
-        "packaging==26.0"
+        "packaging==26.2"
       ],
-      "ref": "pillow==12.1.1"
+      "ref": "pillow==12.2.0"
     },
     {
       "dependsOn": [
-        "packaging==26.0",
+        "packaging==26.2",
         "pyparsing==3.3.2"
       ],
       "ref": "pip-requirements-parser==32.0.1"
     },
     {
       "dependsOn": [
-        "wcwidth==0.6.0"
+        "wcwidth==0.7.0"
       ],
       "ref": "prettytable==3.17.0"
     },
@@ -5042,38 +5031,38 @@
     },
     {
       "dependsOn": [
-        "pydantic==2.12.5",
-        "pytz==2026.1.post1",
+        "pydantic==2.13.4",
+        "pytz==2026.2",
         "typing_extensions==4.15.0",
-        "tzdata==2025.3"
+        "tzdata==2026.2"
       ],
-      "ref": "pydantic-extra-types==2.11.0"
+      "ref": "pydantic-extra-types==2.11.1"
     },
     {
       "dependsOn": [
         "PyYAML==6.0.3",
-        "pydantic==2.12.5",
+        "pydantic==2.13.4",
         "python-dotenv==1.2.2",
         "typing-inspection==0.4.2"
       ],
-      "ref": "pydantic-settings==2.13.1"
+      "ref": "pydantic-settings==2.14.1"
     },
     {
       "dependsOn": [
         "annotated-types==0.7.0",
         "email-validator==2.3.0",
-        "pydantic_core==2.41.5",
+        "pydantic_core==2.46.4",
         "typing-inspection==0.4.2",
         "typing_extensions==4.15.0",
-        "tzdata==2025.3"
+        "tzdata==2026.2"
       ],
-      "ref": "pydantic==2.12.5"
+      "ref": "pydantic==2.13.4"
     },
     {
       "dependsOn": [
         "typing_extensions==4.15.0"
       ],
-      "ref": "pydantic_core==2.41.5"
+      "ref": "pydantic_core==2.46.4"
     },
     {
       "dependsOn": [
@@ -5089,19 +5078,19 @@
     },
     {
       "dependsOn": [
-        "click==8.3.1"
+        "click==8.3.3"
       ],
       "ref": "python-dotenv==1.2.2"
     },
     {
-      "ref": "python-multipart==0.0.22"
+      "ref": "python-multipart==0.0.28"
     },
     {
-      "ref": "pytz==2026.1.post1"
+      "ref": "pytz==2026.2"
     },
     {
       "dependsOn": [
-        "attrs==25.4.0",
+        "attrs==26.1.0",
         "rpds-py==0.30.0",
         "typing_extensions==4.15.0"
       ],
@@ -5109,13 +5098,13 @@
     },
     {
       "dependsOn": [
-        "certifi==2026.2.25",
+        "certifi==2026.4.22",
         "chardet==5.2.0",
-        "charset-normalizer==3.4.5",
-        "idna==3.11",
-        "urllib3==2.6.3"
+        "charset-normalizer==3.4.7",
+        "idna==3.14",
+        "urllib3==2.7.0"
       ],
-      "ref": "requests==2.32.5"
+      "ref": "requests==2.33.1"
     },
     {
       "dependsOn": [
@@ -5134,18 +5123,18 @@
     },
     {
       "dependsOn": [
-        "click==8.3.1",
-        "rich==14.3.3",
+        "click==8.3.3",
+        "rich==15.0.0",
         "typing_extensions==4.15.0"
       ],
       "ref": "rich-toolkit==0.19.7"
     },
     {
       "dependsOn": [
-        "Pygments==2.19.2",
-        "markdown-it-py==4.0.0"
+        "Pygments==2.20.0",
+        "markdown-it-py==4.2.0"
       ],
-      "ref": "rich==14.3.3"
+      "ref": "rich==15.0.0"
     },
     {
       "ref": "rignore==0.7.6"
@@ -5154,16 +5143,16 @@
       "ref": "rpds-py==0.30.0"
     },
     {
-      "ref": "ruff==0.15.5"
+      "ref": "ruff==0.15.12"
     },
     {
       "dependsOn": [
         "joblib==1.5.3",
-        "matplotlib==3.10.8",
+        "matplotlib==3.10.9",
         "numpy==2.0.2",
         "pandas==2.2.3",
-        "pillow==12.1.1",
-        "ruff==0.15.5",
+        "pillow==12.2.0",
+        "ruff==0.15.12",
         "scipy==1.17.1",
         "seaborn==0.13.2",
         "threadpoolctl==3.6.0"
@@ -5172,10 +5161,10 @@
     },
     {
       "dependsOn": [
-        "click==8.3.1",
-        "matplotlib==3.10.8",
+        "click==8.3.3",
+        "matplotlib==3.10.9",
         "numpy==2.0.2",
-        "ruff==0.15.5",
+        "ruff==0.15.12",
         "threadpoolctl==3.6.0",
         "typing_extensions==4.15.0"
       ],
@@ -5188,7 +5177,7 @@
         "loguru==0.7.3",
         "numpy==2.0.2",
         "pandas==2.2.3",
-        "pydantic==2.12.5",
+        "pydantic==2.13.4",
         "scikit-learn==1.5.2",
         "seaborn==0.13.2",
         "skops==0.13.0",
@@ -5196,12 +5185,12 @@
         "tensorflow==2.18.0",
         "tslearn==0.7.0"
       ],
-      "ref": "sdg-core-lib==0.1.8"
+      "ref": "sdg-core-lib==0.1.9"
     },
     {
       "dependsOn": [
         "PyYAML==6.0.3",
-        "matplotlib==3.10.8",
+        "matplotlib==3.10.9",
         "numpy==2.0.2",
         "pandas==2.2.3",
         "scipy==1.17.1",
@@ -5212,23 +5201,23 @@
     {
       "dependsOn": [
         "MarkupSafe==3.0.3",
-        "certifi==2026.2.25",
-        "fastapi==0.135.1",
-        "grpcio==1.78.0",
+        "certifi==2026.4.22",
+        "fastapi==0.136.1",
+        "grpcio==1.80.0",
         "httpcore==1.0.9",
         "httpx==0.28.1",
         "loguru==0.7.3",
         "protobuf==5.29.6",
-        "starlette==0.52.1",
-        "urllib3==2.6.3"
+        "starlette==1.0.0",
+        "urllib3==2.7.0"
       ],
-      "ref": "sentry-sdk==2.54.0"
+      "ref": "sentry-sdk==2.59.0"
     },
     {
       "dependsOn": [
-        "packaging==26.0",
-        "ruff==0.15.5",
-        "wheel==0.46.3"
+        "packaging==26.2",
+        "ruff==0.15.12",
+        "wheel==0.47.0"
       ],
       "ref": "setuptools==82.0.1"
     },
@@ -5241,9 +5230,9 @@
     {
       "dependsOn": [
         "numpy==2.0.2",
-        "packaging==26.0",
+        "packaging==26.2",
         "prettytable==3.17.0",
-        "rich==14.3.3",
+        "rich==15.0.0",
         "scikit-learn==1.5.2",
         "scipy==1.17.1"
       ],
@@ -5256,20 +5245,20 @@
       "dependsOn": [
         "Jinja2==3.1.6",
         "PyYAML==6.0.3",
-        "anyio==4.12.1",
+        "anyio==4.13.0",
         "httpx==0.28.1",
-        "python-multipart==0.0.22",
+        "python-multipart==0.0.28",
         "typing_extensions==4.15.0"
       ],
-      "ref": "starlette==0.52.1"
+      "ref": "starlette==1.0.0"
     },
     {
       "dependsOn": [
         "Jinja2==3.1.6",
         "joblib==1.5.3",
-        "matplotlib==3.10.8",
+        "matplotlib==3.10.9",
         "numpy==2.0.2",
-        "packaging==26.0",
+        "packaging==26.2",
         "pandas==2.2.3",
         "patsy==1.0.2",
         "scipy==1.17.1"
@@ -5282,11 +5271,11 @@
     {
       "dependsOn": [
         "Markdown==3.10.2",
-        "Werkzeug==3.1.6",
+        "Werkzeug==3.1.8",
         "absl-py==2.4.0",
-        "grpcio==1.78.0",
+        "grpcio==1.80.0",
         "numpy==2.0.2",
-        "packaging==26.0",
+        "packaging==26.2",
         "protobuf==5.29.6",
         "setuptools==82.0.1",
         "six==1.17.0",
@@ -5301,16 +5290,16 @@
         "flatbuffers==25.12.19",
         "gast==0.7.0",
         "google-pasta==0.2.0",
-        "grpcio==1.78.0",
+        "grpcio==1.80.0",
         "h5py==3.16.0",
         "keras==3.6.0",
         "libclang==18.1.1",
         "ml-dtypes==0.4.1",
         "numpy==2.0.2",
         "opt_einsum==3.4.0",
-        "packaging==26.0",
+        "packaging==26.2",
         "protobuf==5.29.6",
-        "requests==2.32.5",
+        "requests==2.33.1",
         "setuptools==82.0.1",
         "six==1.17.0",
         "tensorboard==2.18.0",
@@ -5331,8 +5320,8 @@
         "h5py==3.16.0",
         "joblib==1.5.3",
         "keras==3.6.0",
-        "matplotlib==3.10.8",
-        "numba==0.64.0",
+        "matplotlib==3.10.9",
+        "numba==0.65.1",
         "numpy==2.0.2",
         "pandas==2.2.3",
         "scikit-learn==1.5.2",
@@ -5343,11 +5332,11 @@
     {
       "dependsOn": [
         "annotated-doc==0.0.4",
-        "click==8.3.1",
-        "rich==14.3.3",
+        "click==8.3.3",
+        "rich==15.0.0",
         "shellingham==1.5.4"
       ],
-      "ref": "typer==0.24.1"
+      "ref": "typer==0.25.1"
     },
     {
       "dependsOn": [
@@ -5359,18 +5348,18 @@
       "ref": "typing_extensions==4.15.0"
     },
     {
-      "ref": "tzdata==2025.3"
+      "ref": "tzdata==2026.2"
     },
     {
       "ref": "uri-template==1.3.0"
     },
     {
-      "ref": "urllib3==2.6.3"
+      "ref": "urllib3==2.7.0"
     },
     {
       "dependsOn": [
         "PyYAML==6.0.3",
-        "click==8.3.1",
+        "click==8.3.3",
         "h11==0.16.0",
         "httptools==0.7.1",
         "python-dotenv==1.2.2",
@@ -5379,7 +5368,7 @@
         "watchfiles==1.1.1",
         "websockets==16.0"
       ],
-      "ref": "uvicorn==0.41.0"
+      "ref": "uvicorn==0.46.0"
     },
     {
       "dependsOn": [
@@ -5389,12 +5378,12 @@
     },
     {
       "dependsOn": [
-        "anyio==4.12.1"
+        "anyio==4.13.0"
       ],
       "ref": "watchfiles==1.1.1"
     },
     {
-      "ref": "wcwidth==0.6.0"
+      "ref": "wcwidth==0.7.0"
     },
     {
       "ref": "webcolors==25.10.0"
@@ -5404,10 +5393,9 @@
     },
     {
       "dependsOn": [
-        "packaging==26.0",
-        "setuptools==82.0.1"
+        "packaging==26.2"
       ],
-      "ref": "wheel==0.46.3"
+      "ref": "wheel==0.47.0"
     },
     {
       "dependsOn": [
@@ -5417,7 +5405,7 @@
     }
   ],
   "metadata": {
-    "timestamp": "2026-03-11T15:34:53.615224+00:00",
+    "timestamp": "2026-05-11T12:55:58.138475+00:00",
     "tools": {
       "components": [
         {
@@ -5467,7 +5455,7 @@
           ],
           "name": "cyclonedx-py",
           "type": "application",
-          "version": "7.2.2"
+          "version": "7.3.0"
         },
         {
           "description": "Python library for CycloneDX",
@@ -5516,12 +5504,12 @@
           ],
           "name": "cyclonedx-python-lib",
           "type": "library",
-          "version": "11.6.0"
+          "version": "11.7.0"
         }
       ]
     }
   },
-  "serialNumber": "urn:uuid:304a0f21-ac03-40ae-8249-c5e796daca58",
+  "serialNumber": "urn:uuid:32839a63-46c8-480e-ba12-ddd4c27eaf11",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
