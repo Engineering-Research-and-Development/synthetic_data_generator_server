@@ -244,7 +244,7 @@ uv run ruff format
 
 ## License
 
-This project is licensed under the AGPL 3.0 open source license.
+This project is licensed under the APACHE 2.0 Licenze.
 
 ## Contributing
 
