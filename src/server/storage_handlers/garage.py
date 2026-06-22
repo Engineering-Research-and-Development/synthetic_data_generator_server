@@ -19,15 +19,20 @@ from server.storage_handlers import (
 )
 
 MAX_REMOVE_TRIES = 3
-client = minio.Minio(
-    endpoint=GARAGE_URL,
-    access_key=GARAGE_USERNAME,
-    secret_key=GARAGE_PASSWORD,
-    region="garage",
-)
+
+client = None
+if GARAGE_URL is not None:
+    client = minio.Minio(
+        endpoint=GARAGE_URL,
+        access_key=GARAGE_USERNAME,
+        secret_key=GARAGE_PASSWORD,
+        region="garage",
+    )
 
 
 def remote_storage_connect_and_sync() -> bool:
+    if client is None:
+        return False
     if bucket_exists():
         try:
             get_available_models()

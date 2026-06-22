@@ -7,7 +7,6 @@ from server.file_utils import create_server_repo_folder_structure
 from server.middleware_handlers.connection import middleware_connect
 from server.state import AppState, StorageType
 from server.storage_handlers.garage import remote_storage_connect_and_sync
-from server.storage_handlers import GARAGE_URL
 
 appstate = AppState()
 
@@ -18,9 +17,8 @@ def server_startup():
     It creates a folder structure for saving models on the server and
     syncs the available algorithms from the middleware to the local server.
     """
-    if GARAGE_URL is not None:
-        if remote_storage_connect_and_sync():
-            appstate.set_storage_type(StorageType.GARAGE)
+    if remote_storage_connect_and_sync():
+        appstate.set_storage_type(StorageType.GARAGE)
 
     logger.info("Server startup")
     create_server_repo_folder_structure()
