@@ -28,6 +28,9 @@ client = minio.Minio(
 
 
 def remote_storage_connect_and_sync() -> bool:
+    if GARAGE_URL is None:
+        return False
+
     if bucket_exists():
         try:
             get_available_models()
